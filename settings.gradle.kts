@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "RoozYar"
-include(":app", ":core:design", ":core:database", ":core:datastore", ":feature:dashboard")
+include(":app")

@@ -1,32 +1,36 @@
-# RoozYar — Native Android
+# RoozYar (روزیار) — Native Android
 
-RoozYar is a Persian, RTL-first, local-first personal life management app. The Android client is being rebuilt natively with Kotlin and Jetpack Compose. The Stitch HTML files are retained only as design references; they are not loaded in a WebView.
+Persian, RTL-first, local-first personal life management app. Kotlin + Jetpack Compose (Material 3),
+MVVM + Clean Architecture, Room, DataStore, Hilt. The Stitch HTML files in `design-reference/` are
+design references only; the app is fully native and uses no WebView.
 
-## Current implementation status
+## Status (Phase 1 — native foundation)
 
-- [x] Native Android application skeleton
-- [x] Kotlin + Jetpack Compose + Material 3 foundation
-- [x] Dark palette tokens based on the Persian Design System
-- [x] RTL root layout
-- [x] Navigation Compose graph with reserved `tasks` route
-- [x] Room database foundation (`TaskEntity`, `UserProfileEntity`)
-- [x] DataStore preferences foundation
-- [x] Hilt application and database/preferences providers
-- [ ] Bundled Vazirmatn / Plus Jakarta Sans / JetBrains Mono font assets
-- [ ] Full Stitch screen reconstruction
-- [ ] Functional Tasks, Calendar, Habits, Goals and Journal features
-- [ ] Android build and device verification
+Written, **not yet compiled or run by the author**: no Android SDK/Gradle was reachable in the authoring
+environment. The first CI run (or Android Studio sync) is the first real verification.
 
-## Product decisions
+| Item | State |
+|---|---|
+| Single-module project, Gradle wrapper 8.11.1, version catalog, KSP | written |
+| Dark theme from DESIGN.md tokens, Vazirmatn (4 weights), RTL pinned in theme | written |
+| 5-tab navigation (خانه، تقویم، برنامه‌ها، اهداف، پروفایل) | written; tabs other than Home are honest placeholders |
+| Room (tasks, user_profile) + DataStore + Hilt wiring | written |
+| Jalali calendar core (`core/date`) + Persian digits | written; algorithm cross-checked in Python, JVM unit tests included |
+| Home shows real Jalali date and real open-task count from Room | written |
+| Shared `ConfirmDialog` (design screen 14) | written |
+| GitHub Actions: unit tests + debug APK artifact | written, never run |
+| Features (tasks, habits, goals, journal, ...), AI, voice | not started |
 
-- Email and phone are optional profile fields, stored only on-device. Their visibility is independently controlled by the user. No account or server dependency is introduced.
-- Task data is modeled independently from screens. The first release can surface task operations from Dashboard and Smart Planner; the dedicated Tasks screen is planned for phase two. The `tasks` navigation route is reserved now.
-- Local-first only: no Firebase, cloud sync, Supabase, mandatory sign-in, or external personal-data storage.
+## Build
 
-## Build environment
+Android Studio (JDK 17, Android SDK 35) → open folder → Sync → Run. Or: `./gradlew testDebugUnitTest assembleDebug`.
+CI: push to GitHub; the `Android CI` workflow uploads `roozyar-debug-apk` and test reports.
 
-The project is configured for JDK 17 bytecode and Android SDK 35. The current work container has Java 21 but does not have Gradle, Android SDK, ADB, or an emulator installed, so an Android Gradle build cannot be run or certified in this environment yet. Open the project in Android Studio with a compatible Android SDK and allow Gradle sync before building.
+## Layout
 
-## Design references
-
-`design-reference/stitch_roozyar_android_app_design/` contains the original Stitch HTML, PNG screenshots and both DESIGN.md files. These are source references only. The native app does not use WebView.
+```
+app/src/main/java/com/roozyar/app/
+  core/{design,common,date,database,datastore,navigation}
+  data/repository   domain/{model,repository,usecase}   di   feature/{dashboard,placeholder}
+```
+UI never touches Room directly: Screen → ViewModel → UseCase → Repository (interface) → DAO.
