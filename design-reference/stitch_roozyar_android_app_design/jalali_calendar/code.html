@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="fa"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Vazirmatn:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-surface": "#dae2fd", "error-container": "#93000a", "primary-container": "#14b8a6", "surface-dim": "#0b1326", "secondary": "#ffb95f", "on-secondary-fixed-variant": "#653e00", "on-secondary": "#472a00", "surface-container-highest": "#2d3449", "outline": "#859490", "inverse-on-surface": "#283044", "tertiary": "#c0c1ff", "primary-fixed-dim": "#4fdbc8", "on-primary-fixed": "#00201c", "primary": "#4fdbc8", "tertiary-container": "#989bff", "on-secondary-container": "#5b3800", "tertiary-fixed-dim": "#c0c1ff", "background": "#0b1326", "primary-fixed": "#71f8e4", "on-tertiary-fixed": "#07006c", "surface-container": "#171f33", "surface-container-lowest": "#060e20", "secondary-fixed-dim": "#ffb95f", "surface-tint": "#4fdbc8", "on-primary-fixed-variant": "#005048", "on-surface": "#dae2fd", "inverse-primary": "#006b5f", "on-tertiary-fixed-variant": "#2f2ebe", "secondary-fixed": "#ffddb8", "surface-variant": "#2d3449", "on-error-container": "#ffdad6", "on-surface-variant": "#bbcac6", "tertiary-fixed": "#e1e0ff", "surface-container-low": "#131b2e", "on-background": "#dae2fd", "error": "#ffb4ab", "on-error": "#690005", "on-secondary-fixed": "#2a1700", "surface-container-high": "#222a3d", "on-tertiary-container": "#1f1ab3", "on-primary": "#003731", "on-primary-container": "#00423b", "on-tertiary": "#1000a9", "outline-variant": "#3c4947", "secondary-container": "ee9800", "surface-bright": "#31394d", "surface": "#0b1326" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1rem", "margin-expanded": "1.5rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "gutter-compact": "0.75rem", "margin": "1rem", "space-xs": "0.25rem" }, fontFamily: { "label-sm": ["Vazirmatn", "Plus Jakarta Sans"], "headline-lg": ["Vazirmatn", "Plus Jakarta Sans"], "label-md": ["Vazirmatn", "Plus Jakarta Sans"], "headline-md": ["Vazirmatn", "Plus Jakarta Sans"], "label-lg": ["Vazirmatn", "Plus Jakarta Sans"], "title-md": ["Vazirmatn", "Plus Jakarta Sans"], "display-lg": ["Vazirmatn", "Plus Jakarta Sans"], "body-lg": ["Vazirmatn", "Plus Jakarta Sans"], "display-lg-mobile": ["Vazirmatn", "Plus Jakarta Sans"], "body-sm": ["Vazirmatn", "Plus Jakarta Sans"], "headline-sm": ["Vazirmatn", "Plus Jakarta Sans"], "body-md": ["Vazirmatn", "Plus Jakarta Sans"] }, fontSize: { "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["26px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "display-lg": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "display-lg-mobile": ["30px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0b1326;color:#dae2fd;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.12)]"><div class="h-6 px-margin flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm select-none"><span class="tracking-tight font-medium font-label-sm text-label-sm">۱۰:۴۲</span><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span><span class="material-symbols-outlined text-[14px]">wifi</span><span class="material-symbols-outlined text-[14px]">battery_full</span></div></div><div class="h-14 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">schedule</span></div><h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight truncate max-w-[200px]">Jalali Calendar</h1></div><div class="flex items-center gap-space-xs"><button aria-label="اعلان‌ها" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin pb-6 gap-space-lg select-none">
+<!-- Top Month Navigation Bar & Quick Controls -->
+<section class="flex flex-col gap-space-md pt-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<button aria-label="ماه قبل" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:bg-surface-bright active:scale-95 transition-all" id="btn-prev-month">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">اردیبهشت ۱۴۰۳</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">ذوالقعده ۱۴۴۵ • می ۲۰۲۴</span>
+</div>
+<button aria-label="ماه بعد" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:bg-surface-bright active:scale-95 transition-all" id="btn-next-month">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1.5 rounded-full bg-primary-container/20 text-primary-fixed hover:bg-primary-container/30 active:scale-95 transition-all flex items-center gap-1 font-label-md text-label-md font-semibold" id="btn-today">
+<span class="material-symbols-outlined text-[16px]">today</span>
+<span>امروز</span>
+</button>
+<button aria-label="نمایش لیست یا تقویم" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Quick Filter Category Chips -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 no-scrollbar text-nowrap">
+<button class="px-space-md py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-on-primary"></span>
+<span>همه رویدادها</span>
+</button>
+<button class="px-space-md py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>مطالعه عمیق</span>
+</button>
+<button class="px-space-md py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>کاری و جلسات</span>
+</button>
+<button class="px-space-md py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>عادت‌ها و تندرستی</span>
+</button>
+</div>
+</section>
+<!-- Jalali Monthly Calendar Grid Card -->
+<section class="w-full bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+<!-- Day of Week Headers -->
+<div class="grid grid-cols-7 text-center font-label-md text-label-md font-bold mb-1">
+<span class="text-on-surface-variant py-1">ش</span>
+<span class="text-on-surface-variant py-1">ی</span>
+<span class="text-on-surface-variant py-1">د</span>
+<span class="text-on-surface-variant py-1">س</span>
+<span class="text-on-surface-variant py-1">چ</span>
+<span class="text-on-surface-variant py-1">پ</span>
+<span class="text-error font-bold py-1">ج</span>
+</div>
+<!-- 31 Days Matrix (Ordibehesht 1403 starts on Saturday 1st) -->
+<div class="grid grid-cols-7 gap-y-2 text-center items-center justify-items-center font-title-md text-title-md">
+<!-- Week 1: 1 to 7 -->
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۱</span>
+<span class="w-1 h-1 rounded-full bg-primary-container"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۲</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۳</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۴</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۵</span>
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۶</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-error hover:bg-surface-container-high transition-all">
+<span>۷</span>
+</button>
+<!-- Week 2: 8 to 14 -->
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۸</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۹</span>
+<div class="flex gap-0.5">
+<span class="w-1 h-1 rounded-full bg-primary-container"></span>
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+</div>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۱۰</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۱۱</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۱۲</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۱۳</span>
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-error hover:bg-surface-container-high transition-all">
+<span>۱۴</span>
+</button>
+<!-- Week 3: 15 to 21 -->
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۱۵</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۱۶</span>
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۱۷</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۱۸</span>
+<div class="flex gap-0.5">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۱۹</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۲۰</span>
+<span class="w-1 h-1 rounded-full bg-primary-container"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-error hover:bg-surface-container-high transition-all">
+<span>۲۱</span>
+</button>
+<!-- Week 4: 22 to 28 (24 is Selected Today) -->
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۲۲</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۲۳</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</button>
+<!-- Day 24 Highlighted (Active Day) -->
+<button class="w-11 h-11 rounded-full bg-primary text-on-primary font-bold shadow-[0_0_16px_rgba(79,219,200,0.4)] flex flex-col items-center justify-center scale-105 transition-transform relative">
+<span>۲۴</span>
+<div class="flex gap-0.5 mt-0.5">
+<span class="w-1 h-1 rounded-full bg-on-primary"></span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۲۵</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۲۶</span>
+<span class="w-1 h-1 rounded-full bg-primary-container"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۲۷</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-error hover:bg-surface-container-high transition-all">
+<span>۲۸</span>
+</button>
+<!-- Week 5: 29 to 31 + Next Month Fillers -->
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all">
+<span>۲۹</span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۳۰</span>
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+</button>
+<button class="w-11 h-11 rounded-full flex flex-col items-center justify-center text-on-surface hover:bg-surface-container-high transition-all relative">
+<span>۳۱</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</button>
+<span class="w-11 h-11 flex items-center justify-center text-outline-variant opacity-40 font-body-sm">۱</span>
+<span class="w-11 h-11 flex items-center justify-center text-outline-variant opacity-40 font-body-sm">۲</span>
+<span class="w-11 h-11 flex items-center justify-center text-outline-variant opacity-40 font-body-sm">۳</span>
+<span class="w-11 h-11 flex items-center justify-center text-outline-variant opacity-40 font-body-sm">۴</span>
+</div>
+<!-- Calendar Legend & Summary -->
+<div class="flex items-center justify-between pt-space-sm mt-space-xs text-on-surface-variant">
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary-container"></span>تمرکز</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary"></span>کاری</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span>عادت</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">۸ روز تا پایان ماه</span>
+</div>
+</section>
+<!-- Agenda Section for Selected Day -->
+<section class="flex flex-col gap-space-md">
+<!-- Agenda Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">event_available</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">برنامه‌های دوشنبه ۲۴ اردیبهشت</h2>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md font-bold">
+        ۴ مورد
+      </span>
+</div>
+<!-- Agenda Time Block Items -->
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1: Team Sync (Done) -->
+<article class="p-space-md bg-surface-container rounded-xl flex items-start gap-space-sm shadow-sm transition-all hover:bg-surface-bright/70">
+<button class="w-6 h-6 mt-0.5 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container shrink-0 transition-transform active:scale-90" id="task-chk-1">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-semibold truncate line-through opacity-75">
+              جلسه همگام‌سازی معماری تیم
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary/20 text-tertiary font-label-sm text-label-sm shrink-0">
+              کار تیمی
+            </span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-tertiary">schedule</span>
+<span>۰۸:۳۰ تا ۱۰:۰۰</span>
+</span>
+<span>•</span>
+<span class="flex items-center gap-1 truncate">
+<span class="material-symbols-outlined text-[15px]">videocam</span>
+<span>گوگل میت</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Item 2: Focus Study Block (Upcoming) -->
+<article class="p-space-md bg-surface-container rounded-xl flex items-start gap-space-sm shadow-sm relative overflow-hidden transition-all hover:bg-surface-bright/70">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-primary"></div>
+<button class="w-6 h-6 mt-0.5 rounded-lg bg-surface-container-high flex items-center justify-center text-transparent hover:text-on-surface-variant shrink-0 transition-transform active:scale-90" id="task-chk-2">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col flex-1 min-w-0 gap-1 pr-1">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-bold truncate">
+              بلوک مطالعه عمیق کنکور ارشد - سیستم‌عامل
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container/20 text-primary-fixed-dim font-label-sm text-label-sm shrink-0">
+              مطالعه
+            </span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[15px]">timer</span>
+<span>۱۰:۳۰ تا ۱۲:۰۰</span>
+</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">menu_book</span>
+<span>فصل ۴: مدیریت حافظه</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Item 3: Internship Report (Upcoming) -->
+<article class="p-space-md bg-surface-container rounded-xl flex items-start gap-space-sm shadow-sm transition-all hover:bg-surface-bright/70">
+<button class="w-6 h-6 mt-0.5 rounded-lg bg-surface-container-high flex items-center justify-center text-transparent hover:text-on-surface-variant shrink-0 transition-transform active:scale-90" id="task-chk-3">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-semibold truncate">
+              پیگیری گزارش کارآموزی شرکت
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm shrink-0">
+              کارآموزی
+            </span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-tertiary">schedule</span>
+<span>۱۴:۰۰ تا ۱۵:۰۰</span>
+</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">person</span>
+<span>جلسه با سرپرست</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Item 4: Fitness & Wellness Habit -->
+<article class="p-space-md bg-surface-container rounded-xl flex items-start gap-space-sm shadow-sm transition-all hover:bg-surface-bright/70">
+<button class="w-6 h-6 mt-0.5 rounded-lg bg-surface-container-high flex items-center justify-center text-transparent hover:text-on-surface-variant shrink-0 transition-transform active:scale-90" id="task-chk-4">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<div class="flex flex-col flex-1 min-w-0 gap-1">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-semibold truncate">
+              تمرین ورزشی هوازی و کششی
+            </span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed-dim/20 text-secondary font-label-sm text-label-sm shrink-0">
+              سلامت و عادت
+            </span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+<span>۱۹:۰۰ تا ۲۰:۰۰</span>
+</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>
+<span>هدف: ۴۵۰ کالری</span>
+</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Motivational Jalali Daily Note Banner -->
+<section class="p-space-md bg-gradient-to-r from-surface-container-high to-surface-container rounded-xl flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold">پیوستگی ۷ روزه حفظ شد!</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">تمام برنامه‌های تمرکز این هفته با موفقیت ثبت شدند.</span>
+</div>
+</div>
+<span class="text-secondary font-headline-sm text-headline-sm font-bold">۷+</span>
+</section>
+<!-- Floating Action Button for New Event (Android Standard Zone) -->
+<div class="fixed left-6 bottom-24 z-40">
+<button aria-label="رویداد جدید" class="h-14 px-5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center gap-2 shadow-[0_8px_24px_rgba(79,219,200,0.35)] active:scale-95 transition-all hover:bg-primary-fixed">
+<span class="material-symbols-outlined text-[24px]">add</span>
+<span>رویداد جدید</span>
+</button>
+</div>
+</div>
+<script>
+  // Simple interactive checkbox toggles for demo fluidity
+  [1, 2, 3, 4].forEach(id => {
+    const btn = document.getElementById(`task-chk-${id}`);
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isDone = btn.classList.contains('bg-primary-container');
+        if (isDone) {
+          btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+          btn.classList.add('bg-surface-container-high', 'text-transparent');
+          btn.parentElement.querySelector('.truncate')?.classList.remove('line-through', 'opacity-75');
+        } else {
+          btn.classList.add('bg-primary-container', 'text-on-primary-container');
+          btn.classList.remove('bg-surface-container-high', 'text-transparent');
+          btn.parentElement.querySelector('.truncate')?.classList.add('line-through', 'opacity-75');
+        }
+      });
+    }
+  });
+
+  // Today button micro feedback
+  document.getElementById('btn-today')?.addEventListener('click', () => {
+    const todayEl = document.querySelector('button.bg-primary');
+    if (todayEl) {
+      todayEl.classList.add('scale-110');
+      setTimeout(() => todayEl.classList.remove('scale-110'), 200);
+    }
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-low/85 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.25)]" data-active-classes="text-primary [&amp;&gt;div]:bg-primary-container/20 [&amp;&gt;span.material-symbols-outlined]:text-primary"><div class="h-20 px-space-xs flex items-center justify-around"><a class="flex flex-col items-center justify-center gap-space-xs min-w-[56px] min-h-[48px] text-on-surface-variant hover:text-on-surface transition-all" data-path="home-dashboard" href="#"><div class="w-12 h-7 rounded-full flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[22px]">home</span></div><span class="font-label-sm text-label-sm font-medium">خانه</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[56px] min-h-[48px] text-on-surface-variant hover:text-on-surface transition-all" data-path="apps-modules" href="#"><div class="w-12 h-7 rounded-full flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[22px]">grid_view</span></div><span class="font-label-sm text-label-sm font-medium">برنامه‌ها</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-space-xs min-w-[56px] min-h-[48px] transition-all text-primary [&amp;&gt;div]:bg-primary-container/20 [&amp;&gt;span.material-symbols-outlined]:text-primary" data-path="jalali-calendar" href="#"><div class="w-12 h-7 rounded-full flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[22px]">calendar_month</span></div><span class="font-label-sm text-label-sm font-medium">تقویم</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[56px] min-h-[48px] text-on-surface-variant hover:text-on-surface transition-all" data-path="goals-habits" href="#"><div class="w-12 h-7 rounded-full flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[22px]">flag</span></div><span class="font-label-sm text-label-sm font-medium">اهداف</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[56px] min-h-[48px] text-on-surface-variant hover:text-on-surface transition-all" data-path="user-profile" href="#"><div class="w-12 h-7 rounded-full flex items-center justify-center transition-colors"><span class="material-symbols-outlined text-[22px]">person</span></div><span class="font-label-sm text-label-sm font-medium">پروفایل</span></a></div></nav></body></html>

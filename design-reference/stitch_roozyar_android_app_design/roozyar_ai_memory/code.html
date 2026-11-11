@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="fa"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Vazirmatn:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'Vazirmatn','Plus Jakarta Sans',sans-serif;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#989bff", "surface-tint": "#4fdbc8", "tertiary": "#c0c1ff", "on-secondary": "#472a00", "on-primary-fixed-variant": "#005048", "on-error": "#690005", "on-surface": "#dae2fd", "on-background": "#dae2fd", "error-container": "#93000a", "secondary-fixed-dim": "#ffb95f", "on-secondary-fixed": "#2a1700", "primary-fixed": "#71f8e4", "inverse-on-surface": "#283044", "outline-variant": "#3c4947", "background": "#0b1326", "on-tertiary-fixed-variant": "#2f2ebe", "on-primary-container": "#00423b", "surface-container": "#171f33", "on-tertiary": "#1000a9", "surface-container-low": "#131b2e", "surface-container-high": "#222a3d", "on-tertiary-container": "#1f1ab3", "surface-variant": "#2d3449", "surface-container-highest": "#2d3449", "on-secondary-container": "#5b3800", "primary": "#4fdbc8", "on-primary": "#003731", "surface-dim": "#0b1326", "tertiary-fixed-dim": "#c0c1ff", "surface-container-lowest": "#060e20", "on-error-container": "#ffdad6", "inverse-primary": "#006b5f", "on-surface-variant": "#bbcac6", "primary-container": "#14b8a6", "surface": "#0b1326", "secondary": "#ffb95f", "secondary-fixed": "#ffddb8", "on-tertiary-fixed": "#07006c", "on-primary-fixed": "#00201c", "inverse-surface": "#dae2fd", "on-secondary-fixed-variant": "#653e00", "outline": "#859490", "primary-fixed-dim": "#4fdbc8", "error": "#ffb4ab", "secondary-container": "ee9800", "tertiary-fixed": "#e1e0ff", "surface-bright": "#31394d" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-lg": "1.5rem", "gutter-compact": "0.75rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1rem", "margin-expanded": "1.5rem", "space-md": "1rem", "margin": "1rem" }, "fontFamily": { "body-sm": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"] }, "fontSize": { "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["26px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "display-lg-mobile": ["30px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><button aria-label="بازگشت" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-high/60 text-on-surface hover:text-primary active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></button><div class="flex flex-col min-w-0 pr-space-xs"><div class="flex items-center gap-space-xs"><h1 class="font-headline-sm text-headline-sm text-on-surface truncate">Ai Memory Settings</h1><span class="material-symbols-outlined text-primary text-[18px] shrink-0">psychology</span></div><div class="flex items-center gap-1 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant/80 tracking-normal">ذخیره‌سازی محلی روی دستگاه</span></div></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="تنظیمات حریم خصوصی" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-high/60 text-on-surface-variant hover:text-primary active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">security</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full px-space-md pb-space-xl space-y-space-lg select-none">
+<!-- بخش خلاصه شاخص‌های حافظه محلی -->
+<section class="flex flex-col w-full bg-surface-container-low rounded-xl p-space-md shadow-md">
+<div class="flex items-center justify-between gap-space-xs pb-space-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0" style="font-variation-settings: 'FILL' 1;">dataset</span>
+<span class="font-label-lg text-label-lg text-on-surface truncate">نمای کلی حافظه شناختی</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm shrink-0">
+        پیش‌نمایش داده‌های نمونه • SQLite
+      </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+      این داده‌ها صرفاً در پایگاه داده ایزوله سیستم‌عامل دستگاه شما ذخیره شده و هیچ ارسال خارجی ندارد.
+    </p>
+<!-- گرید ۵ شاخص کلیدی -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- کارت ۱: کل موارد -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">folder_special</span>
+<span class="font-label-sm text-label-sm">کل داده‌های ثبت‌شده</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-primary font-bold">۲۸</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">مورد شناختی</span>
+</div>
+</div>
+<!-- کارت ۲: ترجیحات شناسایی‌شده -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span class="font-label-sm text-label-sm">ترجیحات صریح</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">۱۲</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">مورد ذخیره</span>
+</div>
+</div>
+<!-- کارت ۳: الگوها و عادت‌ها -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">rebase_edit</span>
+<span class="font-label-sm text-label-sm">عادت‌ها و الگوها</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-secondary font-bold">۹</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">الگوی تکرارشونده</span>
+</div>
+</div>
+<!-- کارت ۴: حجم پایگاه داده -->
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">hard_drive</span>
+<span class="font-label-sm text-label-sm">حجم حافظه محلی</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">۳۸۴</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">کیلوبایت ایزوله</span>
+</div>
+</div>
+<!-- کارت ۵: آخرین زمان بازبینی (تمام‌عرض) -->
+<div class="col-span-2 flex items-center justify-between p-space-sm rounded-lg bg-surface-container">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">update</span>
+<span class="font-label-md text-label-md">آخرین به‌روزرسانی الگوها</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">امروز، ساعت ۱۱:۲۰</span>
+</div>
+</div>
+</section>
+<!-- نوار جستجو و فیلترهای چندبعدی -->
+<section class="flex flex-col w-full space-y-space-sm">
+<!-- فیلد جستجو -->
+<div class="relative flex items-center w-full bg-surface-container rounded-xl px-space-md py-3 shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] ml-space-sm shrink-0">search</span>
+<input class="w-full bg-transparent text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-body-md focus:outline-none" placeholder="جستجو در ترجیحات، اهداف و الگوها..." type="text"/>
+<button aria-label="تنظیمات پیشرفته جستجو" class="p-1 text-on-surface-variant hover:text-primary active:scale-95 transition-transform shrink-0" type="button">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+<!-- چیپ‌های دسته‌بندی موضوعی افقی -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm" type="button">
+        همه (۲۸)
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-bright active:scale-95 transition-all" type="button">
+        اطلاعات و ترجیحات (۱۲)
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-bright active:scale-95 transition-all" type="button">
+        اهداف و برنامه‌ها (۵)
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-bright active:scale-95 transition-all" type="button">
+        عادت‌ها و الگوها (۹)
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-bright active:scale-95 transition-all" type="button">
+        سبک کاری (۶)
+      </button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-bright active:scale-95 transition-all" type="button">
+        بازخوردها و اصلاحات (۴)
+      </button>
+</div>
+<!-- ردیف فیلتر وضعیت و مرتب‌سازی -->
+<div class="flex items-center justify-between gap-space-xs text-on-surface-variant pt-1">
+<div class="flex items-center gap-1.5 overflow-x-auto">
+<span class="font-label-sm text-label-sm shrink-0">فیلتر وضعیت:</span>
+<button class="px-2 py-0.5 rounded-md bg-surface-container-highest text-primary font-label-sm text-label-sm shrink-0" type="button">تأییدشده</button>
+<button class="px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm shrink-0" type="button">نیازمند تأیید (۲)</button>
+<button class="px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm shrink-0" type="button">غیرفعال</button>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[16px]">swap_vert</span>
+<span class="font-label-sm text-label-sm">جدیدترین</span>
+</div>
+</div>
+</section>
+<!-- بخش ویژه: استنباط‌های نیازمند تایید -->
+<section class="flex flex-col w-full space-y-space-sm bg-surface-container-low p-space-md rounded-xl shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">psychology_alt</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">روزیار چه چیزهایی یاد گرفته؟</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-semibold">
+        ۲ حدس جدید
+      </span>
+</div>
+<div class="flex items-start gap-2 bg-surface-container p-space-sm rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        این موارد بر اساس تعاملات شما توسط دستیار استنباط شده و تا زمان تأیید قطعی، صرفاً به عنوان حدس تلقی می‌شوند و مبنای قطعی نخواهند بود.
+      </p>
+</div>
+<!-- کارت استنباط ۱ -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container space-y-space-sm shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-secondary/20 text-secondary font-label-sm text-label-sm font-medium">الگوی شناختی پیشنهادی</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">۲ روز پیش</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-normal font-medium">
+        «شما معمولاً کارهای تحلیلی و برنامه‌نویسی را قبل از ساعت ۱۲ ظهر ترجیح می‌دهید.»
+      </p>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">source</span>
+<span>منبع: استنباط از ۳ جلسه تمرکز عمیق متوالی</span>
+</div>
+<div class="flex items-center gap-2 pt-1 flex-wrap">
+<button class="flex items-center gap-1 px-3 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md active:scale-95 transition-transform shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>تأیید و ذخیره قطعی</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>ویرایش ساعت</span>
+</button>
+<button class="flex items-center gap-1 px-2.5 py-2 rounded-lg text-error hover:bg-error-container/20 font-label-md text-label-md active:scale-95 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>رد کردن</span>
+</button>
+</div>
+</div>
+<!-- کارت استنباط ۲ -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container space-y-space-sm shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-secondary/20 text-secondary font-label-sm text-label-sm font-medium">قانون یادآور</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">۴ روز پیش</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-normal font-medium">
+        «عدم تمایل به دریافت یادآور در روزهای جمعه»
+      </p>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">notifications_off</span>
+<span>منبع: رد دو یادآوری پیاپی در جمعه‌های گذشته</span>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex items-center gap-1 px-3 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md active:scale-95 transition-transform shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>تأیید قاعده</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-high text-on-surface-variant font-label-md text-label-md active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[16px]">block</span>
+<span>رد</span>
+</button>
+</div>
+</div>
+</section>
+<!-- لیست آیتم‌های تثبیت‌شده حافظه -->
+<section class="flex flex-col w-full space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">database</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">آیتم‌های ذخیره‌شده و مدیریت‌پذیر</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">نمایش ۵ از ۲۸</span>
+</div>
+<!-- کارت ۱: نحوه خطاب -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-low space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          ثبت مستقیم توسط شما
+        </span>
+<!-- سوییچ فعال/غیرفعال -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-container-highest rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute right-0.5 top-0.5 bg-on-surface w-5 h-5 rounded-full transition-transform peer-checked:-translate-x-4 peer-checked:bg-on-primary"></div>
+</label>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold pt-1">
+        نحوه خطاب: صمیمی و محترمانه (شما)، بدون پیشوندهای سازمانی اداری
+      </h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-2">
+<div class="flex items-center gap-2">
+<span>دسته: ترجیحات شخصی</span>
+<span>•</span>
+<span>ویرایش: دیروز</span>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="ویرایش آیتم" class="p-1 hover:text-primary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button aria-label="حذف آیتم" class="p-1 hover:text-error active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- کارت ۲: زبان پاسخ‌گویی -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-low space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          ثبت مستقیم توسط شما
+        </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-container-highest rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute right-0.5 top-0.5 bg-on-surface w-5 h-5 rounded-full transition-transform peer-checked:-translate-x-4 peer-checked:bg-on-primary"></div>
+</label>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold pt-1">
+        زبان پیش‌فرض پاسخ‌گویی: فارسی روان با اصطلاحات تخصصی انگلیسی دست‌نخورده
+      </h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-2">
+<span>دسته: سبک کاری و یادگیری</span>
+<div class="flex items-center gap-1">
+<button aria-label="ویرایش آیتم" class="p-1 hover:text-primary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button aria-label="حذف آیتم" class="p-1 hover:text-error active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- کارت ۳: هدف اولویت‌دار -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-low space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          ثبت مستقیم توسط شما
+        </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-container-highest rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute right-0.5 top-0.5 bg-on-surface w-5 h-5 rounded-full transition-transform peer-checked:-translate-x-4 peer-checked:bg-on-primary"></div>
+</label>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold pt-1">
+        هدف اولویت‌دار فصل جاری: آمادگی برای دفاعیه و پروژه مهندسی نرم‌افزار
+      </h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-2">
+<span>دسته: اهداف و برنامه‌ها</span>
+<div class="flex items-center gap-1">
+<button aria-label="ویرایش آیتم" class="p-1 hover:text-primary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button aria-label="حذف آیتم" class="p-1 hover:text-error active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- کارت ۴: الگوی روتین خواب و بیداری -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-low space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          استنباط دستیار • تأییدشده
+        </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-container-highest rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute right-0.5 top-0.5 bg-on-surface w-5 h-5 rounded-full transition-transform peer-checked:-translate-x-4 peer-checked:bg-on-primary"></div>
+</label>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold pt-1">
+        الگوی روتین خواب و بیداری: خواب ساعت ۲۳:۳۰ و آغاز روز کاری ساعت ۰۷:۰۰
+      </h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-2">
+<span>دسته: عادت‌ها و الگوها</span>
+<div class="flex items-center gap-1">
+<button aria-label="ویرایش آیتم" class="p-1 hover:text-primary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button aria-label="حذف آیتم" class="p-1 hover:text-error active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- کارت ۵: اصلاحیه پاسخ‌ها -->
+<div class="flex flex-col p-space-md rounded-xl bg-surface-container-low space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          بازخورد مستقیم در گفتگو
+        </span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-6 bg-surface-container-highest rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="absolute right-0.5 top-0.5 bg-on-surface w-5 h-5 rounded-full transition-transform peer-checked:-translate-x-4 peer-checked:bg-on-primary"></div>
+</label>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold pt-1">
+        اصلاحیه پاسخ‌ها: در توضیحات کدنویسی از مثال‌های پایتون استفاده شود مگر خلاف آن ذکر شود
+      </h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-2">
+<span>دسته: تعاملات و اصلاحات</span>
+<div class="flex items-center gap-1">
+<button aria-label="ویرایش آیتم" class="p-1 hover:text-primary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button aria-label="حذف آیتم" class="p-1 hover:text-error active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- کنترل‌های حریم خصوصی و مخزن محلی داده -->
+<section class="flex flex-col w-full space-y-space-md bg-surface-container-low p-space-md rounded-xl shadow-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">shield</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">امنیت، حریم خصوصی و مخزن محلی</h2>
+</div>
+<!-- سوئیچ توقف موقت یادگیری -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container">
+<div class="flex flex-col pr-1">
+<span class="font-label-lg text-label-lg text-on-surface font-medium">توقف موقت یادگیری دستیار</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">دستیار در این وضعیت داده‌های جدید را تحلیل نمی‌کند</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:bg-secondary transition-colors"></div>
+<div class="absolute right-0.5 top-0.5 bg-on-surface w-5 h-5 rounded-full transition-transform peer-checked:-translate-x-5 peer-checked:bg-on-secondary"></div>
+</label>
+</div>
+<!-- وضعیت پایگاه داده محلی -->
+<div class="flex items-start gap-space-xs p-space-sm rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">folder_zip</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">مسیر ایزوله فیزیکی پایگاه داده</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          پوشه ایزوله دیتابیس اندروید در حافظه محلی گوشی شما (مستقل از هرگونه اتصال خارجی یا سرور ابری)
+        </span>
+</div>
+</div>
+<!-- دکمه‌های اقدام و پاک‌سازی -->
+<div class="flex flex-col space-y-space-sm pt-1">
+<button class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-surface-container-high text-on-surface font-label-lg text-label-lg active:scale-98 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">cleaning_services</span>
+<span>پاک‌سازی انتخابی دسته‌ها...</span>
+</button>
+<!-- کارت هشدار پاک‌سازی کامل -->
+<div class="flex flex-col p-space-md rounded-xl bg-error-container/20 space-y-space-sm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-0.5">warning</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+<span class="font-bold text-error">توجه:</span> با پاک‌سازی کامل حافظه، تمامی ترجیحات و رفتارهای شخصی‌سازی‌شده دستیار حذف شده و به تنظیمات اولیه بازمی‌گردد. این عملیات نیازمند تأیید دومرحله‌ای است.
+          </p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-error text-on-error font-label-lg text-label-lg font-bold active:scale-98 transition-transform shadow-md" type="button">
+<span class="material-symbols-outlined text-[18px]">delete_forever</span>
+<span>پاک‌سازی کامل حافظه محلی</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ویترین وضعیت‌های سیستمی و سناریوهای استثنایی -->
+<section class="flex flex-col w-full space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">help_center</span>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">حالت‌های احتمالی سیستم (راهنمای عملکرد)</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">مستندات تعاملی</span>
+</div>
+<!-- مینی‌کارت ۱: در حال به‌روزرسانی -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px] animate-spin">sync</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">حافظه در حال به‌روزرسانی</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">همگام‌سازی شاخص‌های محلی در جریان است</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary">لودینگ</span>
+</div>
+<!-- مینی‌کارت ۲: حافظه خالی -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">inbox</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">حافظه خالی (Empty State)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">هنوز داده یا ترجیحی ذخیره نشده است</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container text-primary font-label-sm text-label-sm" type="button">راهنما</button>
+</div>
+<!-- مینی‌کارت ۳: یادگیری متوقف‌شده -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">pause_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">یادگیری غیرفعال (Paused)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">ثبت الگوی جدید به درخواست کاربر موقتاً متوقف است</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">متوقف</span>
+</div>
+<!-- مینی‌کارت ۴: خطای پایگاه داده -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[20px]">database_off</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-error font-medium">خطای خواندن SQLite محلی</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">امکان بازخوانی کلیدها وجود ندارد</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-error-container/30 text-error font-label-sm text-label-sm" type="button">تلاش مجدد</button>
+</div>
+<!-- مینی‌کارت ۵: فضای ناکافی -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">disc_full</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">فضای حافظه دستگاه رو به اتمام</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">کمتر از ۵۰ مگابایت فضای خالی در حافظه داخلی</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm" type="button">پاکسازی کش</button>
+</div>
+</section>
+</div></main></body></html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#472a00", "surface-container": "#171f33", "on-background": "#dae2fd", "surface-container-low": "#131b2e", "on-surface-variant": "#bbcac6", "primary-fixed": "#71f8e4", "surface-container-highest": "#2d3449", "surface-dim": "#0b1326", "tertiary": "#c0c1ff", "on-secondary-fixed-variant": "#653e00", "tertiary-fixed-dim": "#c0c1ff", "on-error-container": "#ffdad6", "on-surface": "#dae2fd", "on-tertiary-fixed-variant": "#2f2ebe", "primary-fixed-dim": "#4fdbc8", "inverse-on-surface": "#283044", "on-primary-fixed": "#00201c", "surface-variant": "#2d3449", "secondary": "#ffb95f", "on-secondary-fixed": "#2a1700", "secondary-container": "#ee9800", "on-secondary-container": "#5b3800", "secondary-fixed-dim": "#ffb95f", "background": "#0b1326", "on-primary": "#003731", "surface-container-high": "#222a3d", "on-primary-container": "#00423b", "surface-tint": "#4fdbc8", "on-error": "#690005", "outline-variant": "#3c4947", "surface-bright": "#31394d", "error-container": "#93000a", "inverse-surface": "#dae2fd", "on-primary-fixed-variant": "#005048", "secondary-fixed": "#ffddb8", "surface": "#0b1326", "error": "#ffb4ab", "primary-container": "#14b8a6", "primary": "#4fdbc8", "on-tertiary-container": "#1f1ab3", "outline": "#859490", "tertiary-fixed": "#e1e0ff", "tertiary-container": "#989bff", "on-tertiary-fixed": "#07006c", "inverse-primary": "#006b5f", "on-tertiary": "#1000a9", "surface-container-lowest": "#060e20" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "margin": "1rem", "space-xs": "0.25rem", "space-xl": "2rem", "gutter-compact": "0.75rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter": "1rem", "margin-expanded": "1.5rem" }, "fontFamily": { "display-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-lg": ["26px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "display-lg-mobile": ["30px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="بازگشت" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container active:scale-95 transition-all" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px]">arrow_forward</span></button><div class="flex flex-col"><div class="flex items-center gap-space-xs"><h1 class="font-title-md text-title-md text-on-surface font-bold leading-tight">Ai Smart Planner</h1><span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span></div><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px] text-primary">memory</span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">پردازش محلی NPU فعال</span></div></div></div><div class="flex items-center gap-space-xs"><button aria-label="تنظیمات هوش مصنوعی و حافظه" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant hover:text-primary hover:bg-surface-container active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[20px]">tune</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(20,184,166,0.25)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-12 overflow-x-hidden">
+<!-- Mock Data Banner / Technical Transparency -->
+<div class="px-space-md py-space-xs bg-surface-container-low text-on-surface-variant flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-primary">terminal</span>
+<span class="truncate">داده‌های نمونه • پیش‌نمایش معماری پردازش محلی (Edge AI)</span>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="text-label-sm font-label-sm text-primary">v2.4-آفلاین</span>
+</div>
+</div>
+<!-- Header & Jalali Calendar Strip -->
+<section class="px-space-md pt-space-md flex flex-col gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          روز ۳۲ از فصل بهار
+        </span>
+<div class="flex items-center gap-1.5 bg-surface-container-high px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary">database</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">SQLite رمزنگاری‌شده</span>
+</div>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface mt-0.5 font-bold">
+        شنبه ۲۲ اردیبهشت ۱۴۰۳
+      </h2>
+</div>
+<!-- Weekly Overview Strip (Interactive 7-day strip) -->
+<div class="flex items-center justify-between gap-1.5 overflow-x-auto py-1 scroll-smooth">
+<!-- Sat (Active) -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-primary text-on-primary min-w-[46px] shadow-sm transition-transform active:scale-95" type="button">
+<span class="text-label-sm font-label-sm font-medium">شنبه</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۲</span>
+<span class="text-label-sm font-label-sm opacity-90">۸۲٪</span>
+</button>
+<!-- Sun -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-high text-on-surface min-w-[46px] transition-transform active:scale-95" type="button">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">یک</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۳</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۵ تسک</span>
+</button>
+<!-- Mon -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-high text-on-surface min-w-[46px] transition-transform active:scale-95" type="button">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">دو</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۴</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۶ تسک</span>
+</button>
+<!-- Tue -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-high text-on-surface min-w-[46px] transition-transform active:scale-95" type="button">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">سه</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۵</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۴ تسک</span>
+</button>
+<!-- Wed -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-high text-on-surface min-w-[46px] transition-transform active:scale-95" type="button">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">چهار</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۶</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۷ تسک</span>
+</button>
+<!-- Thu -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-high text-on-surface min-w-[46px] transition-transform active:scale-95" type="button">
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">پنج</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۷</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۳ تسک</span>
+</button>
+<!-- Fri -->
+<button class="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-container-low text-on-surface-variant min-w-[46px] opacity-70" type="button">
+<span class="text-label-sm font-label-sm font-medium">جمعه</span>
+<span class="text-title-md font-title-md font-bold my-0.5">۲۸</span>
+<span class="text-label-sm font-label-sm">آزاد</span>
+</button>
+</div>
+</section>
+<!-- Summary Dashboard Card -->
+<section class="px-space-md mt-space-md">
+<div class="bg-surface-container p-space-md rounded-xl shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">donut_large</span>
+</div>
+<div>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">تراز زمانی روزانه</h3>
+<p class="text-body-sm font-body-sm text-primary">برنامه متوازن و بهینه</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary text-label-sm font-label-sm font-bold">
+          ۴ از ۶ انجام‌شده
+        </span>
+</div>
+<!-- Linear Metrics Bar -->
+<div class="flex flex-col gap-1.5 mt-1">
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>زمان تخصیص‌یافته: ۷ ساعت و ۳۰ دقیقه</span>
+<span class="text-on-surface font-semibold">۸۲٪ بازه مفید</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden flex flex-row-reverse">
+<div class="h-full bg-primary" style="width: 66%;"></div>
+<div class="h-full bg-secondary" style="width: 16%;"></div>
+<div class="h-full bg-surface-variant" style="width: 18%;"></div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant pt-0.5">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span> تکمیل‌شده (۵:۱۵ س)
+          </span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> باقی‌مانده (۲:۱۵ س)
+          </span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-variant inline-block"></span> آزاد (۱:۳۰ س)
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Conflict Resolution Alert Engine -->
+<section class="px-space-md mt-space-md">
+<div class="p-space-md bg-secondary-container/15 rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[24px]">warning</span>
+<div class="flex flex-col">
+<h4 class="text-title-md font-title-md text-secondary font-bold">هشدار تداخل زمانی شناسایی شد</h4>
+<p class="text-body-sm font-body-sm text-on-surface">۲ فعالیت در بازه ۱۱:۰۰ تا ۱۱:۴۵ همپوشانی دارند!</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container text-label-sm font-label-sm shrink-0 font-bold">
+          تعارض P1
+        </span>
+</div>
+<!-- Conflicting Items Stack -->
+<div class="grid grid-cols-1 gap-1.5 p-2.5 bg-surface-container-low rounded-lg text-body-sm font-body-sm">
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-1.5 truncate">
+<span class="material-symbols-outlined text-[16px] text-error">event_busy</span>
+            جلسه اضطراری تیم بک‌اند (تقویم رسمی)
+          </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۱۱:۰۰ - ۱۱:۳۰</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-1.5 truncate">
+<span class="material-symbols-outlined text-[16px] text-secondary">edit_note</span>
+            تمرکز عمیق: مستندسازی API روزیار
+          </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۱۰:۳۰ - ۱۱:۴۵</span>
+</div>
+</div>
+<!-- AI Resolution Suggestion -->
+<div class="flex flex-col gap-2 pt-1">
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">auto_fix_high</span>
+          پیشنهاد هوش مصنوعی: جابجایی مستندسازی به بازه خالی ۱۶:۱۵ (پس از استراحت ناهار)
+        </p>
+<div class="flex items-center gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-secondary text-on-secondary text-label-md font-label-md font-bold flex items-center justify-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+            تأیید جابجایی خودکار
+          </button>
+<button class="py-2 px-3 rounded-lg bg-surface-container-high text-on-surface text-label-md font-label-md active:scale-95 transition-all" type="button">
+            تنظیم دستی
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- RoozYar AI Engine Main Hub -->
+<section class="px-space-md mt-space-md flex flex-col gap-space-sm">
+<div class="bg-surface-container p-space-md rounded-xl shadow-lg relative overflow-hidden flex flex-col gap-space-md">
+<!-- Glow ambient backdrop -->
+<div class="absolute -top-12 -left-12 w-36 h-36 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Hub Header -->
+<div class="flex items-center justify-between relative z-10">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[24px]">neurology</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-title-md font-title-md text-on-surface font-bold">هسته برنامه‌ریزی هوشمند روزیار</h3>
+<span class="px-1.5 py-0.2 bg-primary/20 text-primary text-label-sm font-label-sm rounded">NPU محلی</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">الگوریتم تلفیق داده‌های رفتاری و تقویم آفلاین</p>
+</div>
+</div>
+</div>
+<!-- Connected Data Sources Indicators -->
+<div class="flex flex-col gap-2 relative z-10">
+<span class="text-label-sm font-label-sm text-on-surface-variant">منابع داده متصل به مدل:</span>
+<div class="grid grid-cols-3 gap-1.5">
+<div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span class="truncate">تسک‌ها (Tasks)</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
+<span class="truncate">تقویم جلالی</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">repeat</span>
+<span class="truncate">عادات (Habits)</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">flag</span>
+<span class="truncate">اهداف فصلی</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology</span>
+<span class="truncate">حافظه شناختی</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-surface-container-high text-on-surface text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">battery_charging_full</span>
+<span class="truncate">ریتم زیستی</span>
+</div>
+</div>
+</div>
+<!-- Quick AI Action Triggers -->
+<div class="flex flex-col gap-2 relative z-10">
+<button class="w-full py-2.5 px-3 rounded-xl bg-primary text-on-primary font-bold text-label-lg font-label-lg flex items-center justify-center gap-2 shadow-sm active:scale-98 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+          تولید برنامه بهینه امروز بر اساس تسک‌ها و تقویم
+        </button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-2.5 rounded-lg bg-surface-container-high text-on-surface text-label-md font-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">date_range</span>
+            چینش برنامه ۷ روزه
+          </button>
+<button class="py-2 px-2.5 rounded-lg bg-surface-container-high text-on-surface text-label-md font-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container-highest transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">self_improvement</span>
+            بهینه‌سازی استراحت‌ها
+          </button>
+</div>
+</div>
+<!-- Explicit Proposal Preview Card (Requires Approval) -->
+<div class="p-3 bg-surface-container-low rounded-xl flex flex-col gap-2 relative z-10">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">difference</span>
+<span class="text-label-md font-label-md font-bold">پیش‌نمایش برنامه پیشنهادی (نیازمند تأیید کاربر)</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">۲ تغییر نسبت به برنامه فعلی</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          «تعویض نوبت جلسه طراحی مایکروسرویس به صبح اول وقت و جابجایی یادگیری زبان به ۱۹:۳۰ بازدهی شناختی را ۲۴٪ ارتقا می‌دهد.»
+        </p>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 py-1.5 px-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md font-bold flex items-center justify-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">thumb_up</span>
+            بررسی و تأیید قطعی
+          </button>
+<button class="py-1.5 px-3 bg-surface-container-high text-on-surface rounded-lg text-label-md font-label-md active:scale-95 transition-all" type="button">
+            شخصی‌سازی
+          </button>
+<button class="py-1.5 px-2 bg-error-container text-on-error-container rounded-lg text-label-md font-label-md active:scale-95 transition-all" type="button">
+            رد
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Contextual Insights & Suggestions -->
+<section class="px-space-md mt-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">پیشنهادهای هوشمند روزیار</h3>
+<span class="text-label-sm font-label-sm text-primary">بر پایه ریتم و داده‌های شخصی</span>
+</div>
+<!-- Suggestion 1 -->
+<div class="p-space-md bg-surface-container rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container/30 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</div>
+<h4 class="text-title-md font-title-md text-on-surface font-semibold leading-tight">
+            انتقال مطالعه فصل ۳ مهندسی نرم‌افزار به بازه خلوت ۱۹:۳۰
+          </h4>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+<strong class="text-primary font-medium">علت شناختی:</strong> بر اساس سوابق هفتگی، درک مفاهیم تحلیلی سنگین پس از تمرین ورزشی عصرگاهی ۱۸٪ عمیق‌تر از میانه روز است.
+      </p>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+          اثر: ممانعت از پرش ذهن و تعویق
+        </span>
+<div class="flex items-center gap-2">
+<button class="py-1 px-3 rounded-lg bg-primary text-on-primary text-label-sm font-label-sm font-bold active:scale-95 transition-all" type="button">
+            اعمال تغییر
+          </button>
+<button class="py-1 px-2 text-on-surface-variant text-label-sm font-label-sm hover:text-on-surface" type="button">
+            نادیده‌گیری
+          </button>
+</div>
+</div>
+</div>
+<!-- Suggestion 2 -->
+<div class="p-space-md bg-surface-container rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+</div>
+<h4 class="text-title-md font-title-md text-on-surface font-semibold leading-tight">
+            تعبیه ۱۵ دقیقه پیاده‌روی و تنفس عمیق پس از جلسه بازبینی کد
+          </h4>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+<strong class="text-secondary font-medium">علت شناختی:</strong> جلسه ۱۱:۳۰ توان پردازش ذهنی را مصرف می‌کند؛ استراحت فعال مانع از افت کارایی در پومودوروی دوم عصر می‌شود.
+      </p>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+          اثر: بازسازی تمرکز قبل از پیاده‌سازی
+        </span>
+<div class="flex items-center gap-2">
+<button class="py-1 px-3 rounded-lg bg-primary text-on-primary text-label-sm font-label-sm font-bold active:scale-95 transition-all" type="button">
+            افزودن به برنامه
+          </button>
+<button class="py-1 px-2 text-on-surface-variant text-label-sm font-label-sm hover:text-on-surface" type="button">
+            صرف‌نظر
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Day Timeline -->
+<section class="px-space-md mt-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">تایم‌لاین اجرایی روز</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+          ۰۷:۳۰ تا ۲۲:۳۰
+        </span>
+</div>
+<button class="text-primary text-label-md font-label-md flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+        فعالیت جدید
+      </button>
+</div>
+<!-- Timeline Container with vertical connecting logic -->
+<div class="flex flex-col gap-2.5 relative">
+<!-- Item 1: Completed Habit -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-low transition-colors">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface line-through opacity-80 truncate">روتین صبحگاهی و مرور اهداف روز</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۰۷:۳۰ - ۰۸:۱۵</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">عادت و سلامتی</span>
+<span class="text-label-sm font-label-sm text-primary">تکمیل‌شده ✓</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 2: Completed Deep Work -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-low transition-colors">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface line-through opacity-80 truncate">تمرکز عمیق: معماری مایکروسرویس روزیار</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۰۸:۳۰ - ۱۰:۰۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-error-container text-on-error-container text-label-sm font-label-sm">اولویت بالا P1</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">پروژه سازمانی</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 3: Empty Free Slot -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">hourglass_empty</span>
+<span>بازه آزاد و استراحت کوتاه</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant">۱۰:۰۰ - ۱۰:۱۵ (۱۵ دقیقه)</span>
+<span class="text-label-sm font-label-sm text-primary px-1.5 py-0.5 rounded bg-primary/10">آزاد</span>
+</div>
+</div>
+<!-- Item 4: Current In-Progress Activity -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container shadow-md">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5 text-on-primary">
+<span class="material-symbols-outlined text-[16px] animate-spin">sync</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface font-bold truncate">جلسه بازبینی کد با تیم مهندسی</h5>
+<span class="text-label-sm font-label-sm text-primary font-bold shrink-0">۱۰:۱۵ - ۱۱:۳۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface text-label-sm font-label-sm">جلسه تقویم</span>
+<span class="text-label-sm font-label-sm text-primary font-semibold">هم‌اکنون در جریان</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 5: Planned Tasks -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-high transition-colors">
+<div class="w-6 h-6 rounded-md bg-surface-variant flex items-center justify-center shrink-0 mt-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface truncate">تسک‌های جاری و پاسخ به درخواست‌ها</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۱۱:۳۰ - ۱۳:۰۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-label-sm font-label-sm">کار روزمره</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 6: Lunch & Recharge -->
+<div class="p-2.5 rounded-xl bg-surface-container-low flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">restaurant</span>
+<span class="text-on-surface">ناهار و استراحت تجدید قوا</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۱۳:۰۰ - ۱۴:۱۵</span>
+</div>
+<!-- Item 7: Deep Work Pomodoro 2 -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-high transition-colors">
+<div class="w-6 h-6 rounded-md bg-surface-variant flex items-center justify-center shrink-0 mt-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface truncate">جلسه تمرکز پومودورو: پیاده‌سازی تست‌ها</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۱۴:۱۵ - ۱۶:۰۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-primary-container/20 text-primary text-label-sm font-label-sm">تمرکز عمیق</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۴ بازه ۲۵ دقیقه‌ای</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 8: Suggested Buffer Window -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">snooze</span>
+<span>زمان آزاد پیشنهادی برای فعالیت جبرانی یا استراحت</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۱۶:۰۰ - ۱۷:۳۰</span>
+</div>
+<!-- Item 9: Fitness & Health -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-high transition-colors">
+<div class="w-6 h-6 rounded-md bg-surface-variant flex items-center justify-center shrink-0 mt-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">fitness_center</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface truncate">تمرین ورزشی و تحرک بدنی</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۱۸:۰۰ - ۱۹:۰۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container/20 text-secondary text-label-sm font-label-sm">سلامت جسمانی</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 10: Learning connected to Seasonal Goal -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-high transition-colors">
+<div class="w-6 h-6 rounded-md bg-surface-variant flex items-center justify-center shrink-0 mt-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">school</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface truncate">مطالعه تخصصی و زبان انگلیسی</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۱۹:۳۰ - ۲۱:۰۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-tertiary-container/30 text-tertiary text-label-sm font-label-sm">متصل به هدف فصلی Q1</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">فصل ۳ نرم‌افزار</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<!-- Item 11: Daily Reflection / Journaling -->
+<div class="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-high transition-colors">
+<div class="w-6 h-6 rounded-md bg-surface-variant flex items-center justify-center shrink-0 mt-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">draw</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h5 class="text-title-md font-title-md text-on-surface truncate">جمع‌بندی روز و نگارش ژورنال شخصی</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant shrink-0">۲۱:۳۰ - ۲۲:۰۰</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-label-sm font-label-sm">بازنگری روزانه</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+</section>
+<!-- System States, Edge Cases & Empty States Showcase -->
+<section class="px-space-md mt-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col">
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold">وضعیت‌های رفتاری و خطاهای سیستمی</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">رفتار پلتفرم در شرایط عدم قطعیت و پردازش حاشیه‌ای (Edge)</p>
+</div>
+<!-- State 1: Calculating State -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[22px] animate-spin">progress_activity</span>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-title-md font-title-md text-on-surface font-medium truncate">برنامه در حال چینش هوشمند...</h5>
+<p class="text-body-sm font-body-sm text-on-surface-variant">مدل فشرده آفلاین در حال تحلیل تقاطع اولویت‌ها و عادات است.</p>
+</div>
+</div>
+<!-- State 2: Empty Schedule State -->
+<div class="p-space-md bg-surface-container rounded-xl flex flex-col items-center text-center gap-2">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[26px]">event_available</span>
+</div>
+<h5 class="text-title-md font-title-md text-on-surface font-semibold">هیچ رویدادی برای این روز تعریف نشده است</h5>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs">
+        می‌توانید تسک‌های اولیه را اضافه کنید تا روزیار برنامه را بر اساس بهره‌وری شما بچیند.
+      </p>
+<button class="mt-1 py-1.5 px-4 bg-primary text-on-primary rounded-lg text-label-md font-label-md font-bold" type="button">
+        ایجاد اولین فعالیت
+      </button>
+</div>
+<!-- State 3: Insufficient Historical Data State -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex items-start gap-3">
+<span class="material-symbols-outlined text-[22px] text-secondary shrink-0 mt-0.5">info</span>
+<div class="flex flex-col gap-0.5">
+<h5 class="text-title-md font-title-md text-on-surface font-medium">عدم کفایت سوابق رفتاری</h5>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+          برای فعال‌سازی کامل پیش‌بینی ریتم‌های تمرکز، حداقل ثبت فعالیت ۳ روز متوالی در دستگاه مورد نیاز است.
+        </p>
+</div>
+</div>
+<!-- State 4: Offline Model Unavailable State -->
+<div class="p-space-md bg-error-container/20 rounded-xl flex items-start justify-between gap-3">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[22px] text-error shrink-0 mt-0.5">cloud_off</span>
+<div class="flex flex-col gap-0.5">
+<h5 class="text-title-md font-title-md text-on-surface font-medium">مدل زبانی محلی در دسترس نیست</h5>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            فایل وزن‌های مدل روی حافظه محلی یافت نشد یا در انتظار راه‌اندازی است.
+          </p>
+</div>
+</div>
+<button class="shrink-0 px-2.5 py-1.5 bg-surface-container-high text-on-surface rounded-lg text-label-sm font-label-sm" type="button">
+        تنظیمات مدل
+      </button>
+</div>
+</section>
+</div>
+<script>
+  // Micro-interactions for interactive feedback
+  document.addEventListener('DOMContentLoaded', () => {
+    const actionButtons = document.querySelectorAll('button');
+    actionButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        // Visual tap affirmation without intrusive alert
+        this.classList.add('opacity-70');
+        setTimeout(() => this.classList.remove('opacity-70'), 150);
+      });
+    });
+  });
+</script></main></body></html>

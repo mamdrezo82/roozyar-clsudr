@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#0b1326;color:#dae2fd;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary": "#ffb95f", "surface": "#0b1326", "tertiary-fixed-dim": "#c0c1ff", "surface-container-highest": "#2d3449", "surface-container-lowest": "#060e20", "on-tertiary-container": "#1f1ab3", "secondary-fixed": "#ffddb8", "secondary-fixed-dim": "#ffb95f", "on-background": "#dae2fd", "on-surface": "#dae2fd", "surface-container-high": "#222a3d", "on-primary-fixed-variant": "#005048", "surface-tint": "#4fdbc8", "on-primary": "#003731", "on-secondary-container": "#5b3800", "primary": "#4fdbc8", "tertiary-fixed": "#e1e0ff", "on-primary-fixed": "#00201c", "on-tertiary-fixed": "#07006c", "primary-fixed-dim": "#4fdbc8", "tertiary-container": "#989bff", "on-secondary-fixed": "#2a1700", "surface-bright": "#31394d", "inverse-surface": "#dae2fd", "surface-container": "#171f33", "outline-variant": "#3c4947", "on-secondary-fixed-variant": "#653e00", "error": "#ffb4ab", "primary-container": "#14b8a6", "error-container": "#93000a", "secondary-container": "#ee9800", "surface-container-low": "#131b2e", "on-error": "#690005", "on-surface-variant": "#bbcac6", "surface-dim": "#0b1326", "on-secondary": "#472a00", "surface-variant": "#2d3449", "tertiary": "#c0c1ff", "on-error-container": "#ffdad6", "background": "#0b1326", "on-tertiary-fixed-variant": "#2f2ebe", "on-primary-container": "#00423b", "outline": "#859490", "on-tertiary": "#1000a9", "inverse-on-surface": "#283044", "primary-fixed": "#71f8e4", "inverse-primary": "#006b5f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "1rem", "gutter": "1rem", "space-md": "1rem", "space-xs": "0.25rem", "margin-expanded": "1.5rem", "space-xl": "2rem", "gutter-compact": "0.75rem", "space-lg": "1.5rem", "space-sm": "0.5rem" }, "fontFamily": { "display-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"] }, "fontSize": { "display-lg": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg": ["26px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-lg-mobile": ["30px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_12px_rgba(0,0,0,0.3)] pt-safe"><div class="h-20 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><button aria-label="بازگشت" class="w-11 h-11 flex items-center justify-center rounded-xl bg-surface-container-high/60 text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[22px] rotate-180">arrow_back_ios_new</span></button><div class="flex flex-col text-right"><div class="flex items-center gap-space-xs"><h1 class="text-title-md font-title-md text-on-surface font-bold tracking-tight">Ai Engine Settings</h1><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/15 text-primary text-label-sm font-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Edge Engine</span></div><span class="text-body-sm font-body-sm text-on-surface-variant truncate max-w-[220px]">مدیریت مدل‌های محلی و شتاب‌دهنده سخت‌افزاری</span></div></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-space-md pt-20 pb-safe bg-surface"><div class="flex flex-col w-full pb-10 space-y-5 text-right select-none">
+<!-- Status Chip & Global Sandbox Notice -->
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-md font-label-md shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>۱۰۰٪ پردازش محلی آفلاین</span>
+</span>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+        داده‌های نمایشی سیستم
+      </span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">security</span>
+<span>ایزوله امن sandbox</span>
+</div>
+</div>
+<!-- ۱. داشبورد وضعیت موتور (Engine Status Card) -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container p-4 shadow-md space-y-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-title-md font-title-md text-on-surface font-bold">هسته هوش مصنوعی RoozYar</h2>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container text-label-sm font-label-sm">v2.4-edge</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">پردازش محلی روی سخت‌افزار NPU/CPU دستگاه</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/15 text-primary text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>فعال و آماده خدمت</span>
+</div>
+</div>
+<!-- Engine Key Info Grid -->
+<div class="grid grid-cols-2 gap-2 p-3 rounded-lg bg-surface-container-low">
+<div class="flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">مدل فعال فعلی</span>
+<span class="text-label-md font-label-md text-on-surface truncate font-mono">Local-LLM-3B-Q4_K_M.gguf</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">آخرین اجرای موفق</span>
+<span class="text-label-md font-label-md text-primary">۳ دقیقه پیش</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">شتاب‌دهنده فعال</span>
+<span class="text-label-md font-label-md text-on-surface">Android NNAPI (سخت‌افزاری)</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">نوع حافظه کاری</span>
+<span class="text-label-md font-label-md text-on-surface">ایزوله درون‌برنامه‌ای (RAM)</span>
+</div>
+</div>
+<!-- Engine Action Buttons -->
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 h-11 px-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span>راه‌اندازی مجدد موتور</span>
+</button>
+<button class="flex-1 h-11 px-3 rounded-lg bg-primary text-on-primary text-label-md font-label-md flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+<span>تست سلامت موتور</span>
+</button>
+</div>
+</div>
+<!-- ۲. بررسی سازگاری سخت‌افزار دستگاه (Hardware Compatibility) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">memory</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">ارزیابی سخت‌افزار دستگاه</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-label-sm font-label-sm">سازگار با مدل ۳B</span>
+</div>
+<!-- Spec Metrics -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- RAM Card -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">حافظه RAM آزاد</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">speed</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-baseline justify-between">
+<span class="text-title-md font-title-md text-on-surface font-bold">۳.۴ گیگابایت</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">از ۶ گیگابایت</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 57%;"></div>
+</div>
+</div>
+</div>
+<!-- Storage Card -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">فضای ذخیره آزاد</span>
+<span class="material-symbols-outlined text-primary text-[16px]">storage</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-baseline justify-between">
+<span class="text-title-md font-title-md text-on-surface font-bold">۱۸.۲ گیگابایت</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">آزاد داخلی</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+</div>
+<!-- Architecture -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col space-y-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">معماری پردازنده و شتاب‌دهی</span>
+<span class="text-label-md font-label-md text-on-surface font-mono">ARM64-v8a • NNAPI</span>
+<span class="text-label-sm font-label-sm text-primary">پشتیبانی کامل از NEON</span>
+</div>
+<!-- Model Load -->
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col space-y-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">نیاز RAM مدل فعال</span>
+<span class="text-label-md font-label-md text-on-surface font-mono">۱.۹ گیگابایت</span>
+<span class="text-label-sm font-label-sm text-secondary">حاشیه امن: ۱.۵ گیگابایت</span>
+</div>
+</div>
+<!-- Alert Box -->
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-secondary/10 text-on-secondary-container">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">warning</span>
+<p class="text-body-sm font-body-sm text-on-surface leading-5">
+        هشدار فنی: بارگذاری مدل‌های بالاتر از ۷ میلیارد پارامتر (7B) ممکن است با کندی شدید یا کمبود حافظه (OOM) مواجه شود. مدل‌های ۲ تا ۳ میلیارد پارامتر بالاترین بهره‌وری باتری و سرعت را دارند.
+      </p>
+</div>
+</div>
+<!-- ۳. بخش مدیریت مدل‌های هوش مصنوعی (Model Manager) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">developer_board</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">مدیریت فایل مدل‌ها</h3>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۲ مدل نصب‌شده</span>
+</div>
+<!-- Active Model Card -->
+<div class="p-3.5 rounded-lg bg-surface-container-high space-y-3 shadow-sm">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface font-bold">Llama-3-Persian-3B</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-label-sm font-label-sm">فعال در حافظه</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">کوانتیزاسیون Q4_K_M • فرمت استاندارد GGUF</p>
+</div>
+<span class="text-label-md font-label-md text-primary font-bold">۱.۸۲ گیگابایت</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-highest">
+<span class="material-symbols-outlined text-[14px]">translate</span>
+          فارسی / انگلیسی
+        </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-highest">
+<span class="material-symbols-outlined text-[14px]">layers</span>
+          ۳.۲ میلیارد پارامتر
+        </span>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 h-9 rounded-lg bg-surface-container-highest hover:bg-surface-bright text-on-surface text-label-md font-label-md flex items-center justify-center gap-1 active:scale-95 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+<span>غیرفعال‌سازی</span>
+</button>
+<button class="h-9 px-3 rounded-lg bg-error-container/40 text-error hover:bg-error-container text-label-md font-label-md flex items-center justify-center gap-1 active:scale-95 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>حذف</span>
+</button>
+</div>
+</div>
+<!-- Secondary Inactive Model Card -->
+<div class="p-3.5 rounded-lg bg-surface-container-low space-y-3">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="text-title-md font-title-md text-on-surface font-semibold">Qwen-1.5-1.8B-Chat</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-label-sm font-label-sm">آماده بارگذاری</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">کوانتیزاسیون Q5_K_M • فوق سبک و پرسرعت</p>
+</div>
+<span class="text-label-md font-label-md text-on-surface-variant font-bold">۱.۱ گیگابایت</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">مصرف RAM تقریبی: ۱.۲ گیگابایت</span>
+<button class="h-9 px-4 rounded-lg bg-primary-container text-on-primary-container text-label-md font-label-md flex items-center justify-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+<span>فعال‌سازی این مدل</span>
+</button>
+</div>
+</div>
+<!-- Add Model Local Trigger -->
+<button class="w-full h-12 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-primary text-label-lg font-label-lg flex items-center justify-center gap-2 transition-all active:scale-95 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[22px]">file_open</span>
+<span>افزودن مدل از حافظه محلی گوشی (GGUF)</span>
+</button>
+<!-- Import Pipeline Card -->
+<div class="p-3.5 rounded-lg bg-surface-container-low space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">sync_alt</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">فرایند وارد کردن مدل محلی (SAF)</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">گام ۴ از ۴ (۸۵٪)</span>
+</div>
+<!-- Pipeline Steps Graphic -->
+<div class="grid grid-cols-4 gap-1 text-center">
+<div class="p-1 rounded bg-primary/20 text-primary text-label-sm font-label-sm truncate">۱. انتخاب فایل</div>
+<div class="p-1 rounded bg-primary/20 text-primary text-label-sm font-label-sm truncate">۲. تایید هدر</div>
+<div class="p-1 rounded bg-primary/20 text-primary text-label-sm font-label-sm truncate">۳. بررسی RAM</div>
+<div class="p-1 rounded bg-secondary/20 text-secondary text-label-sm font-label-sm truncate animate-pulse">۴. کپی امن</div>
+</div>
+<!-- Progress Line -->
+<div class="space-y-1">
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-gradient-to-l from-secondary to-primary rounded-full transition-all" style="width: 85%;"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>انتقال به پوشه ایزوله برنامه...</span>
+<span>۱.۵ گیگ / ۱.۸۲ گیگ</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ۴. تنظیمات دقیق تولید پاسخ (Inference Settings) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">تنظیمات استنتاج و تولید پاسخ</h3>
+</div>
+<button class="text-label-sm font-label-sm text-primary flex items-center gap-1 hover:underline" type="button">
+<span class="material-symbols-outlined text-[14px]">refresh</span>
+<span>پیش‌فرض</span>
+</button>
+</div>
+<!-- Sliders List -->
+<div class="space-y-4">
+<!-- Max Tokens -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">حداکثر طول پاسخ (Max Tokens)</span>
+<span class="text-primary font-bold font-mono">۵۱۲ توکن</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="2048" min="128" type="range" value="512"/>
+<p class="text-label-sm font-label-sm text-on-surface-variant">کنترل سقف مصرف RAM و جلوگیری از تولید بی‌پایان متن در پس‌زمینه.</p>
+</div>
+<!-- Temperature -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">ضریب خلاقیت (Temperature)</span>
+<span class="text-secondary font-bold font-mono">۰.۳۰</span>
+</div>
+<input class="w-full accent-secondary h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="100" min="0" type="range" value="30"/>
+<p class="text-label-sm font-label-sm text-on-surface-variant">مقادیر پایین‌تر منجر به پاسخ‌های منطقی‌تر، دقیق و مبتنی بر برنامه‌ریزی قطعی می‌شوند.</p>
+</div>
+<!-- Top-P -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">تنوع واژگان (Top-P)</span>
+<span class="text-on-surface font-bold font-mono">۰.۸۵</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="100" min="10" type="range" value="85"/>
+<p class="text-label-sm font-label-sm text-on-surface-variant">احتمال تجمعی انتخاب کلمات متناسب در زبان فارسی.</p>
+</div>
+<!-- Context Window -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">پنجره بافتار حافظه (Context Length)</span>
+<span class="text-primary font-bold font-mono">۲۰۴۸ توکن</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="4096" min="512" type="range" value="2048"/>
+<p class="text-label-sm font-label-sm text-on-surface-variant">اندازه تاریخچه نگه‌داری شده در حافظه موقت حین هر مکالمه روزانه.</p>
+</div>
+<!-- Toggle: History In RAM -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+<div class="space-y-0.5">
+<span class="text-label-md font-label-md text-on-surface font-semibold">حفظ تاریخچه بافتار در حافظه موقت</span>
+<p class="text-label-sm font-label-sm text-on-surface-variant">سرعت‌بخشی به پاسخ‌دهی بدون ذخیره بر روی دیسک</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- ۵. مدیریت مستقل سرویس صوتی آفلاین (Voice Engine Settings) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">record_voice_over</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">موتور صوتی آفلاین دوگانه</h3>
+</div>
+<span class="text-label-sm font-label-sm text-primary">محلی و بدون شنود</span>
+</div>
+<!-- STT Card -->
+<div class="p-3.5 rounded-lg bg-surface-container-low space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</div>
+<div>
+<span class="text-label-md font-label-md text-on-surface font-bold">تشخیص گفتار به متن (STT)</span>
+<p class="text-label-sm font-label-sm text-on-surface-variant">مدل فشرده فارسی ۴۵ مگابایت</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-label-sm font-label-sm">میکروفون فعال</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded bg-surface-container-high text-body-sm font-body-sm">
+<span class="text-on-surface">شیوه ضبط: Push-to-Talk (بدون شنود دائم)</span>
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">حساسیت فیلتر نویز محیطی</span>
+<span class="text-on-surface">متوسط (۷۰٪)</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+<!-- TTS Card -->
+<div class="p-3.5 rounded-lg bg-surface-container-low space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-secondary/15 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</div>
+<div>
+<span class="text-label-md font-label-md text-on-surface font-bold">تبدیل متن به گفتار (TTS)</span>
+<p class="text-label-sm font-label-sm text-on-surface-variant">سنتز کننده گفتار طبیعی فارسی</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-label-sm font-label-sm">آماده بازپخش</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2.5 rounded bg-surface-container-high flex flex-col gap-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">بسته صوتی انتخابی</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">صدای ۱ (آرام و رسمی)</span>
+</div>
+<div class="p-2.5 rounded bg-surface-container-high flex flex-col gap-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">سرعت خوانش</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">۱.۰x (نرمال)</span>
+</div>
+</div>
+<button class="w-full h-10 rounded-lg bg-surface-container-highest hover:bg-surface-bright text-on-surface text-label-md font-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-secondary text-[18px]">play_circle</span>
+<span>تست صدای خروجی فارسی</span>
+</button>
+</div>
+</div>
+<!-- ۶. پایش لحظه‌ای منابع و عملکرد (Resource Monitor) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">analytics</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">پایش لحظه‌ای منابع گوشی</h3>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">آپ‌تایم: ۴۲ دقیقه</span>
+</div>
+<!-- Real-time Stats Strip -->
+<div class="grid grid-cols-4 gap-1.5 text-center">
+<div class="p-2 rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">RAM موتور</span>
+<span class="text-label-md font-label-md text-primary font-bold">۱۸۲۰ مگابایت</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">دیسک مدل‌ها</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">۲.۹ گیگابایت</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">دمای پردازنده</span>
+<span class="text-label-md font-label-md text-primary font-bold">۳۸.۵°C</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm text-on-surface-variant">مصرف باتری</span>
+<span class="text-label-md font-label-md text-secondary font-bold">۱.۲٪ / ساعت</span>
+</div>
+</div>
+<!-- Inline SVG Resource Bar Chart -->
+<div class="p-3 rounded-lg bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>نمودار توزیع بار حافظه محلی</span>
+<span>مجموع مصرف: ۳.۴ از ۶ گیگ</span>
+</div>
+<svg class="w-full h-4 rounded overflow-hidden" preserveaspectratio="none" viewbox="0 0 100 8">
+<!-- System Base RAM -->
+<rect fill="#2d3449" height="8" width="26" x="0" y="0"></rect>
+<!-- RoozYar AI Engine -->
+<rect fill="#14b8a6" height="8" width="31" x="27" y="0"></rect>
+<!-- Other Apps -->
+<rect fill="#ffb95f" height="8" width="12" x="59" y="0"></rect>
+<!-- Free RAM -->
+<rect fill="#131b2e" height="8" width="28" x="72" y="0"></rect>
+</svg>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant pt-0.5">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> هوش مصنوعی</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#2d3449] inline-block"></span> سیستم‌عامل</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> سایر برنامه‌ها</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-container-highest inline-block"></span> آزاد</span>
+</div>
+</div>
+</div>
+<!-- ۷. حریم خصوصی، امنیت داده‌ها و پاکسازی (Privacy & Vault) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">lock</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">حریم خصوصی و پاک‌سازی داده‌ها</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-label-sm font-label-sm">تضمین عدم ارسال داده</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]">wifi_off</span>
+<div>
+<span class="text-label-md font-label-md text-on-surface font-semibold">وضعیت ارتباط شبکه اینترنت</span>
+<p class="text-label-sm font-label-sm text-on-surface-variant">دسترسی موتور کاملاً مسدود و در انزوای کامل است</p>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold">قطع / ایمن</span>
+</div>
+<div class="grid grid-cols-1 gap-2 pt-1">
+<button class="w-full h-11 px-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-label-md font-label-md flex items-center justify-between transition-colors active:scale-95" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mop</span>
+<span>پاک‌سازی کامل تاریخچه مکالمات محلی</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant rotate-180">arrow_forward_ios</span>
+</button>
+<button class="w-full h-11 px-3 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-label-md font-label-md flex items-center justify-between transition-colors active:scale-95" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">find_replace</span>
+<span>پاک‌سازی گزارش‌های خطا و Crash Logs</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant rotate-180">arrow_forward_ios</span>
+</button>
+<button class="w-full h-11 px-3 rounded-lg bg-error-container/30 text-error hover:bg-error-container/50 text-label-md font-label-md flex items-center justify-between transition-colors active:scale-95" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">pause_presentation</span>
+<span>توقف یادگیری محلی و بازنشانی حافظه برداری</span>
+</div>
+<span class="material-symbols-outlined text-[16px] rotate-180">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+<!-- ۸. راهنمای عیب‌یابی و وضعیت‌های خطا (Diagnostics) -->
+<div class="rounded-xl bg-surface-container p-4 shadow-md space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">contact_support</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">عیب‌یابی سریع و رفع خطاها</h3>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">۴ راهکار فوری</span>
+</div>
+<div class="space-y-2">
+<!-- Error 1 -->
+<details class="group rounded-lg bg-surface-container-low p-3 [&amp;_summary::-webkit-details-marker]:none">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error shrink-0"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">خطای کمبود حافظه (OutOfMemory - OOM)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 text-body-sm font-body-sm text-on-surface-variant pr-4 leading-5">
+          راهکار: پنجره بافتار (Context Length) را به ۱۰۲۴ کاهش دهید یا از مدل‌هایی با کوانتیزاسیون سبک‌تر مثل Q4_K_S استفاده کنید. برنامه‌های سنگین پس‌زمینه را ببندید.
+        </p>
+</details>
+<!-- Error 2 -->
+<details class="group rounded-lg bg-surface-container-low p-3 [&amp;_summary::-webkit-details-marker]:none">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">خطای عدم تطابق فرمت فایل GGUF</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 text-body-sm font-body-sm text-on-surface-variant pr-4 leading-5">
+          راهکار: مطمئن شوید فایل دانلودی شما با نسخه GGUFv3 همگام است. مدل‌های قدیمی GGML یا فایل‌های ناقص دانلودشده قابل بارگذاری نیستند.
+        </p>
+</details>
+<!-- Error 3 -->
+<details class="group rounded-lg bg-surface-container-low p-3 [&amp;_summary::-webkit-details-marker]:none">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">خطای بارگذاری شتاب‌دهنده NNAPI</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 text-body-sm font-body-sm text-on-surface-variant pr-4 leading-5">
+          راهکار: در صورت عدم پاسخگویی درایور چیپ‌ست، به حالت شتاب‌دهنده CPU fallback تغییر دهید تا استنتاج از طریق هسته‌های استاندارد ادامه یابد.
+        </p>
+</details>
+<!-- Error 4 -->
+<details class="group rounded-lg bg-surface-container-low p-3 [&amp;_summary::-webkit-details-marker]:none">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary shrink-0"></span>
+<span class="text-label-md font-label-md text-on-surface font-medium">عدم دسترسی به میکروفون برای STT</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 text-body-sm font-body-sm text-on-surface-variant pr-4 leading-5">
+          راهکار: به تنظیمات مجوزهای اندروید رفته و دسترسی ضبط صدا را در حالت «فقط هنگام استفاده از برنامه» برای روزیار فعال کنید.
+        </p>
+</details>
+</div>
+</div>
+<!-- Footer Micro-branding -->
+<div class="text-center py-2 space-y-1">
+<p class="text-label-sm font-label-sm text-on-surface-variant">سامانه دستیار هوشمند و مدیریت زمان روزیار (RoozYar)</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant opacity-70">طراحی شده برای عملکرد کاملاً آفلاین و استقلال داده‌های فردی</p>
+</div>
+</div></main></body></html>
