@@ -8,6 +8,7 @@ import com.roozyar.app.core.date.toJalali
 import com.roozyar.app.domain.model.Task
 import com.roozyar.app.domain.model.TaskPriority
 import com.roozyar.app.domain.model.TaskStatus
+import com.roozyar.app.domain.repository.GoalRepository
 import com.roozyar.app.domain.usecase.GetTaskUseCase
 import com.roozyar.app.domain.usecase.SaveTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +23,8 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import javax.inject.Inject
 
+data class GoalOption(val id: Long, val title: String)
+
 data class TaskEditUiState(
     val isLoading: Boolean = true,
     val isNew: Boolean = true,
@@ -30,6 +33,8 @@ data class TaskEditUiState(
     val priority: TaskPriority = TaskPriority.NORMAL,
     val dueDate: JalaliDate? = null,
     val dueTime: LocalTime? = null,
+    val goalId: Long? = null,
+    val goals: List<GoalOption> = emptyList(),
     val titleError: Boolean = false,
     val isSaving: Boolean = false,
     val loadError: String? = null,
@@ -42,6 +47,7 @@ class TaskEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getTask: GetTaskUseCase,
     private val saveTask: SaveTaskUseCase,
+    private val goalRepository: GoalRepository,
     private val clock: Clock,
 ) : ViewModel() {
 
@@ -55,6 +61,15 @@ class TaskEditViewModel @Inject constructor(
 
     init {
         if (taskId > 0) load()
+        viewModelScope.launch {
+            try {
+                goalRepository.observeGoals().collect { goals ->
+                    _uiState.update { st -> st.copy(goals = goals.filter { !it.completed }.map { GoalOption(it.id, it.title) }) }
+                }
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+            }
+        }
     }
 
     private fun load() {
@@ -76,6 +91,7 @@ class TaskEditViewModel @Inject constructor(
                         priority = task.priority,
                         dueDate = due?.toLocalDate()?.toJalali(),
                         dueTime = if (task.dueHasTime) due?.toLocalTime() else null,
+                        goalId = task.goalId,
                     )
                 }
             } catch (e: Exception) {
@@ -95,6 +111,8 @@ class TaskEditViewModel @Inject constructor(
         // A time without a date makes no sense, so clearing the date clears the time too.
         it.copy(dueDate = value, dueTime = if (value == null) null else it.dueTime)
     }
+
+    fun onGoalChange(value: Long?) = _uiState.update { it.copy(goalId = value) }
 
     fun onDueTimeChange(value: LocalTime?) = _uiState.update { it.copy(dueTime = value) }
 
@@ -123,7 +141,7 @@ class TaskEditViewModel @Inject constructor(
                         priority = s.priority,
                         status = base?.status ?: TaskStatus.OPEN,
                         categoryId = base?.categoryId,
-                        goalId = base?.goalId,
+                        goalId = s.goalId,
                         createdAt = base?.createdAt ?: now,
                         updatedAt = now,
                     ),

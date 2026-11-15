@@ -26,6 +26,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.roozyar.app.feature.dashboard.DashboardScreen
+import com.roozyar.app.feature.goals.GoalDetailScreen
+import com.roozyar.app.feature.goals.GoalEditScreen
+import com.roozyar.app.feature.goals.GoalsScreen
 import com.roozyar.app.feature.habits.HabitEditScreen
 import com.roozyar.app.feature.habits.HabitsScreen
 import com.roozyar.app.feature.hub.HubScreen
@@ -45,11 +48,18 @@ object Routes {
     const val HABITS = "habits"
     const val HABIT_EDIT = "habit_edit?habitId={habitId}"
     const val HABIT_ID_ARG = "habitId"
+    const val GOAL_DETAIL = "goal/{goalId}"
+    const val GOAL_EDIT = "goal_edit?goalId={goalId}"
+    const val GOAL_ID_ARG = "goalId"
 
     /** Pass null to create a new task. */
     fun taskEdit(id: Long?): String = "task_edit?taskId=${id ?: -1L}"
 
     fun habitEdit(id: Long?): String = "habit_edit?habitId=${id ?: -1L}"
+
+    fun goalDetail(id: Long): String = "goal/$id"
+
+    fun goalEdit(id: Long?): String = "goal_edit?goalId=${id ?: -1L}"
 }
 
 private data class TopLevelDestination(val route: String, val label: String, val icon: ImageVector)
@@ -66,12 +76,21 @@ private val topLevelDestinations = listOf(
 /** Screens opened from the Hub keep the Hub tab highlighted. */
 private val hubChildren = setOf(Routes.TASKS, Routes.HABITS)
 
+/** Full-screen forms hide the bottom bar. */
+private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit")
+
+private fun isTabSelected(tabRoute: String, currentRoute: String?): Boolean = when (tabRoute) {
+    Routes.HUB -> currentRoute in hubChildren
+    Routes.GOALS -> currentRoute != null && currentRoute.startsWith("goal")
+    else -> currentRoute == tabRoute
+}
+
 @Composable
 fun RoozYarRoot() {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val showBottomBar = currentRoute?.startsWith("task_edit") != true && currentRoute?.startsWith("habit_edit") != true
+    val showBottomBar = formPrefixes.none { currentRoute?.startsWith(it) == true }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -80,8 +99,7 @@ fun RoozYarRoot() {
                 val scheme = MaterialTheme.colorScheme
                 NavigationBar(containerColor = scheme.surfaceContainerLow) {
                     topLevelDestinations.forEach { destination ->
-                        val selected = currentRoute == destination.route ||
-                            (destination.route == Routes.HUB && currentRoute in hubChildren)
+                        val selected = isTabSelected(destination.route, currentRoute)
                         NavigationBarItem(
                             selected = selected,
                             onClick = {
@@ -127,7 +145,33 @@ fun RoozYarRoot() {
                     onOpenTasks = { navController.navigate(Routes.TASKS) },
                     onOpenHabits = { navController.navigate(Routes.HABITS) },
                 ) }
-            composable(Routes.GOALS) { PlaceholderScreen("اهداف و مراحل") }
+            composable(Routes.GOALS) {
+                GoalsScreen(
+                    onAddGoal = { navController.navigate(Routes.goalEdit(null)) },
+                    onOpenGoal = { navController.navigate(Routes.goalDetail(it)) },
+                )
+            }
+            composable(
+                route = Routes.GOAL_DETAIL,
+                arguments = listOf(navArgument(Routes.GOAL_ID_ARG) { type = NavType.LongType }),
+            ) {
+                GoalDetailScreen(
+                    onBack = { navController.popBackStack() },
+                    onEdit = { navController.navigate(Routes.goalEdit(it)) },
+                    onEditTask = { navController.navigate(Routes.taskEdit(it)) },
+                )
+            }
+            composable(
+                route = Routes.GOAL_EDIT,
+                arguments = listOf(
+                    navArgument(Routes.GOAL_ID_ARG) {
+                        type = NavType.LongType
+                        defaultValue = -1L
+                    },
+                ),
+            ) {
+                GoalEditScreen(onDone = { navController.popBackStack() })
+            }
             composable(Routes.PROFILE) { PlaceholderScreen("پروفایل و تنظیمات") }
             composable(Routes.TASKS) {
                 TasksScreen(

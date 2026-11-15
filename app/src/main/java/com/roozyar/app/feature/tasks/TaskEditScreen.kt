@@ -1,5 +1,6 @@
 package com.roozyar.app.feature.tasks
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -91,6 +92,23 @@ fun TaskEditScreen(
                             onClick = { viewModel.onPriorityChange(p) },
                             label = { Text(priorityLabel(p)) },
                         )
+                    }
+                }
+                if (state.goals.isNotEmpty()) {
+                    Text("هدف مرتبط", style = MaterialTheme.typography.titleSmall)
+                    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(
+                            selected = state.goalId == null,
+                            onClick = { viewModel.onGoalChange(null) },
+                            label = { Text("بدون هدف") },
+                        )
+                        state.goals.forEach { g ->
+                            FilterChip(
+                                selected = state.goalId == g.id,
+                                onClick = { viewModel.onGoalChange(g.id) },
+                                label = { Text(g.title) },
+                            )
+                        }
                     }
                 }
                 Text("مهلت", style = MaterialTheme.typography.titleSmall)
