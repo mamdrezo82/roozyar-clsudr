@@ -24,6 +24,7 @@ fun task(
     priority = priority,
     status = status,
     categoryId = null,
+    goalId = null,
     createdAt = Instant.parse("2026-11-01T00:00:00Z"),
     updatedAt = updatedAt,
 )

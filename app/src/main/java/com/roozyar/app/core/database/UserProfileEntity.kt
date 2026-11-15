@@ -1,5 +1,6 @@
 package com.roozyar.app.core.database
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -8,6 +9,7 @@ import androidx.room.PrimaryKey
 data class UserProfileEntity(
     @PrimaryKey val id: Int = 1,
     val displayName: String = "",
+    @ColumnInfo(defaultValue = "''") val bio: String = "",
     val email: String? = null,
     val phone: String? = null,
     val showEmailInProfile: Boolean = false,

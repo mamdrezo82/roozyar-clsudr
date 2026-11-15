@@ -22,6 +22,7 @@ data class TaskEntity(
     val priority: Int = 3,
     val status: String = "OPEN",
     val categoryId: Long? = null,
+    val goalId: Long? = null,
     val createdAtEpochMillis: Long,
     val updatedAtEpochMillis: Long,
 )

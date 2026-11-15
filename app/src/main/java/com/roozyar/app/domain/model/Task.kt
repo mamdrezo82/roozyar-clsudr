@@ -27,6 +27,7 @@ data class Task(
     val priority: TaskPriority,
     val status: TaskStatus,
     val categoryId: Long?,
+    val goalId: Long?,
     val createdAt: Instant,
     val updatedAt: Instant,
 )

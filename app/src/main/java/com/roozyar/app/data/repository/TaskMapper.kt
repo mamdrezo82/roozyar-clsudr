@@ -15,6 +15,7 @@ fun TaskEntity.toDomain(): Task = Task(
     priority = TaskPriority.fromLevel(priority),
     status = TaskStatus.fromName(status),
     categoryId = categoryId,
+    goalId = goalId,
     createdAt = Instant.ofEpochMilli(createdAtEpochMillis),
     updatedAt = Instant.ofEpochMilli(updatedAtEpochMillis),
 )
@@ -28,6 +29,7 @@ fun Task.toEntity(): TaskEntity = TaskEntity(
     priority = priority.level,
     status = status.name,
     categoryId = categoryId,
+    goalId = goalId,
     createdAtEpochMillis = createdAt.toEpochMilli(),
     updatedAtEpochMillis = updatedAt.toEpochMilli(),
 )

@@ -26,6 +26,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.roozyar.app.feature.dashboard.DashboardScreen
+import com.roozyar.app.feature.habits.HabitEditScreen
+import com.roozyar.app.feature.habits.HabitsScreen
 import com.roozyar.app.feature.hub.HubScreen
 import com.roozyar.app.feature.placeholder.PlaceholderScreen
 import com.roozyar.app.feature.tasks.TaskEditScreen
@@ -40,9 +42,14 @@ object Routes {
     const val TASKS = "tasks"
     const val TASK_EDIT = "task_edit?taskId={taskId}"
     const val TASK_ID_ARG = "taskId"
+    const val HABITS = "habits"
+    const val HABIT_EDIT = "habit_edit?habitId={habitId}"
+    const val HABIT_ID_ARG = "habitId"
 
     /** Pass null to create a new task. */
     fun taskEdit(id: Long?): String = "task_edit?taskId=${id ?: -1L}"
+
+    fun habitEdit(id: Long?): String = "habit_edit?habitId=${id ?: -1L}"
 }
 
 private data class TopLevelDestination(val route: String, val label: String, val icon: ImageVector)
@@ -57,14 +64,14 @@ private val topLevelDestinations = listOf(
 )
 
 /** Screens opened from the Hub keep the Hub tab highlighted. */
-private val hubChildren = setOf(Routes.TASKS)
+private val hubChildren = setOf(Routes.TASKS, Routes.HABITS)
 
 @Composable
 fun RoozYarRoot() {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
-    val showBottomBar = currentRoute?.startsWith("task_edit") != true
+    val showBottomBar = currentRoute?.startsWith("task_edit") != true && currentRoute?.startsWith("habit_edit") != true
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -116,7 +123,10 @@ fun RoozYarRoot() {
                 )
             }
             composable(Routes.CALENDAR) { PlaceholderScreen("تقویم شمسی") }
-            composable(Routes.HUB) { HubScreen(onOpenTasks = { navController.navigate(Routes.TASKS) }) }
+            composable(Routes.HUB) { HubScreen(
+                    onOpenTasks = { navController.navigate(Routes.TASKS) },
+                    onOpenHabits = { navController.navigate(Routes.HABITS) },
+                ) }
             composable(Routes.GOALS) { PlaceholderScreen("اهداف و مراحل") }
             composable(Routes.PROFILE) { PlaceholderScreen("پروفایل و تنظیمات") }
             composable(Routes.TASKS) {
@@ -125,6 +135,24 @@ fun RoozYarRoot() {
                     onAddTask = { navController.navigate(Routes.taskEdit(null)) },
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
                 )
+            }
+            composable(Routes.HABITS) {
+                HabitsScreen(
+                    onBack = { navController.popBackStack() },
+                    onAddHabit = { navController.navigate(Routes.habitEdit(null)) },
+                    onEditHabit = { navController.navigate(Routes.habitEdit(it)) },
+                )
+            }
+            composable(
+                route = Routes.HABIT_EDIT,
+                arguments = listOf(
+                    navArgument(Routes.HABIT_ID_ARG) {
+                        type = NavType.LongType
+                        defaultValue = -1L
+                    },
+                ),
+            ) {
+                HabitEditScreen(onDone = { navController.popBackStack() })
             }
             composable(
                 route = Routes.TASK_EDIT,

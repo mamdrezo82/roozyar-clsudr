@@ -123,6 +123,7 @@ class TaskEditViewModel @Inject constructor(
                         priority = s.priority,
                         status = base?.status ?: TaskStatus.OPEN,
                         categoryId = base?.categoryId,
+                        goalId = base?.goalId,
                         createdAt = base?.createdAt ?: now,
                         updatedAt = now,
                     ),

@@ -1,6 +1,8 @@
 package com.roozyar.app.di
 
+import com.roozyar.app.data.repository.HabitRepositoryImpl
 import com.roozyar.app.data.repository.TaskRepositoryImpl
+import com.roozyar.app.domain.repository.HabitRepository
 import com.roozyar.app.domain.repository.TaskRepository
 import dagger.Binds
 import dagger.Module
@@ -14,4 +16,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindTaskRepository(impl: TaskRepositoryImpl): TaskRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindHabitRepository(impl: HabitRepositoryImpl): HabitRepository
 }
