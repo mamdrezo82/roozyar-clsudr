@@ -1,10 +1,14 @@
 package com.roozyar.app.core.database
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-/** Independent task aggregate. [priority] is 1 (P1, critical) .. 3 (P3, normal); [status] is a TaskStatus name. */
+/**
+ * Independent task aggregate. [priority] is 1 (critical) .. 3 (normal); [status] is a TaskStatus name.
+ * [dueHasTime] is false for date-only deadlines, in which case the time part of [dueAtEpochMillis] is meaningless.
+ */
 @Entity(
     tableName = "tasks",
     indices = [Index(value = ["dueAtEpochMillis"]), Index(value = ["status", "priority"])],
@@ -14,6 +18,7 @@ data class TaskEntity(
     val title: String,
     val description: String = "",
     val dueAtEpochMillis: Long? = null,
+    @ColumnInfo(defaultValue = "0") val dueHasTime: Boolean = false,
     val priority: Int = 3,
     val status: String = "OPEN",
     val categoryId: Long? = null,

@@ -23,6 +23,7 @@ data class Task(
     val title: String,
     val description: String,
     val dueAt: Instant?,
+    val dueHasTime: Boolean,
     val priority: TaskPriority,
     val status: TaskStatus,
     val categoryId: Long?,

@@ -14,6 +14,9 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE status = 'OPEN' ORDER BY CASE WHEN dueAtEpochMillis IS NULL THEN 1 ELSE 0 END, dueAtEpochMillis ASC")
     fun observeOpen(): Flow<List<TaskEntity>>
 
+    @Query("SELECT * FROM tasks WHERE id = :id")
+    suspend fun getById(id: Long): TaskEntity?
+
     @Insert
     suspend fun insert(task: TaskEntity): Long
 

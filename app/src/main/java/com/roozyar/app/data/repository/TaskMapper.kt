@@ -11,9 +11,23 @@ fun TaskEntity.toDomain(): Task = Task(
     title = title,
     description = description,
     dueAt = dueAtEpochMillis?.let(Instant::ofEpochMilli),
+    dueHasTime = dueHasTime,
     priority = TaskPriority.fromLevel(priority),
     status = TaskStatus.fromName(status),
     categoryId = categoryId,
     createdAt = Instant.ofEpochMilli(createdAtEpochMillis),
     updatedAt = Instant.ofEpochMilli(updatedAtEpochMillis),
+)
+
+fun Task.toEntity(): TaskEntity = TaskEntity(
+    id = id,
+    title = title,
+    description = description,
+    dueAtEpochMillis = dueAt?.toEpochMilli(),
+    dueHasTime = dueHasTime,
+    priority = priority.level,
+    status = status.name,
+    categoryId = categoryId,
+    createdAtEpochMillis = createdAt.toEpochMilli(),
+    updatedAtEpochMillis = updatedAt.toEpochMilli(),
 )

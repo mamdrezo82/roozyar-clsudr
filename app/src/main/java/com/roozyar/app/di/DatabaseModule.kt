@@ -2,6 +2,7 @@ package com.roozyar.app.di
 
 import android.content.Context
 import androidx.room.Room
+import com.roozyar.app.core.database.MIGRATION_1_2
 import com.roozyar.app.core.database.RoozYarDatabase
 import com.roozyar.app.core.database.TaskDao
 import com.roozyar.app.core.database.UserProfileDao
@@ -18,7 +19,9 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): RoozYarDatabase =
-        Room.databaseBuilder(context, RoozYarDatabase::class.java, "roozyar.db").build()
+        Room.databaseBuilder(context, RoozYarDatabase::class.java, "roozyar.db")
+            .addMigrations(MIGRATION_1_2)
+            .build()
 
     @Provides fun provideTaskDao(db: RoozYarDatabase): TaskDao = db.taskDao()
     @Provides fun provideUserProfileDao(db: RoozYarDatabase): UserProfileDao = db.userProfileDao()
