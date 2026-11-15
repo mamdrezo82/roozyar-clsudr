@@ -32,6 +32,8 @@ import com.roozyar.app.feature.goals.GoalsScreen
 import com.roozyar.app.feature.habits.HabitEditScreen
 import com.roozyar.app.feature.habits.HabitsScreen
 import com.roozyar.app.feature.hub.HubScreen
+import com.roozyar.app.feature.journal.JournalEditScreen
+import com.roozyar.app.feature.journal.JournalScreen
 import com.roozyar.app.feature.placeholder.PlaceholderScreen
 import com.roozyar.app.feature.tasks.TaskEditScreen
 import com.roozyar.app.feature.tasks.TasksScreen
@@ -48,6 +50,9 @@ object Routes {
     const val HABITS = "habits"
     const val HABIT_EDIT = "habit_edit?habitId={habitId}"
     const val HABIT_ID_ARG = "habitId"
+    const val JOURNAL = "journal"
+    const val JOURNAL_EDIT = "journal_edit?entryId={entryId}"
+    const val ENTRY_ID_ARG = "entryId"
     const val GOAL_DETAIL = "goal/{goalId}"
     const val GOAL_EDIT = "goal_edit?goalId={goalId}"
     const val GOAL_ID_ARG = "goalId"
@@ -56,6 +61,8 @@ object Routes {
     fun taskEdit(id: Long?): String = "task_edit?taskId=${id ?: -1L}"
 
     fun habitEdit(id: Long?): String = "habit_edit?habitId=${id ?: -1L}"
+
+    fun journalEdit(id: Long?): String = "journal_edit?entryId=${id ?: -1L}"
 
     fun goalDetail(id: Long): String = "goal/$id"
 
@@ -74,10 +81,10 @@ private val topLevelDestinations = listOf(
 )
 
 /** Screens opened from the Hub keep the Hub tab highlighted. */
-private val hubChildren = setOf(Routes.TASKS, Routes.HABITS)
+private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL)
 
 /** Full-screen forms hide the bottom bar. */
-private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit")
+private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit")
 
 private fun isTabSelected(tabRoute: String, currentRoute: String?): Boolean = when (tabRoute) {
     Routes.HUB -> currentRoute in hubChildren
@@ -144,6 +151,7 @@ fun RoozYarRoot() {
             composable(Routes.HUB) { HubScreen(
                     onOpenTasks = { navController.navigate(Routes.TASKS) },
                     onOpenHabits = { navController.navigate(Routes.HABITS) },
+                    onOpenJournal = { navController.navigate(Routes.JOURNAL) },
                 ) }
             composable(Routes.GOALS) {
                 GoalsScreen(
@@ -179,6 +187,24 @@ fun RoozYarRoot() {
                     onAddTask = { navController.navigate(Routes.taskEdit(null)) },
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
                 )
+            }
+            composable(Routes.JOURNAL) {
+                JournalScreen(
+                    onBack = { navController.popBackStack() },
+                    onAddEntry = { navController.navigate(Routes.journalEdit(null)) },
+                    onOpenEntry = { navController.navigate(Routes.journalEdit(it)) },
+                )
+            }
+            composable(
+                route = Routes.JOURNAL_EDIT,
+                arguments = listOf(
+                    navArgument(Routes.ENTRY_ID_ARG) {
+                        type = NavType.LongType
+                        defaultValue = -1L
+                    },
+                ),
+            ) {
+                JournalEditScreen(onDone = { navController.popBackStack() })
             }
             composable(Routes.HABITS) {
                 HabitsScreen(
