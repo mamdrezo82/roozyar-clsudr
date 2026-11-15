@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -24,20 +24,22 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.ConfirmDialog
 import com.roozyar.app.core.design.EmptyState
+import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
-import java.time.Instant
-import java.time.ZoneId
 
 @Composable
 fun TasksScreen(
@@ -47,60 +49,85 @@ fun TasksScreen(
     viewModel: TasksViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val zone = remember { ZoneId.systemDefault() }
-    val now = Instant.now()
+    val scheme = MaterialTheme.colorScheme
 
     Box(Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             RoozYarTopBar("وظایف", onBack = onBack)
-            OutlinedTextField(
-                value = state.query,
-                onValueChange = viewModel::onQueryChange,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                placeholder = { Text("جست‌وجوی وظایف") },
-                leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                trailingIcon = {
-                    if (state.query.isNotEmpty()) {
-                        IconButton(onClick = { viewModel.onQueryChange("") }) {
-                            Icon(Icons.Filled.Close, contentDescription = "پاک‌کردن جست‌وجو")
-                        }
-                    }
-                },
-                singleLine = true,
-                shape = RoundedCornerShape(50),
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                TaskFilter.entries.forEach { f ->
-                    FilterChip(
-                        selected = state.filter == f,
-                        onClick = { viewModel.onFilterChange(f) },
-                        label = { Text(f.label) },
-                    )
-                }
-            }
             when {
                 state.isLoading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
                 state.error != null -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(state.error!!, color = MaterialTheme.colorScheme.error)
+                    Text(state.error!!, color = scheme.error)
                 }
                 !state.hasAnyTasks -> EmptyState("هنوز وظیفه‌ای ندارید", "با دکمه «وظیفه جدید» اولین وظیفه را ثبت کنید.")
-                state.tasks.isEmpty() -> EmptyState("نتیجه‌ای پیدا نشد", "جست‌وجو یا فیلتر را تغییر دهید.")
                 else -> LazyColumn(
-                    contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
+                    contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 96.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    items(state.tasks, key = { it.id }) { task ->
-                        TaskItem(
-                            task = task,
-                            now = now,
-                            zone = zone,
-                            onToggle = { viewModel.onToggle(task) },
-                            onClick = { onEditTask(task.id) },
-                            onDelete = { viewModel.onDeleteRequest(task) },
+                    item(key = "summary") { SummaryCard(state.summary) }
+                    item(key = "search") {
+                        OutlinedTextField(
+                            value = state.query,
+                            onValueChange = viewModel::onQueryChange,
+                            modifier = Modifier.fillMaxWidth(),
+                            placeholder = { Text("جست‌وجو در عنوان و توضیحات") },
+                            leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
+                            trailingIcon = {
+                                if (state.query.isNotEmpty()) {
+                                    IconButton(onClick = { viewModel.onQueryChange("") }) {
+                                        Icon(Icons.Filled.Close, contentDescription = "پاک‌کردن جست‌وجو")
+                                    }
+                                }
+                            },
+                            singleLine = true,
+                            shape = RoundedCornerShape(50),
                         )
+                    }
+                    item(key = "filters") {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            val s = state.summary
+                            TaskFilter.entries.forEach { f ->
+                                val count = when (f) {
+                                    TaskFilter.ALL -> s.open + s.done
+                                    TaskFilter.OPEN -> s.open
+                                    TaskFilter.DONE -> s.done
+                                }
+                                FilterChip(
+                                    selected = state.filter == f,
+                                    onClick = { viewModel.onFilterChange(f) },
+                                    label = { Text("${f.label} (${count.toPersianDigits()})") },
+                                    shape = RoundedCornerShape(50),
+                                )
+                            }
+                        }
+                    }
+                    if (state.groups.isEmpty()) {
+                        item(key = "empty") {
+                            Text(
+                                "نتیجه‌ای پیدا نشد. جست‌وجو یا فیلتر را تغییر دهید.",
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp),
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = scheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                    state.groups.forEach { group ->
+                        item(key = "h_${group.kind.name}") { GroupHeader(group) }
+                        items(group.tasks.size, key = { i -> group.tasks[i].id }) { i ->
+                            val task = group.tasks[i]
+                            TaskItem(
+                                task = task,
+                                now = state.now,
+                                zone = state.zone,
+                                onToggle = { viewModel.onToggle(task) },
+                                onClick = { onEditTask(task.id) },
+                                onDelete = { viewModel.onDeleteRequest(task) },
+                            )
+                        }
                     }
                 }
             }
@@ -108,10 +135,11 @@ fun TasksScreen(
         ExtendedFloatingActionButton(
             onClick = onAddTask,
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            containerColor = scheme.primaryContainer,
+            contentColor = scheme.onPrimaryContainer,
+            shape = RoundedCornerShape(50),
             icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text("وظیفه جدید") },
+            text = { Text("وظیفه جدید", style = MaterialTheme.typography.labelLarge) },
         )
     }
 
@@ -124,5 +152,68 @@ fun TasksScreen(
             onConfirm = viewModel::onDeleteConfirm,
             onDismiss = viewModel::onDeleteDismiss,
         )
+    }
+}
+
+@Composable
+private fun GroupHeader(group: TaskGroup) {
+    val scheme = MaterialTheme.colorScheme
+    val color = when (group.kind) {
+        TaskGroupKind.OVERDUE -> scheme.error
+        TaskGroupKind.TODAY -> scheme.primary
+        else -> scheme.onSurfaceVariant
+    }
+    Text(
+        "${group.kind.title} (${group.tasks.size.toPersianDigits()})",
+        modifier = Modifier.padding(top = 12.dp, bottom = 2.dp),
+        style = MaterialTheme.typography.titleSmall,
+        color = color,
+    )
+}
+
+@Composable
+private fun SummaryCard(summary: TasksSummary) {
+    val scheme = MaterialTheme.colorScheme
+    RoozYarCard(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Box(contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(
+                        progress = { summary.completion },
+                        modifier = Modifier.size(64.dp),
+                        color = scheme.primary,
+                        trackColor = scheme.surfaceContainerHighest,
+                        strokeWidth = 6.dp,
+                    )
+                    Text(
+                        "٪" + (summary.completion * 100).toInt().toPersianDigits(),
+                        style = MaterialTheme.typography.labelMedium,
+                    )
+                }
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text("پیشرفت وظایف", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        "${summary.done.toPersianDigits()} از ${(summary.open + summary.done).toPersianDigits()} وظیفه انجام شده",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = scheme.onSurfaceVariant,
+                    )
+                }
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                StatBox("باز", summary.open, scheme.primary, Modifier.weight(1f))
+                StatBox("امروز", summary.dueToday, scheme.secondary, Modifier.weight(1f))
+                StatBox("عقب‌افتاده", summary.overdue, if (summary.overdue > 0) scheme.error else scheme.onSurfaceVariant, Modifier.weight(1f))
+            }
+        }
+    }
+}
+
+@Composable
+private fun StatBox(label: String, value: Int, color: Color, modifier: Modifier) {
+    Surface(modifier = modifier, shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceContainerHigh) {
+        Column(Modifier.padding(vertical = 10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(value.toPersianDigits(), style = MaterialTheme.typography.titleMedium, color = color)
+            Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
     }
 }

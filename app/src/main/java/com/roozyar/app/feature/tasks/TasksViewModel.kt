@@ -16,16 +16,22 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneId
 import javax.inject.Inject
 
 data class TasksUiState(
     val isLoading: Boolean = true,
     val error: String? = null,
-    val tasks: List<Task> = emptyList(),
+    val groups: List<TaskGroup> = emptyList(),
+    val summary: TasksSummary = TasksSummary(0, 0, 0, 0),
     val hasAnyTasks: Boolean = false,
     val query: String = "",
     val filter: TaskFilter = TaskFilter.ALL,
     val pendingDelete: Task? = null,
+    val now: Instant = Instant.EPOCH,
+    val zone: ZoneId = ZoneId.systemDefault(),
 )
 
 @HiltViewModel
@@ -33,6 +39,7 @@ class TasksViewModel @Inject constructor(
     observeTasks: ObserveTasksUseCase,
     private val setTaskStatus: SetTaskStatusUseCase,
     private val deleteTask: DeleteTaskUseCase,
+    private val clock: Clock,
 ) : ViewModel() {
 
     private val query = MutableStateFlow("")
@@ -40,13 +47,18 @@ class TasksViewModel @Inject constructor(
     private val pendingDelete = MutableStateFlow<Task?>(null)
 
     val uiState: StateFlow<TasksUiState> = combine(observeTasks(), query, filter, pendingDelete) { all, q, f, pending ->
+        val now = clock.instant()
+        val zone = clock.zone
         TasksUiState(
             isLoading = false,
-            tasks = filterAndSort(all, q, f),
+            groups = groupTasks(filterAndSort(all, q, f), now, zone),
+            summary = summarizeTasks(all, now, zone),
             hasAnyTasks = all.any { it.status != TaskStatus.ARCHIVED },
             query = q,
             filter = f,
             pendingDelete = pending,
+            now = now,
+            zone = zone,
         )
     }
         .catch { emit(TasksUiState(isLoading = false, error = "خواندن وظایف ممکن نشد.")) }

@@ -78,10 +78,14 @@ fun RoozYarRoot() {
                         NavigationBarItem(
                             selected = selected,
                             onClick = {
-                                navController.navigate(destination.route) {
-                                    popUpTo(Routes.HOME) { saveState = true }
-                                    launchSingleTop = true
-                                    restoreState = true
+                                if (destination.route == Routes.HOME) {
+                                    // Home is the root of the stack: just go back to it, whatever is above.
+                                    navController.popBackStack(Routes.HOME, inclusive = false)
+                                } else {
+                                    navController.navigate(destination.route) {
+                                        popUpTo(Routes.HOME)
+                                        launchSingleTop = true
+                                    }
                                 }
                             },
                             icon = { Icon(destination.icon, contentDescription = destination.label) },
