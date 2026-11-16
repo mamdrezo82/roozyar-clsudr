@@ -17,6 +17,10 @@ interface ReminderScheduler {
     /** Schedules the next daily reminder of the habit; cancels it when the habit has none. */
     fun scheduleHabit(habit: Habit)
     fun cancelHabit(habitId: Long)
+
+    /** Notifies when a focus/break timer ends while the app may be in the background. */
+    fun scheduleFocusEnd(at: Instant, isBreak: Boolean)
+    fun cancelFocusEnd()
 }
 
 object ReminderTimes {

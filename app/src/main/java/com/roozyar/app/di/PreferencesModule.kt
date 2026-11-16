@@ -1,6 +1,7 @@
 package com.roozyar.app.di
 
 import android.content.Context
+import com.roozyar.app.core.datastore.FocusActiveStore
 import com.roozyar.app.core.datastore.UserPreferences
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,8 @@ object PreferencesModule {
     @Provides
     @Singleton
     fun provideUserPreferences(@ApplicationContext context: Context): UserPreferences = UserPreferences(context)
+
+    @Provides
+    @Singleton
+    fun provideFocusActiveStore(@ApplicationContext context: Context): FocusActiveStore = FocusActiveStore(context)
 }

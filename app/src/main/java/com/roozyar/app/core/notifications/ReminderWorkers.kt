@@ -61,3 +61,16 @@ class HabitReminderWorker(context: Context, params: WorkerParameters) : Coroutin
         return Result.success()
     }
 }
+
+class FocusEndWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
+    override suspend fun doWork(): Result {
+        val isBreak = inputData.getBoolean(KEY_IS_BREAK, false)
+        Notifications.show(
+            applicationContext,
+            Notifications.FOCUS_NOTIFICATION_ID,
+            if (isBreak) "استراحت تمام شد" else "جلسه تمرکز تمام شد",
+            if (isBreak) "وقت شروع دوباره است." else "آفرین! برنامه را باز کنید تا جلسه ثبت شود.",
+        )
+        return Result.success()
+    }
+}

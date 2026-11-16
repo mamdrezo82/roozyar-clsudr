@@ -28,6 +28,7 @@ import androidx.navigation.navArgument
 import com.roozyar.app.feature.calendar.CalendarScreen
 import com.roozyar.app.feature.calendar.EventEditScreen
 import com.roozyar.app.feature.dashboard.DashboardScreen
+import com.roozyar.app.feature.focus.FocusScreen
 import com.roozyar.app.feature.goals.GoalDetailScreen
 import com.roozyar.app.feature.goals.GoalEditScreen
 import com.roozyar.app.feature.goals.GoalsScreen
@@ -53,6 +54,7 @@ object Routes {
     const val HABITS = "habits"
     const val HABIT_EDIT = "habit_edit?habitId={habitId}"
     const val HABIT_ID_ARG = "habitId"
+    const val FOCUS = "focus"
     const val PROFILE_EDIT = "profile_edit"
     const val EVENT_EDIT = "event_edit?eventId={eventId}&date={date}"
     const val EVENT_ID_ARG = "eventId"
@@ -91,7 +93,7 @@ private val topLevelDestinations = listOf(
 )
 
 /** Screens opened from the Hub keep the Hub tab highlighted. */
-private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL)
+private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL, Routes.FOCUS)
 
 /** Full-screen forms hide the bottom bar. */
 private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit", "event_edit", "profile_edit")
@@ -192,6 +194,7 @@ fun RoozYarRoot() {
                     onOpenTasks = { navController.navigate(Routes.TASKS) },
                     onOpenHabits = { navController.navigate(Routes.HABITS) },
                     onOpenJournal = { navController.navigate(Routes.JOURNAL) },
+                    onOpenFocus = { navController.navigate(Routes.FOCUS) },
                 ) }
             composable(Routes.GOALS) {
                 GoalsScreen(
@@ -232,6 +235,9 @@ fun RoozYarRoot() {
                     onAddTask = { navController.navigate(Routes.taskEdit(null)) },
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
                 )
+            }
+            composable(Routes.FOCUS) {
+                FocusScreen(onBack = { navController.popBackStack() })
             }
             composable(Routes.JOURNAL) {
                 JournalScreen(

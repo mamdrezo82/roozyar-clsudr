@@ -55,6 +55,8 @@ class FakeReminderScheduler : ReminderScheduler {
     override fun cancelTask(taskId: Long) { cancelledTasks += taskId }
     override fun scheduleHabit(habit: Habit) { scheduledHabits += habit }
     override fun cancelHabit(habitId: Long) { cancelledHabits += habitId }
+    override fun scheduleFocusEnd(at: java.time.Instant, isBreak: Boolean) {}
+    override fun cancelFocusEnd() {}
 }
 
 class SaveTaskUseCaseTest {

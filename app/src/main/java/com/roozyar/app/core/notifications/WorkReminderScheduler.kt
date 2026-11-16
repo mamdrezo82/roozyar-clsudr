@@ -18,6 +18,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 internal const val KEY_ID = "id"
+internal const val KEY_IS_BREAK = "is_break"
+private const val FOCUS_WORK_NAME = "focus_end"
 
 /**
  * Reminders as one-time WorkManager jobs with an initial delay. WorkManager survives reboots, but Android may
@@ -65,6 +67,19 @@ class WorkReminderScheduler @Inject constructor(
             OneTimeWorkRequestBuilder<HabitReminderWorker>()
         }.setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(workDataOf(KEY_ID to id)).build()
         work.enqueueUniqueWork(name, ExistingWorkPolicy.REPLACE, request)
+    }
+
+    override fun scheduleFocusEnd(at: Instant, isBreak: Boolean) {
+        val delay = Duration.between(clock.instant(), at).toMillis().coerceAtLeast(0)
+        val request = OneTimeWorkRequestBuilder<FocusEndWorker>()
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+            .setInputData(workDataOf(KEY_IS_BREAK to isBreak))
+            .build()
+        work.enqueueUniqueWork(FOCUS_WORK_NAME, ExistingWorkPolicy.REPLACE, request)
+    }
+
+    override fun cancelFocusEnd() {
+        work.cancelUniqueWork(FOCUS_WORK_NAME)
     }
 
     private fun taskWorkName(id: Long) = "task_reminder_$id"

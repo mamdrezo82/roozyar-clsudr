@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.roozyar.app.core.database.BackupDao
 import com.roozyar.app.core.database.EventDao
+import com.roozyar.app.core.database.FocusDao
 import com.roozyar.app.core.database.GoalDao
 import com.roozyar.app.core.database.HabitDao
 import com.roozyar.app.core.database.JournalDao
@@ -29,6 +30,7 @@ object DatabaseModule {
             .build()
 
     @Provides fun provideTaskDao(db: RoozYarDatabase): TaskDao = db.taskDao()
+    @Provides fun provideFocusDao(db: RoozYarDatabase): FocusDao = db.focusDao()
     @Provides fun provideBackupDao(db: RoozYarDatabase): BackupDao = db.backupDao()
     @Provides fun provideEventDao(db: RoozYarDatabase): EventDao = db.eventDao()
     @Provides fun provideJournalDao(db: RoozYarDatabase): JournalDao = db.journalDao()

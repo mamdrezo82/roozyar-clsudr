@@ -18,6 +18,7 @@ object Notifications {
     const val CHANNEL_REMINDERS = "reminders"
 
     private const val HABIT_ID_OFFSET = 1_000_000
+    const val FOCUS_NOTIFICATION_ID = 2_000_000
 
     fun taskNotificationId(taskId: Long): Int = taskId.toInt()
 
