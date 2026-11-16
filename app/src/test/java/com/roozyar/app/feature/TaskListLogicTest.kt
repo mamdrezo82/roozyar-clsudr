@@ -69,3 +69,15 @@ class TaskListLogicTest {
         assertNull(formatDue(task(), ZoneOffset.UTC))
     }
 }
+
+class TaskCategoryFilterTest {
+    @Test
+    fun categoryFilterKeepsOnlyMatchingTasks() {
+        val work = task(id = 1).copy(category = com.roozyar.app.domain.model.TaskCategory.WORK)
+        val study = task(id = 2).copy(category = com.roozyar.app.domain.model.TaskCategory.STUDY)
+        val none = task(id = 3)
+        val all = listOf(work, study, none)
+        assertEquals(setOf(1L), filterAndSort(all, "", TaskFilter.ALL, com.roozyar.app.domain.model.TaskCategory.WORK).map { it.id }.toSet())
+        assertEquals(setOf(1L, 2L, 3L), filterAndSort(all, "", TaskFilter.ALL, null).map { it.id }.toSet())
+    }
+}

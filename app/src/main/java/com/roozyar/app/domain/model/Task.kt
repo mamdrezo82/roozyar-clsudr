@@ -18,6 +18,18 @@ enum class TaskStatus {
     }
 }
 
+enum class TaskCategory(val label: String) {
+    NONE("بدون دسته"),
+    WORK("کاری"),
+    STUDY("درسی"),
+    PERSONAL("شخصی"),
+    HEALTH("سلامت");
+
+    companion object {
+        fun fromName(name: String): TaskCategory = entries.firstOrNull { it.name == name } ?: NONE
+    }
+}
+
 data class Task(
     val id: Long,
     val title: String,
@@ -30,4 +42,6 @@ data class Task(
     val goalId: Long?,
     val createdAt: Instant,
     val updatedAt: Instant,
+    val category: TaskCategory = TaskCategory.NONE,
+    val reminderMinutesBefore: Int? = null,
 )

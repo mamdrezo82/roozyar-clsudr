@@ -4,6 +4,7 @@ import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.date.JalaliFormatter
 import com.roozyar.app.core.date.toJalali
 import com.roozyar.app.domain.model.Task
+import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
 import com.roozyar.app.domain.model.TaskStatus
 import com.roozyar.app.domain.model.isOverdue
@@ -30,10 +31,11 @@ private val openOrder = compareBy<Task>({ it.dueAt == null }, { it.dueAt }, { it
  * Applies the search [query] and [filter], hides archived tasks, and orders the result:
  * open tasks first (soonest deadline first, undated last), then completed tasks (newest first).
  */
-fun filterAndSort(tasks: List<Task>, query: String, filter: TaskFilter): List<Task> {
+fun filterAndSort(tasks: List<Task>, query: String, filter: TaskFilter, category: TaskCategory? = null): List<Task> {
     val q = query.trim()
     val visible = tasks.filter { task ->
         task.status != TaskStatus.ARCHIVED &&
+            (category == null || task.category == category) &&
             when (filter) {
                 TaskFilter.ALL -> true
                 TaskFilter.OPEN -> task.status == TaskStatus.OPEN

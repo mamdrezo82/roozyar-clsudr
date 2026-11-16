@@ -25,6 +25,7 @@ fun HabitEntity.toDomain() = Habit(
     targetCount = targetCount,
     unit = unit,
     createdAt = Instant.ofEpochMilli(createdAtEpochMillis),
+    reminderMinuteOfDay = reminderMinuteOfDay,
 )
 
 fun Habit.toEntity() = HabitEntity(
@@ -35,6 +36,7 @@ fun Habit.toEntity() = HabitEntity(
     targetCount = targetCount,
     unit = unit,
     createdAtEpochMillis = createdAt.toEpochMilli(),
+    reminderMinuteOfDay = reminderMinuteOfDay,
 )
 
 class HabitRepositoryImpl @Inject constructor(private val dao: HabitDao) : HabitRepository {

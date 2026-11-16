@@ -2,6 +2,7 @@ package com.roozyar.app.data.repository
 
 import com.roozyar.app.core.database.TaskEntity
 import com.roozyar.app.domain.model.Task
+import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
 import com.roozyar.app.domain.model.TaskStatus
 import java.time.Instant
@@ -18,6 +19,8 @@ fun TaskEntity.toDomain(): Task = Task(
     goalId = goalId,
     createdAt = Instant.ofEpochMilli(createdAtEpochMillis),
     updatedAt = Instant.ofEpochMilli(updatedAtEpochMillis),
+    category = TaskCategory.fromName(category),
+    reminderMinutesBefore = reminderMinutesBefore,
 )
 
 fun Task.toEntity(): TaskEntity = TaskEntity(
@@ -32,4 +35,6 @@ fun Task.toEntity(): TaskEntity = TaskEntity(
     goalId = goalId,
     createdAtEpochMillis = createdAt.toEpochMilli(),
     updatedAtEpochMillis = updatedAt.toEpochMilli(),
+    category = category.name,
+    reminderMinutesBefore = reminderMinutesBefore,
 )

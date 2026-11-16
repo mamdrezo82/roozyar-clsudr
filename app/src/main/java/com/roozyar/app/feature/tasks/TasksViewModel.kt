@@ -3,6 +3,7 @@ package com.roozyar.app.feature.tasks
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.roozyar.app.domain.model.Task
+import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskStatus
 import com.roozyar.app.domain.usecase.DeleteTaskUseCase
 import com.roozyar.app.domain.usecase.ObserveTasksUseCase
@@ -29,6 +30,7 @@ data class TasksUiState(
     val hasAnyTasks: Boolean = false,
     val query: String = "",
     val filter: TaskFilter = TaskFilter.ALL,
+    val category: TaskCategory? = null,
     val pendingDelete: Task? = null,
     val now: Instant = Instant.EPOCH,
     val zone: ZoneId = ZoneId.systemDefault(),
@@ -45,17 +47,19 @@ class TasksViewModel @Inject constructor(
     private val query = MutableStateFlow("")
     private val filter = MutableStateFlow(TaskFilter.ALL)
     private val pendingDelete = MutableStateFlow<Task?>(null)
+    private val category = MutableStateFlow<TaskCategory?>(null)
 
-    val uiState: StateFlow<TasksUiState> = combine(observeTasks(), query, filter, pendingDelete) { all, q, f, pending ->
+    val uiState: StateFlow<TasksUiState> = combine(observeTasks(), query, filter, pendingDelete, category) { all, q, f, pending, cat ->
         val now = clock.instant()
         val zone = clock.zone
         TasksUiState(
             isLoading = false,
-            groups = groupTasks(filterAndSort(all, q, f), now, zone),
+            groups = groupTasks(filterAndSort(all, q, f, cat), now, zone),
             summary = summarizeTasks(all, now, zone),
             hasAnyTasks = all.any { it.status != TaskStatus.ARCHIVED },
             query = q,
             filter = f,
+            category = cat,
             pendingDelete = pending,
             now = now,
             zone = zone,
@@ -67,6 +71,8 @@ class TasksViewModel @Inject constructor(
     fun onQueryChange(value: String) = query.update { value }
 
     fun onFilterChange(value: TaskFilter) = filter.update { value }
+
+    fun onCategoryChange(value: TaskCategory?) = category.update { value }
 
     fun onToggle(task: Task) {
         viewModelScope.launch {

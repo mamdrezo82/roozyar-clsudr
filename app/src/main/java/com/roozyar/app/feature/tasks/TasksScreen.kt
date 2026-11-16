@@ -40,6 +40,7 @@ import com.roozyar.app.core.design.ConfirmDialog
 import com.roozyar.app.core.design.EmptyState
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.domain.model.TaskCategory
 
 @Composable
 fun TasksScreen(
@@ -99,6 +100,27 @@ fun TasksScreen(
                                     selected = state.filter == f,
                                     onClick = { viewModel.onFilterChange(f) },
                                     label = { Text("${f.label} (${count.toPersianDigits()})") },
+                                    shape = RoundedCornerShape(50),
+                                )
+                            }
+                        }
+                    }
+                    item(key = "categories") {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            FilterChip(
+                                selected = state.category == null,
+                                onClick = { viewModel.onCategoryChange(null) },
+                                label = { Text("همه دسته‌ها") },
+                                shape = RoundedCornerShape(50),
+                            )
+                            TaskCategory.entries.filter { it != TaskCategory.NONE }.forEach { c ->
+                                FilterChip(
+                                    selected = state.category == c,
+                                    onClick = { viewModel.onCategoryChange(c) },
+                                    label = { Text(c.label) },
                                     shape = RoundedCornerShape(50),
                                 )
                             }

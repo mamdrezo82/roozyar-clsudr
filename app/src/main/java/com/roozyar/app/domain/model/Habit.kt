@@ -12,6 +12,7 @@ data class Habit(
     val targetCount: Int,
     val unit: String,
     val createdAt: Instant,
+    val reminderMinuteOfDay: Int? = null,
 ) {
     fun isScheduledOn(date: LocalDate): Boolean = date.dayOfWeek in weekdays
 }

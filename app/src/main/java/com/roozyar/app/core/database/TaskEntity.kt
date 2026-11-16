@@ -25,4 +25,7 @@ data class TaskEntity(
     val goalId: Long? = null,
     val createdAtEpochMillis: Long,
     val updatedAtEpochMillis: Long,
+    @ColumnInfo(defaultValue = "'NONE'") val category: String = "NONE",
+    /** Minutes before the due moment to notify; null = no reminder. */
+    val reminderMinutesBefore: Int? = null,
 )

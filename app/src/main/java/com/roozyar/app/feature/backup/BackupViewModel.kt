@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.roozyar.app.domain.repository.BackupCounts
 import com.roozyar.app.domain.repository.BackupFormatException
 import com.roozyar.app.domain.repository.BackupRepository
+import com.roozyar.app.domain.usecase.RescheduleAllRemindersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CancellationException
@@ -35,6 +36,7 @@ data class BackupUiState(
 class BackupViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val repository: BackupRepository,
+    private val rescheduleReminders: RescheduleAllRemindersUseCase,
     private val clock: Clock,
 ) : ViewModel() {
 
@@ -89,6 +91,7 @@ class BackupViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 repository.restore(json)
+                runCatching { rescheduleReminders() }
                 _uiState.update { it.copy(busy = false, message = "اطلاعات با موفقیت بازیابی شد.", isError = false) }
             } catch (e: BackupFormatException) {
                 _uiState.update { it.copy(busy = false, message = e.message, isError = true) }

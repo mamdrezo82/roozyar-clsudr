@@ -27,10 +27,12 @@ object BackupJson {
                 .putN("dueAt", t.dueAtEpochMillis).put("dueHasTime", t.dueHasTime).put("priority", t.priority)
                 .put("status", t.status).putN("categoryId", t.categoryId).putN("goalId", t.goalId)
                 .put("createdAt", t.createdAtEpochMillis).put("updatedAt", t.updatedAtEpochMillis)
+                .put("category", t.category).putN("reminderMinutes", t.reminderMinutesBefore)
         })
         put("habits", array(s.habits) { h ->
             JSONObject().put("id", h.id).put("title", h.title).put("icon", h.icon).put("weekdaysMask", h.weekdaysMask)
                 .put("targetCount", h.targetCount).put("unit", h.unit).put("createdAt", h.createdAtEpochMillis)
+                .putN("reminderMinuteOfDay", h.reminderMinuteOfDay)
         })
         put("habitLogs", array(s.habitLogs) { l ->
             JSONObject().put("id", l.id).put("habitId", l.habitId).put("epochDay", l.epochDay).put("count", l.count)
@@ -73,6 +75,7 @@ object BackupJson {
                         dueAtEpochMillis = o.nLong("dueAt"), dueHasTime = o.getBoolean("dueHasTime"), priority = o.getInt("priority"),
                         status = o.getString("status"), categoryId = o.nLong("categoryId"), goalId = o.nLong("goalId"),
                         createdAtEpochMillis = o.getLong("createdAt"), updatedAtEpochMillis = o.getLong("updatedAt"),
+                        category = o.optString("category", "NONE"), reminderMinutesBefore = o.nInt("reminderMinutes"),
                     )
                 },
                 habits = list(root, "habits") { o ->
@@ -80,6 +83,7 @@ object BackupJson {
                         id = o.getLong("id"), title = o.getString("title"), icon = o.getString("icon"),
                         weekdaysMask = o.getInt("weekdaysMask"), targetCount = o.getInt("targetCount"),
                         unit = o.getString("unit"), createdAtEpochMillis = o.getLong("createdAt"),
+                        reminderMinuteOfDay = o.nInt("reminderMinuteOfDay"),
                     )
                 },
                 habitLogs = list(root, "habitLogs") { o ->
@@ -142,6 +146,8 @@ object BackupJson {
     private fun JSONObject.putN(key: String, value: Any?): JSONObject = put(key, value ?: JSONObject.NULL)
 
     private fun JSONObject.nLong(key: String): Long? = if (isNull(key)) null else getLong(key)
+
+    private fun JSONObject.nInt(key: String): Int? = if (isNull(key)) null else getInt(key)
 
     private fun JSONObject.nString(key: String): String? = if (isNull(key)) null else getString(key)
 }

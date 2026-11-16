@@ -42,7 +42,10 @@ import com.roozyar.app.core.date.JalaliFormatter
 import com.roozyar.app.core.design.JalaliDatePickerDialog
 import com.roozyar.app.core.design.RoozYarTimePickerDialog
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.core.notifications.rememberNotificationPermissionRequest
+import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
+import com.roozyar.app.domain.reminders.ReminderTimes
 import java.util.Locale
 
 @Composable
@@ -53,6 +56,7 @@ fun TaskEditScreen(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var showDatePicker by remember { mutableStateOf(false) }
     var showTimePicker by remember { mutableStateOf(false) }
+    val requestNotifications = rememberNotificationPermissionRequest()
 
     LaunchedEffect(state.saved) {
         if (state.saved) onDone()
@@ -91,6 +95,17 @@ fun TaskEditScreen(
                             selected = state.priority == p,
                             onClick = { viewModel.onPriorityChange(p) },
                             label = { Text(priorityLabel(p)) },
+                        )
+                    }
+                }
+                Text("دسته", style = MaterialTheme.typography.titleSmall)
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    TaskCategory.entries.forEach { c ->
+                        FilterChip(
+                            selected = state.category == c,
+                            onClick = { viewModel.onCategoryChange(c) },
+                            label = { Text(c.label) },
+                            shape = RoundedCornerShape(50),
                         )
                     }
                 }
@@ -149,6 +164,31 @@ fun TaskEditScreen(
                             }
                         }
                     }
+                }
+                if (date != null) {
+                    Text("یادآوری", style = MaterialTheme.typography.titleSmall)
+                    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(
+                            selected = state.reminder == null,
+                            onClick = { viewModel.onReminderChange(null) },
+                            label = { Text("بدون یادآوری") },
+                            shape = RoundedCornerShape(50),
+                        )
+                        ReminderTimes.taskOffsetsMinutes.forEach { m ->
+                            FilterChip(
+                                selected = state.reminder == m,
+                                onClick = { viewModel.onReminderChange(m); requestNotifications() },
+                                label = { Text(ReminderTimes.taskOffsetLabel(m)) },
+                                shape = RoundedCornerShape(50),
+                            )
+                        }
+                    }
+                    Text(
+                        if (state.dueTime == null) "بدون ساعت، یادآوری نسبت به ساعت ۹ صبح همان روز است. یادآوری‌ها ممکن است کمی با تأخیر برسند."
+                        else "یادآوری‌ها ممکن است کمی با تأخیر برسند.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
                 state.saveError?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodyMedium) }
                 Button(

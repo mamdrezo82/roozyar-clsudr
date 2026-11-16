@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.roozyar.app.domain.model.Habit
+import com.roozyar.app.domain.reminders.ReminderScheduler
 import com.roozyar.app.domain.repository.HabitRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
@@ -24,6 +25,7 @@ data class HabitEditUiState(
     val weekdays: Set<DayOfWeek> = DayOfWeek.entries.toSet(),
     val targetCount: Int = 1,
     val unit: String = "",
+    val reminderMinute: Int? = null,
     val titleError: Boolean = false,
     val weekdaysError: Boolean = false,
     val isSaving: Boolean = false,
@@ -35,6 +37,7 @@ data class HabitEditUiState(
 class HabitEditViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val repository: HabitRepository,
+    private val reminders: ReminderScheduler,
     private val clock: Clock,
 ) : ViewModel() {
 
@@ -61,6 +64,7 @@ class HabitEditViewModel @Inject constructor(
                     it.copy(
                         isLoading = false, isNew = false, title = habit.title, icon = habit.icon,
                         weekdays = habit.weekdays, targetCount = habit.targetCount, unit = habit.unit,
+                        reminderMinute = habit.reminderMinuteOfDay,
                     )
                 }
             } catch (e: Exception) {
@@ -72,6 +76,7 @@ class HabitEditViewModel @Inject constructor(
 
     fun onTitleChange(v: String) = _uiState.update { it.copy(title = v, titleError = false) }
     fun onIconChange(v: String) = _uiState.update { it.copy(icon = v) }
+    fun onReminderChange(v: Int?) = _uiState.update { it.copy(reminderMinute = v) }
     fun onUnitChange(v: String) = _uiState.update { it.copy(unit = v) }
     fun onTargetChange(v: Int) = _uiState.update { it.copy(targetCount = v.coerceIn(1, 99)) }
 
@@ -90,17 +95,18 @@ class HabitEditViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isSaving = true, error = null) }
             try {
-                repository.saveHabit(
-                    Habit(
-                        id = original?.id ?: 0L,
-                        title = s.title.trim(),
-                        icon = s.icon,
-                        weekdays = s.weekdays,
-                        targetCount = s.targetCount,
-                        unit = s.unit.trim(),
-                        createdAt = original?.createdAt ?: clock.instant(),
-                    ),
+                val habit = Habit(
+                    id = original?.id ?: 0L,
+                    title = s.title.trim(),
+                    icon = s.icon,
+                    weekdays = s.weekdays,
+                    targetCount = s.targetCount,
+                    unit = s.unit.trim(),
+                    createdAt = original?.createdAt ?: clock.instant(),
+                    reminderMinuteOfDay = s.reminderMinute,
                 )
+                val id = repository.saveHabit(habit)
+                reminders.scheduleHabit(habit.copy(id = id))
                 _uiState.update { it.copy(isSaving = false, done = true) }
             } catch (e: Exception) {
                 if (e is CancellationException) throw e
@@ -113,6 +119,7 @@ class HabitEditViewModel @Inject constructor(
         val id = original?.id ?: return
         viewModelScope.launch {
             try {
+                reminders.cancelHabit(id)
                 repository.deleteHabit(id)
                 _uiState.update { it.copy(done = true) }
             } catch (e: Exception) {

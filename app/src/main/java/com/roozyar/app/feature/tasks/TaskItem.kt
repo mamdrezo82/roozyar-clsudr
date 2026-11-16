@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.RadioButtonUnchecked
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material3.DropdownMenu
@@ -38,6 +39,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.domain.model.Task
+import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
 import com.roozyar.app.domain.model.TaskStatus
 import com.roozyar.app.domain.model.isOverdue
@@ -106,7 +108,7 @@ fun TaskItem(
                     )
                 }
                 val due = formatDue(task, zone)
-                if (due != null || (task.priority != TaskPriority.NORMAL && !done)) {
+                if (due != null || task.category != TaskCategory.NONE || (task.priority != TaskPriority.NORMAL && !done)) {
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                         if (due != null) {
                             MetaChip(
@@ -114,6 +116,12 @@ fun TaskItem(
                                 icon = if (task.dueHasTime) Icons.Outlined.Schedule else Icons.Outlined.CalendarMonth,
                                 color = if (overdue) scheme.error else scheme.onSurfaceVariant,
                             )
+                        }
+                        if (task.category != TaskCategory.NONE) {
+                            Text(task.category.label, style = MaterialTheme.typography.labelSmall, color = scheme.tertiary)
+                        }
+                        if (task.reminderMinutesBefore != null && !done) {
+                            Icon(Icons.Outlined.Notifications, contentDescription = "یادآوری فعال", tint = scheme.onSurfaceVariant, modifier = Modifier.size(14.dp))
                         }
                         if (task.priority != TaskPriority.NORMAL && !done) {
                             val c = priorityColor(task.priority)

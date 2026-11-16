@@ -15,6 +15,8 @@ data class HabitEntity(
     val targetCount: Int = 1,
     val unit: String = "",
     val createdAtEpochMillis: Long,
+    /** Minutes after midnight for the daily reminder; null = no reminder. */
+    val reminderMinuteOfDay: Int? = null,
 )
 
 /** One row per habit per day; [count] is the progress that day (a day with no row means nothing done). */

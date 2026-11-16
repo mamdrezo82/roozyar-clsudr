@@ -14,7 +14,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -37,12 +40,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.ConfirmDialog
+import java.time.LocalTime
+import java.util.Locale
+import com.roozyar.app.core.design.RoozYarTimePickerDialog
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.core.notifications.rememberNotificationPermissionRequest
 
 @Composable
 fun HabitEditScreen(onDone: () -> Unit, viewModel: HabitEditViewModel = hiltViewModel()) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var confirmDelete by remember { mutableStateOf(false) }
+    var showTime by remember { mutableStateOf(false) }
+    val requestNotifications = rememberNotificationPermissionRequest()
     val scheme = MaterialTheme.colorScheme
 
     LaunchedEffect(state.done) { if (state.done) onDone() }
@@ -124,6 +133,22 @@ fun HabitEditScreen(onDone: () -> Unit, viewModel: HabitEditViewModel = hiltView
                         singleLine = true,
                     )
                 }
+                Text("یادآوری روزانه", style = MaterialTheme.typography.titleSmall)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    AssistChip(
+                        onClick = { showTime = true },
+                        label = {
+                            Text(
+                                state.reminderMinute?.let { m -> String.format(Locale.ROOT, "%02d:%02d", m / 60, m % 60).toPersianDigits() }
+                                    ?: "افزودن یادآوری",
+                            )
+                        },
+                        leadingIcon = { Icon(Icons.Outlined.Schedule, contentDescription = null) },
+                    )
+                    if (state.reminderMinute != null) {
+                        IconButton(onClick = { viewModel.onReminderChange(null) }) { Icon(Icons.Filled.Close, contentDescription = "حذف یادآوری") }
+                    }
+                }
                 state.error?.let { Text(it, color = scheme.error, style = MaterialTheme.typography.bodyMedium) }
                 Button(
                     onClick = viewModel::save,
@@ -136,6 +161,13 @@ fun HabitEditScreen(onDone: () -> Unit, viewModel: HabitEditViewModel = hiltView
         }
     }
 
+    if (showTime) {
+        RoozYarTimePickerDialog(
+            initial = state.reminderMinute?.let { LocalTime.of(it / 60, it % 60) },
+            onConfirm = { viewModel.onReminderChange(it.hour * 60 + it.minute); showTime = false; requestNotifications() },
+            onDismiss = { showTime = false },
+        )
+    }
     if (confirmDelete) {
         ConfirmDialog(
             title = "حذف عادت",

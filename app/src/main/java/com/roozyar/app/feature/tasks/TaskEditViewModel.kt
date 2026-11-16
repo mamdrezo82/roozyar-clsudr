@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.roozyar.app.core.date.JalaliDate
 import com.roozyar.app.core.date.toJalali
 import com.roozyar.app.domain.model.Task
+import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
 import com.roozyar.app.domain.model.TaskStatus
 import com.roozyar.app.domain.repository.GoalRepository
@@ -33,6 +34,8 @@ data class TaskEditUiState(
     val priority: TaskPriority = TaskPriority.NORMAL,
     val dueDate: JalaliDate? = null,
     val dueTime: LocalTime? = null,
+    val category: TaskCategory = TaskCategory.NONE,
+    val reminder: Int? = null,
     val goalId: Long? = null,
     val goals: List<GoalOption> = emptyList(),
     val titleError: Boolean = false,
@@ -92,6 +95,8 @@ class TaskEditViewModel @Inject constructor(
                         dueDate = due?.toLocalDate()?.toJalali(),
                         dueTime = if (task.dueHasTime) due?.toLocalTime() else null,
                         goalId = task.goalId,
+                        category = task.category,
+                        reminder = task.reminderMinutesBefore,
                     )
                 }
             } catch (e: Exception) {
@@ -109,8 +114,12 @@ class TaskEditViewModel @Inject constructor(
 
     fun onDueDateChange(value: JalaliDate?) = _uiState.update {
         // A time without a date makes no sense, so clearing the date clears the time too.
-        it.copy(dueDate = value, dueTime = if (value == null) null else it.dueTime)
+        it.copy(dueDate = value, dueTime = if (value == null) null else it.dueTime, reminder = if (value == null) null else it.reminder)
     }
+
+    fun onCategoryChange(value: TaskCategory) = _uiState.update { it.copy(category = value) }
+
+    fun onReminderChange(value: Int?) = _uiState.update { it.copy(reminder = value) }
 
     fun onGoalChange(value: Long?) = _uiState.update { it.copy(goalId = value) }
 
@@ -142,6 +151,8 @@ class TaskEditViewModel @Inject constructor(
                         status = base?.status ?: TaskStatus.OPEN,
                         categoryId = base?.categoryId,
                         goalId = s.goalId,
+                        category = s.category,
+                        reminderMinutesBefore = if (s.dueDate != null) s.reminder else null,
                         createdAt = base?.createdAt ?: now,
                         updatedAt = now,
                     ),
