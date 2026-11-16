@@ -25,6 +25,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.roozyar.app.feature.calendar.CalendarScreen
+import com.roozyar.app.feature.calendar.EventEditScreen
 import com.roozyar.app.feature.dashboard.DashboardScreen
 import com.roozyar.app.feature.goals.GoalDetailScreen
 import com.roozyar.app.feature.goals.GoalEditScreen
@@ -50,6 +52,9 @@ object Routes {
     const val HABITS = "habits"
     const val HABIT_EDIT = "habit_edit?habitId={habitId}"
     const val HABIT_ID_ARG = "habitId"
+    const val EVENT_EDIT = "event_edit?eventId={eventId}&date={date}"
+    const val EVENT_ID_ARG = "eventId"
+    const val EVENT_DATE_ARG = "date"
     const val JOURNAL = "journal"
     const val JOURNAL_EDIT = "journal_edit?entryId={entryId}"
     const val ENTRY_ID_ARG = "entryId"
@@ -61,6 +66,9 @@ object Routes {
     fun taskEdit(id: Long?): String = "task_edit?taskId=${id ?: -1L}"
 
     fun habitEdit(id: Long?): String = "habit_edit?habitId=${id ?: -1L}"
+
+    fun eventEdit(id: Long?, date: java.time.LocalDate? = null): String =
+        "event_edit?eventId=${id ?: -1L}&date=${date?.toEpochDay() ?: -1L}"
 
     fun journalEdit(id: Long?): String = "journal_edit?entryId=${id ?: -1L}"
 
@@ -84,11 +92,12 @@ private val topLevelDestinations = listOf(
 private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL)
 
 /** Full-screen forms hide the bottom bar. */
-private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit")
+private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit", "event_edit")
 
 private fun isTabSelected(tabRoute: String, currentRoute: String?): Boolean = when (tabRoute) {
     Routes.HUB -> currentRoute in hubChildren
     Routes.GOALS -> currentRoute != null && currentRoute.startsWith("goal")
+    Routes.CALENDAR -> currentRoute != null && (currentRoute == Routes.CALENDAR || currentRoute.startsWith("event"))
     else -> currentRoute == tabRoute
 }
 
@@ -147,7 +156,30 @@ fun RoozYarRoot() {
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
                 )
             }
-            composable(Routes.CALENDAR) { PlaceholderScreen("تقویم شمسی") }
+            composable(Routes.CALENDAR) {
+                CalendarScreen(
+                    onAddEvent = { navController.navigate(Routes.eventEdit(null, it)) },
+                    onEditEvent = { navController.navigate(Routes.eventEdit(it)) },
+                    onEditTask = { navController.navigate(Routes.taskEdit(it)) },
+                    onOpenGoal = { navController.navigate(Routes.goalDetail(it)) },
+                    onOpenHabits = { navController.navigate(Routes.HABITS) },
+                )
+            }
+            composable(
+                route = Routes.EVENT_EDIT,
+                arguments = listOf(
+                    navArgument(Routes.EVENT_ID_ARG) {
+                        type = NavType.LongType
+                        defaultValue = -1L
+                    },
+                    navArgument(Routes.EVENT_DATE_ARG) {
+                        type = NavType.LongType
+                        defaultValue = -1L
+                    },
+                ),
+            ) {
+                EventEditScreen(onDone = { navController.popBackStack() })
+            }
             composable(Routes.HUB) { HubScreen(
                     onOpenTasks = { navController.navigate(Routes.TASKS) },
                     onOpenHabits = { navController.navigate(Routes.HABITS) },

@@ -1,9 +1,11 @@
 package com.roozyar.app.di
 
+import com.roozyar.app.data.repository.EventRepositoryImpl
 import com.roozyar.app.data.repository.GoalRepositoryImpl
 import com.roozyar.app.data.repository.HabitRepositoryImpl
 import com.roozyar.app.data.repository.JournalRepositoryImpl
 import com.roozyar.app.data.repository.TaskRepositoryImpl
+import com.roozyar.app.domain.repository.EventRepository
 import com.roozyar.app.domain.repository.GoalRepository
 import com.roozyar.app.domain.repository.HabitRepository
 import com.roozyar.app.domain.repository.JournalRepository
@@ -32,4 +34,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindJournalRepository(impl: JournalRepositoryImpl): JournalRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindEventRepository(impl: EventRepositoryImpl): EventRepository
 }

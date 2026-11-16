@@ -25,4 +25,5 @@ abstract class RoozYarDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
     abstract fun goalDao(): GoalDao
     abstract fun journalDao(): JournalDao
+    abstract fun eventDao(): EventDao
 }
