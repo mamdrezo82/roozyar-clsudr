@@ -38,6 +38,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.feature.backup.BackupSection
 
 @Composable
 fun ProfileScreen(onEdit: () -> Unit, viewModel: ProfileViewModel = hiltViewModel()) {
@@ -97,11 +98,7 @@ fun ProfileScreen(onEdit: () -> Unit, viewModel: ProfileViewModel = hiltViewMode
                 InfoCard("تم تاریک", "رابط برنامه فعلاً فقط در حالت تاریک و راست‌به‌چپ ارائه می‌شود.")
 
                 Text("داده‌ها و حریم خصوصی", style = MaterialTheme.typography.titleMedium)
-                InfoCard(
-                    "ذخیره‌سازی محلی",
-                    "همه وظایف، عادت‌ها، اهداف، یادداشت‌ها و رویدادها فقط روی همین گوشی ذخیره می‌شوند و جایی ارسال نمی‌شوند. " +
-                        "با حذف برنامه یا پاک‌کردن داده‌های آن، اطلاعات از بین می‌رود؛ خروجی پشتیبان هنوز ساخته نشده است.",
-                )
+                BackupSection()
 
                 Text("درباره", style = MaterialTheme.typography.titleMedium)
                 val context = LocalContext.current
