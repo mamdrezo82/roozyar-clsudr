@@ -4,26 +4,27 @@ Persian, RTL-first, local-first personal life management app. Kotlin + Jetpack C
 MVVM + Clean Architecture, Room, DataStore, Hilt. The Stitch HTML files in `design-reference/` are
 design references only; the app is fully native and uses no WebView.
 
-## Status (Phase 1 built and installed; Phase 2 step 1 — Tasks — written, not yet built)
+## Status (Phase 2 complete, CI green; not yet tested on a device by the author)
 
-Phase 1 compiled on GitHub Actions and installed on a phone. Everything added after that is **not yet compiled**:
-the authoring environment has no Android SDK/Gradle, so each new step is first verified by the next CI run.
+Every module below compiled and passed its unit tests on GitHub Actions. Behaviour and look on a real
+phone are verified only by the product owner installing the APK.
 
-| Item | State |
+| Feature | State |
 |---|---|
-| Single-module project, Gradle wrapper 8.11.1, version catalog, KSP | written |
-| Dark theme from DESIGN.md tokens, Vazirmatn (4 weights), RTL pinned in theme | written |
-| 5-tab navigation (خانه، تقویم، برنامه‌ها، اهداف، پروفایل) | written; tabs other than Home are honest placeholders |
-| Room (tasks, user_profile) + DataStore + Hilt wiring | written |
-| Jalali calendar core (`core/date`) + Persian digits | written; algorithm cross-checked in Python, JVM unit tests included |
-| Home: real Jalali date, today's progress, today's tasks, overdue count (from Room) | written |
-| Tasks: list, search, filter, add/edit (Jalali date picker, optional time, priority), complete, delete with confirm | written (Phase 2, step 1) |
-| Hub screen: Tasks live, other sections shown as «به‌زودی» | written |
-| Room schema v2 (+ migration 1→2: `dueHasTime`) | written |
-| Shared `ConfirmDialog` (design screen 14) | written |
-| GitHub Actions: unit tests + debug APK artifact | written, never run |
-| Task categories, repeat rules, reminders | not started (need DB migration + WorkManager/notification permission) |
-| Calendar, habits, goals, journal, profile, planner, focus, XP, timeline, widgets, AI, voice | not started |
+| Foundation: theme from DESIGN.md tokens, Vazirmatn, RTL, 5-tab navigation, Room v3 (auto-migrations), DataStore, Hilt | done |
+| Jalali calendar core + Persian digits, Jalali date picker | done |
+| Home: greeting, today's progress, today's tasks, habits progress, active goals, quick actions | done |
+| Tasks: list with summary and grouped sections, search, filters, add/edit/delete, priority, date + optional time, link to a goal | done |
+| Habits: schedule by weekday, daily target (counter or check), streak, 7-day strip, 30-day adherence | done |
+| Goals: categories, priority, deadline, milestones, progress, complete/reopen, linked tasks | done |
+| Journal: entries with mood, tags, star, drafts, search/filter, streak and weekly words | done |
+| Calendar: Jalali month grid with markers, day agenda (events, tasks, goal deadlines, habits), events create/edit/delete | done |
+| Profile: real stats, edit profile (name, bio, optional email/phone) | done |
+| Task categories, repeat rules, reminders/notifications | not started |
+| Local backup export/import | not started |
+| Smart planner, daily intelligence reports, focus mode, XP/achievements, life timeline, Android widgets | not started (phase 3) |
+| Local AI assistant, voice | not started (phases 4-5) |
+| Dashboard card customization (order / modes) | not started |
 
 ## Build
 
