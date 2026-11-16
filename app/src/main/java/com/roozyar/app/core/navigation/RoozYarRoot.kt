@@ -36,7 +36,8 @@ import com.roozyar.app.feature.habits.HabitsScreen
 import com.roozyar.app.feature.hub.HubScreen
 import com.roozyar.app.feature.journal.JournalEditScreen
 import com.roozyar.app.feature.journal.JournalScreen
-import com.roozyar.app.feature.placeholder.PlaceholderScreen
+import com.roozyar.app.feature.profile.ProfileEditScreen
+import com.roozyar.app.feature.profile.ProfileScreen
 import com.roozyar.app.feature.tasks.TaskEditScreen
 import com.roozyar.app.feature.tasks.TasksScreen
 
@@ -52,6 +53,7 @@ object Routes {
     const val HABITS = "habits"
     const val HABIT_EDIT = "habit_edit?habitId={habitId}"
     const val HABIT_ID_ARG = "habitId"
+    const val PROFILE_EDIT = "profile_edit"
     const val EVENT_EDIT = "event_edit?eventId={eventId}&date={date}"
     const val EVENT_ID_ARG = "eventId"
     const val EVENT_DATE_ARG = "date"
@@ -92,10 +94,11 @@ private val topLevelDestinations = listOf(
 private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL)
 
 /** Full-screen forms hide the bottom bar. */
-private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit", "event_edit")
+private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit", "event_edit", "profile_edit")
 
 private fun isTabSelected(tabRoute: String, currentRoute: String?): Boolean = when (tabRoute) {
     Routes.HUB -> currentRoute in hubChildren
+    Routes.PROFILE -> currentRoute == Routes.PROFILE || currentRoute == Routes.PROFILE_EDIT
     Routes.GOALS -> currentRoute != null && currentRoute.startsWith("goal")
     Routes.CALENDAR -> currentRoute != null && (currentRoute == Routes.CALENDAR || currentRoute.startsWith("event"))
     else -> currentRoute == tabRoute
@@ -152,8 +155,13 @@ fun RoozYarRoot() {
             composable(Routes.HOME) {
                 DashboardScreen(
                     onAddTask = { navController.navigate(Routes.taskEdit(null)) },
+                    onAddEvent = { navController.navigate(Routes.eventEdit(null, java.time.LocalDate.now())) },
+                    onAddJournal = { navController.navigate(Routes.journalEdit(null)) },
                     onOpenTasks = { navController.navigate(Routes.TASKS) },
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
+                    onOpenHabits = { navController.navigate(Routes.HABITS) },
+                    onOpenGoals = { navController.navigate(Routes.GOALS) },
+                    onOpenGoal = { navController.navigate(Routes.goalDetail(it)) },
                 )
             }
             composable(Routes.CALENDAR) {
@@ -212,7 +220,12 @@ fun RoozYarRoot() {
             ) {
                 GoalEditScreen(onDone = { navController.popBackStack() })
             }
-            composable(Routes.PROFILE) { PlaceholderScreen("پروفایل و تنظیمات") }
+            composable(Routes.PROFILE) {
+                ProfileScreen(onEdit = { navController.navigate(Routes.PROFILE_EDIT) })
+            }
+            composable(Routes.PROFILE_EDIT) {
+                ProfileEditScreen(onDone = { navController.popBackStack() })
+            }
             composable(Routes.TASKS) {
                 TasksScreen(
                     onBack = { navController.popBackStack() },

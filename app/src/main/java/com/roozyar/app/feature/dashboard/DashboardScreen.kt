@@ -11,9 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,30 +32,40 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.date.JalaliFormatter
 import com.roozyar.app.core.design.RoozYarCard
+import com.roozyar.app.feature.goals.GoalCard
 import com.roozyar.app.feature.tasks.TaskItem
 import java.time.Instant
 
 @Composable
 fun DashboardScreen(
     onAddTask: () -> Unit,
+    onAddEvent: () -> Unit,
+    onAddJournal: () -> Unit,
     onOpenTasks: () -> Unit,
     onEditTask: (Long) -> Unit,
+    onOpenHabits: () -> Unit,
+    onOpenGoals: () -> Unit,
+    onOpenGoal: (Long) -> Unit,
     viewModel: DashboardViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val scheme = MaterialTheme.colorScheme
     when (val s = state) {
-        DashboardUiState.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator()
-        }
+        DashboardUiState.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
         is DashboardUiState.Error -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(s.message, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodyLarge)
+            Text(s.message, color = scheme.error, style = MaterialTheme.typography.bodyLarge)
         }
         is DashboardUiState.Success -> Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(JalaliFormatter.full(s.today), style = MaterialTheme.typography.headlineSmall)
+            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                Text(s.greeting, style = MaterialTheme.typography.headlineSmall)
+                Text(JalaliFormatter.full(s.today), style = MaterialTheme.typography.bodyMedium, color = scheme.onSurfaceVariant)
+            }
             ProgressCard(s.summary)
+            if (s.habits.total > 0) HabitsCard(s.habits, onOpenHabits)
+
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("وظایف امروز", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                 TextButton(onClick = onOpenTasks) { Text("همه وظایف") }
@@ -60,7 +74,7 @@ fun DashboardScreen(
                 Text(
                     if (s.summary.totalToday == 0) "برای امروز وظیفه‌ای ثبت نشده است." else "همه وظایف امروز انجام شده‌اند.",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = scheme.onSurfaceVariant,
                 )
             } else {
                 val now = Instant.now()
@@ -76,14 +90,27 @@ fun DashboardScreen(
                     }
                 }
             }
+
+            if (s.goals.isNotEmpty()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("اهداف فعال", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                    TextButton(onClick = onOpenGoals) { Text("همه اهداف") }
+                }
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    s.goals.forEach { goal -> GoalCard(goal, s.localToday) { onOpenGoal(goal.id) } }
+                }
+            }
+
+            Text("دسترسی سریع", style = MaterialTheme.typography.titleMedium)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                AssistChip(onClick = onAddEvent, label = { Text("رویداد") }, leadingIcon = { Icon(Icons.Filled.Add, contentDescription = null) })
+                AssistChip(onClick = onAddJournal, label = { Text("یادداشت") }, leadingIcon = { Icon(Icons.Filled.Add, contentDescription = null) })
+            }
             Button(
                 onClick = onAddTask,
                 modifier = Modifier.fillMaxWidth().height(52.dp),
                 shape = RoundedCornerShape(50),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                ),
+                colors = ButtonDefaults.buttonColors(containerColor = scheme.primaryContainer, contentColor = scheme.onPrimaryContainer),
             ) { Text("وظیفه جدید", style = MaterialTheme.typography.labelLarge) }
         }
     }
@@ -119,6 +146,28 @@ private fun ProgressCard(summary: TodaySummary) {
                     color = MaterialTheme.colorScheme.error,
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun HabitsCard(habits: HabitsToday, onClick: () -> Unit) {
+    RoozYarCard(Modifier.fillMaxWidth(), onClick = onClick) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("عادت‌های امروز", style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Text(
+                    "${habits.done.toPersianDigits()} از ${habits.total.toPersianDigits()}",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+            LinearProgressIndicator(
+                progress = { habits.progress },
+                modifier = Modifier.fillMaxWidth().height(8.dp),
+                color = MaterialTheme.colorScheme.secondary,
+                trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+            )
         }
     }
 }

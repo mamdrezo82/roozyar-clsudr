@@ -4,11 +4,13 @@ import com.roozyar.app.data.repository.EventRepositoryImpl
 import com.roozyar.app.data.repository.GoalRepositoryImpl
 import com.roozyar.app.data.repository.HabitRepositoryImpl
 import com.roozyar.app.data.repository.JournalRepositoryImpl
+import com.roozyar.app.data.repository.ProfileRepositoryImpl
 import com.roozyar.app.data.repository.TaskRepositoryImpl
 import com.roozyar.app.domain.repository.EventRepository
 import com.roozyar.app.domain.repository.GoalRepository
 import com.roozyar.app.domain.repository.HabitRepository
 import com.roozyar.app.domain.repository.JournalRepository
+import com.roozyar.app.domain.repository.ProfileRepository
 import com.roozyar.app.domain.repository.TaskRepository
 import dagger.Binds
 import dagger.Module
@@ -38,4 +40,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindEventRepository(impl: EventRepositoryImpl): EventRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindProfileRepository(impl: ProfileRepositoryImpl): ProfileRepository
 }
