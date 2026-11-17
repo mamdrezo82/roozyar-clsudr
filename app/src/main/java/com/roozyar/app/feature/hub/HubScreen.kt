@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Book
 import androidx.compose.material.icons.outlined.EmojiEvents
+import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.Repeat
 import androidx.compose.material.icons.outlined.TaskAlt
 import androidx.compose.material.icons.outlined.Timeline
@@ -32,12 +33,13 @@ private data class HubItem(val title: String, val icon: ImageVector, val availab
 
 /** Entry point to every feature. Features that are not built yet are shown disabled with «به‌زودی». */
 @Composable
-fun HubScreen(onOpenTasks: () -> Unit, onOpenHabits: () -> Unit, onOpenJournal: () -> Unit, onOpenFocus: () -> Unit, onOpenAchievements: () -> Unit) {
+fun HubScreen(onOpenTasks: () -> Unit, onOpenHabits: () -> Unit, onOpenJournal: () -> Unit, onOpenFocus: () -> Unit, onOpenAchievements: () -> Unit, onOpenTimeline: () -> Unit, onOpenReport: () -> Unit) {
     val items = listOf(
         HubItem("وظایف", Icons.Outlined.TaskAlt, available = true, onClick = onOpenTasks),
         HubItem("عادت‌ها", Icons.Outlined.Repeat, available = true, onClick = onOpenHabits),
         HubItem("ژورنال", Icons.Outlined.Book, available = true, onClick = onOpenJournal),
-        HubItem("خط زمانی", Icons.Outlined.Timeline, available = false),
+        HubItem("خط زمانی", Icons.Outlined.Timeline, available = true, onClick = onOpenTimeline),
+        HubItem("گزارش‌ها", Icons.Outlined.Insights, available = true, onClick = onOpenReport),
         HubItem("دستاوردها", Icons.Outlined.EmojiEvents, available = true, onClick = onOpenAchievements),
         HubItem("تمرکز", Icons.Outlined.Timer, available = true, onClick = onOpenFocus),
         HubItem("ویجت‌ها", Icons.Outlined.Widgets, available = false),

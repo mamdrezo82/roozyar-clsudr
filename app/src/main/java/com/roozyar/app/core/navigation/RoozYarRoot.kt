@@ -39,6 +39,8 @@ import com.roozyar.app.feature.hub.HubScreen
 import com.roozyar.app.feature.journal.JournalEditScreen
 import com.roozyar.app.feature.journal.JournalScreen
 import com.roozyar.app.feature.profile.ProfileEditScreen
+import com.roozyar.app.feature.report.ReportScreen
+import com.roozyar.app.feature.timeline.TimelineScreen
 import com.roozyar.app.feature.profile.ProfileScreen
 import com.roozyar.app.feature.tasks.TaskEditScreen
 import com.roozyar.app.feature.tasks.TasksScreen
@@ -57,6 +59,8 @@ object Routes {
     const val HABIT_ID_ARG = "habitId"
     const val FOCUS = "focus"
     const val ACHIEVEMENTS = "achievements"
+    const val TIMELINE = "timeline"
+    const val REPORT = "report"
     const val PROFILE_EDIT = "profile_edit"
     const val EVENT_EDIT = "event_edit?eventId={eventId}&date={date}"
     const val EVENT_ID_ARG = "eventId"
@@ -95,7 +99,7 @@ private val topLevelDestinations = listOf(
 )
 
 /** Screens opened from the Hub keep the Hub tab highlighted. */
-private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL, Routes.FOCUS, Routes.ACHIEVEMENTS)
+private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL, Routes.FOCUS, Routes.ACHIEVEMENTS, Routes.TIMELINE, Routes.REPORT)
 
 /** Full-screen forms hide the bottom bar. */
 private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit", "event_edit", "profile_edit")
@@ -241,6 +245,12 @@ fun RoozYarRoot() {
                     onAddTask = { navController.navigate(Routes.taskEdit(null)) },
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
                 )
+            }
+            composable(Routes.TIMELINE) {
+                TimelineScreen(onBack = { navController.popBackStack() })
+            }
+            composable(Routes.REPORT) {
+                ReportScreen(onBack = { navController.popBackStack() })
             }
             composable(Routes.ACHIEVEMENTS) {
                 AchievementsScreen(onBack = { navController.popBackStack() })
