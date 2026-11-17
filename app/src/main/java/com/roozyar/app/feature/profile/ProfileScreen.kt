@@ -38,10 +38,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.feature.achievements.LevelSummaryCard
 import com.roozyar.app.feature.backup.BackupSection
 
 @Composable
-fun ProfileScreen(onEdit: () -> Unit, viewModel: ProfileViewModel = hiltViewModel()) {
+fun ProfileScreen(onEdit: () -> Unit, onOpenAchievements: () -> Unit, viewModel: ProfileViewModel = hiltViewModel()) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val scheme = MaterialTheme.colorScheme
 
@@ -74,6 +75,8 @@ fun ProfileScreen(onEdit: () -> Unit, viewModel: ProfileViewModel = hiltViewMode
                         Text("  ویرایش مشخصات", style = MaterialTheme.typography.labelLarge)
                     }
                 }
+
+                LevelSummaryCard(onClick = onOpenAchievements)
 
                 Text("آمار شما", style = MaterialTheme.typography.titleMedium)
                 val s = state.stats

@@ -18,6 +18,7 @@ class BackupRepositoryImpl @Inject constructor(
         val snapshot = BackupSnapshot(
             tasks = dao.tasks(), habits = dao.habits(), habitLogs = dao.habitLogs(), goals = dao.goals(),
             milestones = dao.milestones(), journal = dao.journal(), events = dao.events(), profiles = dao.profiles(),
+            focusSessions = dao.focusSessions(), achievements = dao.unlockedAchievements(),
         )
         BackupJson.toJson(snapshot, clock.millis())
     }
@@ -32,9 +33,11 @@ class BackupRepositoryImpl @Inject constructor(
         db.withTransaction {
             dao.clearHabitLogs(); dao.clearHabits(); dao.clearMilestones(); dao.clearGoals()
             dao.clearTasks(); dao.clearJournal(); dao.clearEvents(); dao.clearProfiles()
+            dao.clearFocusSessions(); dao.clearUnlockedAchievements()
             dao.insertHabits(s.habits); dao.insertHabitLogs(s.habitLogs)
             dao.insertGoals(s.goals); dao.insertMilestones(s.milestones)
             dao.insertTasks(s.tasks); dao.insertJournal(s.journal); dao.insertEvents(s.events); dao.insertProfiles(s.profiles)
+            dao.insertFocusSessions(s.focusSessions); dao.insertUnlockedAchievements(s.achievements)
         }
     }
 }

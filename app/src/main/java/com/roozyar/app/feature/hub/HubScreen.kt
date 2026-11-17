@@ -32,13 +32,13 @@ private data class HubItem(val title: String, val icon: ImageVector, val availab
 
 /** Entry point to every feature. Features that are not built yet are shown disabled with «به‌زودی». */
 @Composable
-fun HubScreen(onOpenTasks: () -> Unit, onOpenHabits: () -> Unit, onOpenJournal: () -> Unit, onOpenFocus: () -> Unit) {
+fun HubScreen(onOpenTasks: () -> Unit, onOpenHabits: () -> Unit, onOpenJournal: () -> Unit, onOpenFocus: () -> Unit, onOpenAchievements: () -> Unit) {
     val items = listOf(
         HubItem("وظایف", Icons.Outlined.TaskAlt, available = true, onClick = onOpenTasks),
         HubItem("عادت‌ها", Icons.Outlined.Repeat, available = true, onClick = onOpenHabits),
         HubItem("ژورنال", Icons.Outlined.Book, available = true, onClick = onOpenJournal),
         HubItem("خط زمانی", Icons.Outlined.Timeline, available = false),
-        HubItem("دستاوردها", Icons.Outlined.EmojiEvents, available = false),
+        HubItem("دستاوردها", Icons.Outlined.EmojiEvents, available = true, onClick = onOpenAchievements),
         HubItem("تمرکز", Icons.Outlined.Timer, available = true, onClick = onOpenFocus),
         HubItem("ویجت‌ها", Icons.Outlined.Widgets, available = false),
         HubItem("دستیار هوشمند", Icons.Outlined.AutoAwesome, available = false),

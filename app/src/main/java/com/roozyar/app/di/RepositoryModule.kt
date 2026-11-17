@@ -1,6 +1,7 @@
 package com.roozyar.app.di
 
 import com.roozyar.app.data.backup.BackupRepositoryImpl
+import com.roozyar.app.data.repository.AchievementRepositoryImpl
 import com.roozyar.app.data.repository.EventRepositoryImpl
 import com.roozyar.app.data.repository.FocusRepositoryImpl
 import com.roozyar.app.data.repository.GoalRepositoryImpl
@@ -9,6 +10,7 @@ import com.roozyar.app.data.repository.JournalRepositoryImpl
 import com.roozyar.app.data.repository.ProfileRepositoryImpl
 import com.roozyar.app.data.repository.TaskRepositoryImpl
 import com.roozyar.app.domain.repository.BackupRepository
+import com.roozyar.app.domain.repository.AchievementRepository
 import com.roozyar.app.domain.repository.EventRepository
 import com.roozyar.app.domain.repository.FocusRepository
 import com.roozyar.app.domain.repository.GoalRepository
@@ -56,4 +58,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindFocusRepository(impl: FocusRepositoryImpl): FocusRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAchievementRepository(impl: AchievementRepositoryImpl): AchievementRepository
 }

@@ -33,6 +33,11 @@ class BackupJsonTest {
             EventEntity(2, "تمام روز", 300, null, false, "PERSONAL", ""),
         ),
         profiles = listOf(UserProfileEntity(1, "سهراب", "bio", "a@b.c", null, true, false)),
+        focusSessions = listOf(
+            com.roozyar.app.core.database.FocusSessionEntity(1, 500, 25, 1500, true, 1, null),
+            com.roozyar.app.core.database.FocusSessionEntity(2, 900, 45, 600, false, null, 5),
+        ),
+        achievements = listOf(com.roozyar.app.core.database.UnlockedAchievementEntity("FIRST_TASK", 777)),
     )
 
     @Test

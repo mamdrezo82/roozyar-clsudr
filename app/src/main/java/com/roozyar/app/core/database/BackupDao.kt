@@ -15,6 +15,8 @@ interface BackupDao {
     @Query("SELECT * FROM journal_entries") suspend fun journal(): List<JournalEntryEntity>
     @Query("SELECT * FROM events") suspend fun events(): List<EventEntity>
     @Query("SELECT * FROM user_profile") suspend fun profiles(): List<UserProfileEntity>
+    @Query("SELECT * FROM focus_sessions") suspend fun focusSessions(): List<FocusSessionEntity>
+    @Query("SELECT * FROM achievements_unlocked") suspend fun unlockedAchievements(): List<UnlockedAchievementEntity>
 
     @Query("DELETE FROM habit_logs") suspend fun clearHabitLogs()
     @Query("DELETE FROM habits") suspend fun clearHabits()
@@ -24,6 +26,8 @@ interface BackupDao {
     @Query("DELETE FROM journal_entries") suspend fun clearJournal()
     @Query("DELETE FROM events") suspend fun clearEvents()
     @Query("DELETE FROM user_profile") suspend fun clearProfiles()
+    @Query("DELETE FROM focus_sessions") suspend fun clearFocusSessions()
+    @Query("DELETE FROM achievements_unlocked") suspend fun clearUnlockedAchievements()
 
     @Insert suspend fun insertTasks(items: List<TaskEntity>)
     @Insert suspend fun insertHabits(items: List<HabitEntity>)
@@ -33,4 +37,6 @@ interface BackupDao {
     @Insert suspend fun insertJournal(items: List<JournalEntryEntity>)
     @Insert suspend fun insertEvents(items: List<EventEntity>)
     @Insert suspend fun insertProfiles(items: List<UserProfileEntity>)
+    @Insert suspend fun insertFocusSessions(items: List<FocusSessionEntity>)
+    @Insert suspend fun insertUnlockedAchievements(items: List<UnlockedAchievementEntity>)
 }

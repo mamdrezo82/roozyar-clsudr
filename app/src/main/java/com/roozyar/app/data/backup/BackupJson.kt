@@ -1,12 +1,14 @@
 package com.roozyar.app.data.backup
 
 import com.roozyar.app.core.database.EventEntity
+import com.roozyar.app.core.database.FocusSessionEntity
 import com.roozyar.app.core.database.GoalEntity
 import com.roozyar.app.core.database.HabitEntity
 import com.roozyar.app.core.database.HabitLogEntity
 import com.roozyar.app.core.database.JournalEntryEntity
 import com.roozyar.app.core.database.MilestoneEntity
 import com.roozyar.app.core.database.TaskEntity
+import com.roozyar.app.core.database.UnlockedAchievementEntity
 import com.roozyar.app.core.database.UserProfileEntity
 import com.roozyar.app.domain.repository.BackupFormatException
 import org.json.JSONArray
@@ -56,6 +58,13 @@ object BackupJson {
         put("profiles", array(s.profiles) { p ->
             JSONObject().put("id", p.id).put("displayName", p.displayName).put("bio", p.bio).putN("email", p.email).putN("phone", p.phone)
                 .put("showEmail", p.showEmailInProfile).put("showPhone", p.showPhoneInProfile)
+        })
+        put("focusSessions", array(s.focusSessions) { f ->
+            JSONObject().put("id", f.id).put("start", f.startEpochMillis).put("plannedMinutes", f.plannedMinutes)
+                .put("actualSeconds", f.actualSeconds).put("completed", f.completed).putN("taskId", f.taskId).putN("goalId", f.goalId)
+        })
+        put("achievements", array(s.achievements) { a ->
+            JSONObject().put("code", a.code).put("unlockedAt", a.unlockedAtEpochMillis)
         })
     }.toString(2)
 
@@ -120,6 +129,16 @@ object BackupJson {
                         email = o.nString("email"), phone = o.nString("phone"),
                         showEmailInProfile = o.getBoolean("showEmail"), showPhoneInProfile = o.getBoolean("showPhone"),
                     )
+                },
+                focusSessions = list(root, "focusSessions") { o ->
+                    FocusSessionEntity(
+                        id = o.getLong("id"), startEpochMillis = o.getLong("start"), plannedMinutes = o.getInt("plannedMinutes"),
+                        actualSeconds = o.getInt("actualSeconds"), completed = o.getBoolean("completed"),
+                        taskId = o.nLong("taskId"), goalId = o.nLong("goalId"),
+                    )
+                },
+                achievements = list(root, "achievements") { o ->
+                    UnlockedAchievementEntity(o.getString("code"), o.getLong("unlockedAt"))
                 },
             )
             checkReferences(snapshot)
