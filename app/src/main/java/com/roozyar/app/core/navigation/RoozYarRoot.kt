@@ -202,6 +202,8 @@ fun RoozYarRoot() {
                     onOpenJournal = { navController.navigate(Routes.JOURNAL) },
                     onOpenFocus = { navController.navigate(Routes.FOCUS) },
                     onOpenAchievements = { navController.navigate(Routes.ACHIEVEMENTS) },
+                    onOpenTimeline = { navController.navigate(Routes.TIMELINE) },
+                    onOpenReport = { navController.navigate(Routes.REPORT) },
                 ) }
             composable(Routes.GOALS) {
                 GoalsScreen(

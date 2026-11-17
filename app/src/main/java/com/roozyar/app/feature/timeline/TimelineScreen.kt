@@ -85,7 +85,7 @@ fun TimelineScreen(onBack: () -> Unit, viewModel: TimelineViewModel = hiltViewMo
                 state.days.forEach { (date, items) ->
                     item(key = "h$date") { DayHeader(date) }
                     items(items.size, key = { i -> "$date-$i-${items[i].at.toEpochMilli()}-${items[i].type}" }) { i ->
-                        Row(item = items[i], zone = state.zone)
+                        TimelineRow(item = items[i], zone = state.zone)
                     }
                 }
             }
@@ -105,11 +105,11 @@ private fun DayHeader(date: LocalDate) {
 }
 
 @Composable
-private fun Row(item: TimelineItem, zone: ZoneId) {
+private fun TimelineRow(item: TimelineItem, zone: ZoneId) {
     val scheme = MaterialTheme.colorScheme
     val t = item.at.atZone(zone)
     RoozYarCard(Modifier.fillMaxWidth()) {
-        androidx.compose.foundation.layout.Row(
+        Row(
             Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
