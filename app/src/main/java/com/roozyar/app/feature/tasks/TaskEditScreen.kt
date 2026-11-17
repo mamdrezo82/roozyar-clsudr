@@ -109,6 +109,18 @@ fun TaskEditScreen(
                         )
                     }
                 }
+                Text("برآورد زمان (برای برنامه‌ریز)", style = MaterialTheme.typography.titleSmall)
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(selected = state.estimate == null, onClick = { viewModel.onEstimateChange(null) }, label = { Text("نامشخص") }, shape = RoundedCornerShape(50))
+                    listOf(15, 30, 45, 60, 90, 120).forEach { m ->
+                        FilterChip(
+                            selected = state.estimate == m,
+                            onClick = { viewModel.onEstimateChange(m) },
+                            label = { Text("${m.toPersianDigits()} دقیقه") },
+                            shape = RoundedCornerShape(50),
+                        )
+                    }
+                }
                 if (state.goals.isNotEmpty()) {
                     Text("هدف مرتبط", style = MaterialTheme.typography.titleSmall)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {

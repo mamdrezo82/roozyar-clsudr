@@ -36,6 +36,7 @@ data class TaskEditUiState(
     val dueTime: LocalTime? = null,
     val category: TaskCategory = TaskCategory.NONE,
     val reminder: Int? = null,
+    val estimate: Int? = null,
     val goalId: Long? = null,
     val goals: List<GoalOption> = emptyList(),
     val titleError: Boolean = false,
@@ -97,6 +98,7 @@ class TaskEditViewModel @Inject constructor(
                         goalId = task.goalId,
                         category = task.category,
                         reminder = task.reminderMinutesBefore,
+                        estimate = task.estimateMinutes,
                     )
                 }
             } catch (e: Exception) {
@@ -118,6 +120,8 @@ class TaskEditViewModel @Inject constructor(
     }
 
     fun onCategoryChange(value: TaskCategory) = _uiState.update { it.copy(category = value) }
+
+    fun onEstimateChange(value: Int?) = _uiState.update { it.copy(estimate = value) }
 
     fun onReminderChange(value: Int?) = _uiState.update { it.copy(reminder = value) }
 
@@ -153,6 +157,7 @@ class TaskEditViewModel @Inject constructor(
                         goalId = s.goalId,
                         category = s.category,
                         reminderMinutesBefore = if (s.dueDate != null) s.reminder else null,
+                        estimateMinutes = s.estimate,
                         createdAt = base?.createdAt ?: now,
                         updatedAt = now,
                     ),

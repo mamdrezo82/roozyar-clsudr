@@ -44,4 +44,5 @@ data class Task(
     val updatedAt: Instant,
     val category: TaskCategory = TaskCategory.NONE,
     val reminderMinutesBefore: Int? = null,
+    val estimateMinutes: Int? = null,
 )

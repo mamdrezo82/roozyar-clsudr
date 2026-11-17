@@ -21,6 +21,7 @@ fun TaskEntity.toDomain(): Task = Task(
     updatedAt = Instant.ofEpochMilli(updatedAtEpochMillis),
     category = TaskCategory.fromName(category),
     reminderMinutesBefore = reminderMinutesBefore,
+    estimateMinutes = estimateMinutes,
 )
 
 fun Task.toEntity(): TaskEntity = TaskEntity(
@@ -37,4 +38,5 @@ fun Task.toEntity(): TaskEntity = TaskEntity(
     updatedAtEpochMillis = updatedAt.toEpochMilli(),
     category = category.name,
     reminderMinutesBefore = reminderMinutesBefore,
+    estimateMinutes = estimateMinutes,
 )

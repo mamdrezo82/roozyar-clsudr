@@ -28,4 +28,6 @@ data class TaskEntity(
     @ColumnInfo(defaultValue = "'NONE'") val category: String = "NONE",
     /** Minutes before the due moment to notify; null = no reminder. */
     val reminderMinutesBefore: Int? = null,
+    /** Estimated effort in minutes, used by the planner; null = unknown. */
+    val estimateMinutes: Int? = null,
 )
