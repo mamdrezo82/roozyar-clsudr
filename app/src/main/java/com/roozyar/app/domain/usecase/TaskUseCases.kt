@@ -2,6 +2,7 @@ package com.roozyar.app.domain.usecase
 
 import com.roozyar.app.domain.model.Task
 import com.roozyar.app.domain.model.TaskStatus
+import com.roozyar.app.domain.model.nextOccurrence
 import com.roozyar.app.domain.reminders.ReminderScheduler
 import com.roozyar.app.domain.repository.HabitRepository
 import com.roozyar.app.domain.repository.TaskRepository
@@ -40,7 +41,22 @@ class SetTaskStatusUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(id: Long, status: TaskStatus) {
         repository.setTaskStatus(id, status, clock.instant())
-        if (status == TaskStatus.OPEN) repository.getTask(id)?.let(reminders::scheduleTask) else reminders.cancelTask(id)
+        if (status == TaskStatus.OPEN) {
+            repository.getTask(id)?.let(reminders::scheduleTask)
+            return
+        }
+        reminders.cancelTask(id)
+        if (status == TaskStatus.DONE) spawnNextOccurrence(id)
+    }
+
+    /** Completing a repeating task creates its next occurrence; the finished one stays as history. */
+    private suspend fun spawnNextOccurrence(id: Long) {
+        val done = repository.getTask(id) ?: return
+        val now = clock.instant()
+        val next = nextOccurrence(done, now.atZone(clock.zone).toLocalDate(), clock.zone) ?: return
+        val copy = done.copy(id = 0, dueAt = next, status = TaskStatus.OPEN, createdAt = now, updatedAt = now)
+        val newId = repository.saveTask(copy)
+        reminders.scheduleTask(copy.copy(id = newId))
     }
 }
 

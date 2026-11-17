@@ -30,4 +30,6 @@ data class TaskEntity(
     val reminderMinutesBefore: Int? = null,
     /** Estimated effort in minutes, used by the planner; null = unknown. */
     val estimateMinutes: Int? = null,
+    /** TaskRepeat name; NONE = does not repeat. */
+    @ColumnInfo(defaultValue = "'NONE'") val repeat: String = "NONE",
 )

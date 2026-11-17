@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.RadioButtonUnchecked
+import androidx.compose.material.icons.outlined.Repeat
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -41,6 +42,7 @@ import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.domain.model.Task
 import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
+import com.roozyar.app.domain.model.TaskRepeat
 import com.roozyar.app.domain.model.TaskStatus
 import com.roozyar.app.domain.model.isOverdue
 import java.time.Instant
@@ -119,6 +121,9 @@ fun TaskItem(
                         }
                         if (task.category != TaskCategory.NONE) {
                             Text(task.category.label, style = MaterialTheme.typography.labelSmall, color = scheme.tertiary)
+                        }
+                        if (task.repeat != TaskRepeat.NONE) {
+                            Icon(Icons.Outlined.Repeat, contentDescription = "تکرارشونده", tint = scheme.onSurfaceVariant, modifier = Modifier.size(14.dp))
                         }
                         if (task.reminderMinutesBefore != null && !done) {
                             Icon(Icons.Outlined.Notifications, contentDescription = "یادآوری فعال", tint = scheme.onSurfaceVariant, modifier = Modifier.size(14.dp))

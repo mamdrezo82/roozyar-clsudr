@@ -8,6 +8,7 @@ import com.roozyar.app.core.date.toJalali
 import com.roozyar.app.domain.model.Task
 import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
+import com.roozyar.app.domain.model.TaskRepeat
 import com.roozyar.app.domain.model.TaskStatus
 import com.roozyar.app.domain.repository.GoalRepository
 import com.roozyar.app.domain.usecase.GetTaskUseCase
@@ -37,6 +38,7 @@ data class TaskEditUiState(
     val category: TaskCategory = TaskCategory.NONE,
     val reminder: Int? = null,
     val estimate: Int? = null,
+    val repeat: TaskRepeat = TaskRepeat.NONE,
     val goalId: Long? = null,
     val goals: List<GoalOption> = emptyList(),
     val titleError: Boolean = false,
@@ -99,6 +101,7 @@ class TaskEditViewModel @Inject constructor(
                         category = task.category,
                         reminder = task.reminderMinutesBefore,
                         estimate = task.estimateMinutes,
+                        repeat = task.repeat,
                     )
                 }
             } catch (e: Exception) {
@@ -116,10 +119,12 @@ class TaskEditViewModel @Inject constructor(
 
     fun onDueDateChange(value: JalaliDate?) = _uiState.update {
         // A time without a date makes no sense, so clearing the date clears the time too.
-        it.copy(dueDate = value, dueTime = if (value == null) null else it.dueTime, reminder = if (value == null) null else it.reminder)
+        it.copy(dueDate = value, dueTime = if (value == null) null else it.dueTime, reminder = if (value == null) null else it.reminder, repeat = if (value == null) TaskRepeat.NONE else it.repeat)
     }
 
     fun onCategoryChange(value: TaskCategory) = _uiState.update { it.copy(category = value) }
+
+    fun onRepeatChange(value: TaskRepeat) = _uiState.update { it.copy(repeat = value) }
 
     fun onEstimateChange(value: Int?) = _uiState.update { it.copy(estimate = value) }
 
@@ -158,6 +163,7 @@ class TaskEditViewModel @Inject constructor(
                         category = s.category,
                         reminderMinutesBefore = if (s.dueDate != null) s.reminder else null,
                         estimateMinutes = s.estimate,
+                        repeat = if (s.dueDate != null) s.repeat else TaskRepeat.NONE,
                         createdAt = base?.createdAt ?: now,
                         updatedAt = now,
                     ),

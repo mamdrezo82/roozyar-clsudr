@@ -29,7 +29,7 @@ object BackupJson {
                 .putN("dueAt", t.dueAtEpochMillis).put("dueHasTime", t.dueHasTime).put("priority", t.priority)
                 .put("status", t.status).putN("categoryId", t.categoryId).putN("goalId", t.goalId)
                 .put("createdAt", t.createdAtEpochMillis).put("updatedAt", t.updatedAtEpochMillis)
-                .put("category", t.category).putN("reminderMinutes", t.reminderMinutesBefore).putN("estimate", t.estimateMinutes)
+                .put("category", t.category).putN("reminderMinutes", t.reminderMinutesBefore).putN("estimate", t.estimateMinutes).put("repeat", t.repeat)
         })
         put("habits", array(s.habits) { h ->
             JSONObject().put("id", h.id).put("title", h.title).put("icon", h.icon).put("weekdaysMask", h.weekdaysMask)
@@ -85,7 +85,7 @@ object BackupJson {
                         status = o.getString("status"), categoryId = o.nLong("categoryId"), goalId = o.nLong("goalId"),
                         createdAtEpochMillis = o.getLong("createdAt"), updatedAtEpochMillis = o.getLong("updatedAt"),
                         category = o.optString("category", "NONE"), reminderMinutesBefore = o.nInt("reminderMinutes"),
-                        estimateMinutes = o.nInt("estimate"),
+                        estimateMinutes = o.nInt("estimate"), repeat = o.optString("repeat", "NONE"),
                     )
                 },
                 habits = list(root, "habits") { o ->

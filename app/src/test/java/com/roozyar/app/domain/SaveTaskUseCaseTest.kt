@@ -18,7 +18,7 @@ import java.time.Clock
 import java.time.Instant
 import java.time.ZoneOffset
 
-private class FakeTaskRepository : TaskRepository {
+class FakeTaskRepository : TaskRepository {
     val tasks = MutableStateFlow<List<Task>>(emptyList())
     private var nextId = 1L
 

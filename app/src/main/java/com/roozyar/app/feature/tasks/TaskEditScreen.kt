@@ -45,6 +45,7 @@ import com.roozyar.app.core.design.RoozYarTopBar
 import com.roozyar.app.core.notifications.rememberNotificationPermissionRequest
 import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
+import com.roozyar.app.domain.model.TaskRepeat
 import com.roozyar.app.domain.reminders.ReminderTimes
 import java.util.Locale
 
@@ -178,6 +179,17 @@ fun TaskEditScreen(
                     }
                 }
                 if (date != null) {
+                    Text("تکرار", style = MaterialTheme.typography.titleSmall)
+                    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        TaskRepeat.entries.forEach { r ->
+                            FilterChip(
+                                selected = state.repeat == r,
+                                onClick = { viewModel.onRepeatChange(r) },
+                                label = { Text(r.label) },
+                                shape = RoundedCornerShape(50),
+                            )
+                        }
+                    }
                     Text("یادآوری", style = MaterialTheme.typography.titleSmall)
                     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         FilterChip(

@@ -4,6 +4,7 @@ import com.roozyar.app.core.database.TaskEntity
 import com.roozyar.app.domain.model.Task
 import com.roozyar.app.domain.model.TaskCategory
 import com.roozyar.app.domain.model.TaskPriority
+import com.roozyar.app.domain.model.TaskRepeat
 import com.roozyar.app.domain.model.TaskStatus
 import java.time.Instant
 
@@ -22,6 +23,7 @@ fun TaskEntity.toDomain(): Task = Task(
     category = TaskCategory.fromName(category),
     reminderMinutesBefore = reminderMinutesBefore,
     estimateMinutes = estimateMinutes,
+    repeat = TaskRepeat.fromName(repeat),
 )
 
 fun Task.toEntity(): TaskEntity = TaskEntity(
@@ -39,4 +41,5 @@ fun Task.toEntity(): TaskEntity = TaskEntity(
     category = category.name,
     reminderMinutesBefore = reminderMinutesBefore,
     estimateMinutes = estimateMinutes,
+    repeat = repeat.name,
 )

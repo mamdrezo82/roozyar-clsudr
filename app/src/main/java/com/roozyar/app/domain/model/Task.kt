@@ -18,6 +18,17 @@ enum class TaskStatus {
     }
 }
 
+enum class TaskRepeat(val label: String) {
+    NONE("تکرار نشود"),
+    DAILY("هر روز"),
+    WEEKLY("هر هفته"),
+    MONTHLY("هر ماه");
+
+    companion object {
+        fun fromName(name: String): TaskRepeat = entries.firstOrNull { it.name == name } ?: NONE
+    }
+}
+
 enum class TaskCategory(val label: String) {
     NONE("بدون دسته"),
     WORK("کاری"),
@@ -45,4 +56,5 @@ data class Task(
     val category: TaskCategory = TaskCategory.NONE,
     val reminderMinutesBefore: Int? = null,
     val estimateMinutes: Int? = null,
+    val repeat: TaskRepeat = TaskRepeat.NONE,
 )
