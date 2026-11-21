@@ -28,6 +28,7 @@ import androidx.navigation.navArgument
 import com.roozyar.app.feature.achievements.AchievementsScreen
 import com.roozyar.app.feature.calendar.CalendarScreen
 import com.roozyar.app.feature.calendar.EventEditScreen
+import com.roozyar.app.feature.dashboard.DashboardCustomizeScreen
 import com.roozyar.app.feature.dashboard.DashboardScreen
 import com.roozyar.app.feature.focus.FocusScreen
 import com.roozyar.app.feature.goals.GoalDetailScreen
@@ -63,6 +64,7 @@ object Routes {
     const val TIMELINE = "timeline"
     const val PLANNER = "planner"
     const val REPORT = "report"
+    const val DASHBOARD_CUSTOMIZE = "dashboard_customize"
     const val PROFILE_EDIT = "profile_edit"
     const val EVENT_EDIT = "event_edit?eventId={eventId}&date={date}"
     const val EVENT_ID_ARG = "eventId"
@@ -108,6 +110,7 @@ private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journ
 
 private fun isTabSelected(tabRoute: String, currentRoute: String?): Boolean = when (tabRoute) {
     Routes.HUB -> currentRoute in hubChildren
+    Routes.HOME -> currentRoute == Routes.HOME || currentRoute == Routes.DASHBOARD_CUSTOMIZE
     Routes.PROFILE -> currentRoute == Routes.PROFILE || currentRoute == Routes.PROFILE_EDIT
     Routes.GOALS -> currentRoute != null && currentRoute.startsWith("goal")
     Routes.CALENDAR -> currentRoute != null && (currentRoute == Routes.CALENDAR || currentRoute.startsWith("event"))
@@ -172,7 +175,15 @@ fun RoozYarRoot() {
                     onOpenHabits = { navController.navigate(Routes.HABITS) },
                     onOpenGoals = { navController.navigate(Routes.GOALS) },
                     onOpenGoal = { navController.navigate(Routes.goalDetail(it)) },
+                    onOpenCalendar = { navController.navigate(Routes.CALENDAR) },
+                    onEditEvent = { navController.navigate(Routes.eventEdit(it)) },
+                    onOpenFocus = { navController.navigate(Routes.FOCUS) },
+                    onOpenAchievements = { navController.navigate(Routes.ACHIEVEMENTS) },
+                    onCustomize = { navController.navigate(Routes.DASHBOARD_CUSTOMIZE) },
                 )
+            }
+            composable(Routes.DASHBOARD_CUSTOMIZE) {
+                DashboardCustomizeScreen(onBack = { navController.popBackStack() })
             }
             composable(Routes.CALENDAR) {
                 CalendarScreen(

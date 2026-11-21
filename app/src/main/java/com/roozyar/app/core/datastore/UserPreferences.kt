@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
+import com.roozyar.app.domain.model.DashboardLayout
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -30,12 +32,27 @@ class UserPreferences(private val context: Context) {
         }
     }
 
+    val dashboardLayout: Flow<DashboardLayout> = context.roozYarDataStore.data.map {
+        DashboardLayout.parse(it[Keys.DashboardMode], it[Keys.DashboardOrder], it[Keys.DashboardHidden])
+    }
+
+    suspend fun setDashboardLayout(layout: DashboardLayout) {
+        context.roozYarDataStore.edit {
+            it[Keys.DashboardMode] = layout.mode.name
+            it[Keys.DashboardOrder] = layout.serializedOrder()
+            it[Keys.DashboardHidden] = layout.serializedHidden()
+        }
+    }
+
     suspend fun setUsePersianDigits(enabled: Boolean) {
         context.roozYarDataStore.edit { it[Keys.UsePersianDigits] = enabled }
     }
 
     private object Keys {
         val UsePersianDigits = booleanPreferencesKey("use_persian_digits")
+        val DashboardMode = stringPreferencesKey("dashboard_mode")
+        val DashboardOrder = stringPreferencesKey("dashboard_order")
+        val DashboardHidden = stringPreferencesKey("dashboard_hidden")
         val PlannerStart = intPreferencesKey("planner_start_minute")
         val PlannerEnd = intPreferencesKey("planner_end_minute")
     }
