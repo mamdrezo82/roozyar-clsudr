@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">روزیار</string>
+    <string name="widget_label">روزیار — امروز</string>
+    <string name="widget_description">وظایف امروز و پیشرفت عادت‌ها</string>
 </resources>

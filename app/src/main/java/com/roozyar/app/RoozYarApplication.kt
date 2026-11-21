@@ -4,6 +4,7 @@ import android.app.Application
 import com.roozyar.app.core.notifications.AchievementTracker
 import com.roozyar.app.core.notifications.Notifications
 import com.roozyar.app.domain.usecase.RescheduleAllRemindersUseCase
+import com.roozyar.app.widget.WidgetUpdater
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class RoozYarApplication : Application() {
     @Inject lateinit var rescheduleAll: RescheduleAllRemindersUseCase
     @Inject lateinit var achievementTracker: AchievementTracker
+    @Inject lateinit var widgetUpdater: WidgetUpdater
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -24,5 +26,6 @@ class RoozYarApplication : Application() {
         // Keeps reminders correct after app updates, restores and clock/time-zone changes.
         appScope.launch { runCatching { rescheduleAll() } }
         achievementTracker.start(appScope)
+        widgetUpdater.start(appScope)
     }
 }
