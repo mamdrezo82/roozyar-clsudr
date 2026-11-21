@@ -1,8 +1,0 @@
-commit: ca0cd0bc852fb37738426485a3672b64f2363c74
-> Task :app:compileDebugKotlin FAILED
-e: file:///home/runner/work/roozyar-clsudr/roozyar-clsudr/app/src/main/java/com/roozyar/app/widget/RoozYarWidget.kt:82:43 No type arguments expected for fun actionStartActivity(intent: Intent, parameters: ActionParameters = ...): Action.
-e: file:///home/runner/work/roozyar-clsudr/roozyar-clsudr/app/src/main/java/com/roozyar/app/widget/RoozYarWidget.kt:82:57 No value passed for parameter 'intent'.
-* What went wrong:
-Execution failed for task ':app:compileDebugKotlin'.
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
-BUILD FAILED in 1m 16s
