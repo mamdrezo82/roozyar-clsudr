@@ -1,11 +1,13 @@
 package com.roozyar.app.widget
 
 import android.content.Context
+import android.content.Intent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
+import androidx.glance.LocalContext
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
@@ -73,13 +75,14 @@ class RoozYarWidgetReceiver : GlanceAppWidgetReceiver() {
 
 @androidx.compose.runtime.Composable
 private fun WidgetContent(d: WidgetData?) {
+    val context = LocalContext.current
     Column(
         modifier = GlanceModifier
             .fillMaxSize()
             .background(ColorProvider(Background))
             .cornerRadius(20.dp)
             .padding(14.dp)
-            .clickable(actionStartActivity<MainActivity>()),
+            .clickable(actionStartActivity(Intent(context, MainActivity::class.java))),
     ) {
         if (d == null) {
             Text("روزیار", style = TextStyle(color = ColorProvider(Primary), fontSize = 14.sp, fontWeight = FontWeight.Bold))
