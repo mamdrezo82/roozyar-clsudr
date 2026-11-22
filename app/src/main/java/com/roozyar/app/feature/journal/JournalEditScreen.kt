@@ -1,31 +1,19 @@
 package com.roozyar.app.feature.journal
 
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.EmojiEmotions
+import androidx.compose.material.icons.outlined.Label
 import androidx.compose.material.icons.outlined.StarBorder
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -35,12 +23,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.common.toPersianDigits
+import com.roozyar.app.core.design.ChoiceChips
 import com.roozyar.app.core.design.ConfirmDialog
+import com.roozyar.app.core.design.FieldTag
+import com.roozyar.app.core.design.FormField
+import com.roozyar.app.core.design.FormScreen
+import com.roozyar.app.core.design.FormSection
 import com.roozyar.app.core.design.RoozYarTopBar
 import com.roozyar.app.domain.model.JournalMood
+import com.roozyar.app.domain.model.countWords
 
 @Composable
 fun JournalEditScreen(onDone: () -> Unit, viewModel: JournalEditViewModel = hiltViewModel()) {
@@ -50,83 +44,78 @@ fun JournalEditScreen(onDone: () -> Unit, viewModel: JournalEditViewModel = hilt
 
     LaunchedEffect(state.done) { if (state.done) onDone() }
 
-    Column(Modifier.fillMaxSize()) {
-        RoozYarTopBar(
-            title = if (state.isNew) "یادداشت جدید" else "ویرایش یادداشت",
-            onBack = onDone,
-            actions = {
-                if (!state.isLoading) {
-                    IconButton(onClick = viewModel::onStarToggle) {
-                        Icon(
-                            if (state.starred) Icons.Filled.Star else Icons.Outlined.StarBorder,
-                            contentDescription = "ستاره",
-                            tint = if (state.starred) scheme.secondary else scheme.onSurfaceVariant,
-                        )
-                    }
-                    if (!state.isNew) {
-                        IconButton(onClick = { confirmDelete = true }) {
-                            Icon(Icons.Filled.Delete, contentDescription = "حذف یادداشت", tint = scheme.error)
-                        }
-                    }
-                }
-            },
-        )
-        if (state.isLoading) {
+    if (state.isLoading) {
+        Column(Modifier.fillMaxSize()) {
+            RoozYarTopBar(if (state.isNew) "یادداشت جدید" else "ویرایش یادداشت", onBack = onDone)
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
-        } else {
-            Column(
-                Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-                OutlinedTextField(
-                    value = state.title,
-                    onValueChange = viewModel::onTitleChange,
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("عنوان (اختیاری)") },
-                    singleLine = true,
-                )
-                OutlinedTextField(
-                    value = state.body,
-                    onValueChange = viewModel::onBodyChange,
-                    modifier = Modifier.fillMaxWidth().heightIn(min = 200.dp),
-                    label = { Text("متن یادداشت") },
-                    isError = state.contentError,
-                    supportingText = if (state.contentError) ({ Text("عنوان یا متن را بنویسید.") }) else null,
-                )
-                Text("حال‌وهوا", style = MaterialTheme.typography.titleSmall)
-                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    JournalMood.entries.forEach { m ->
-                        FilterChip(
-                            selected = state.mood == m,
-                            onClick = { viewModel.onMoodChange(m) },
-                            label = { Text("${m.emoji} ${m.label}") },
-                            shape = RoundedCornerShape(50),
-                        )
-                    }
-                }
-                OutlinedTextField(
-                    value = state.tagsText,
-                    onValueChange = viewModel::onTagsChange,
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("برچسب‌ها (با ویرگول جدا کنید)") },
-                    singleLine = true,
-                )
-                state.error?.let { Text(it, color = scheme.error, style = MaterialTheme.typography.bodyMedium) }
-                Button(
-                    onClick = { viewModel.save(asDraft = false) },
-                    enabled = !state.isSaving,
-                    modifier = Modifier.fillMaxWidth().height(52.dp),
-                    shape = RoundedCornerShape(50),
-                    colors = ButtonDefaults.buttonColors(containerColor = scheme.primaryContainer, contentColor = scheme.onPrimaryContainer),
-                ) { Text("ذخیره", style = MaterialTheme.typography.labelLarge) }
-                OutlinedButton(
-                    onClick = { viewModel.save(asDraft = true) },
-                    enabled = !state.isSaving,
-                    modifier = Modifier.fillMaxWidth().height(52.dp),
-                    shape = RoundedCornerShape(50),
-                ) { Text("ذخیره به‌عنوان پیش‌نویس", style = MaterialTheme.typography.labelLarge) }
-            }
         }
+        return
+    }
+
+    FormScreen(
+        title = if (state.isNew) "یادداشت جدید" else "ویرایش یادداشت",
+        onBack = onDone,
+        primaryLabel = "ذخیره",
+        onPrimary = { viewModel.save(asDraft = false) },
+        primaryEnabled = !state.isSaving,
+        secondaryLabel = "پیش‌نویس",
+        onSecondary = { viewModel.save(asDraft = true) },
+        topActions = {
+            IconButton(onClick = viewModel::onStarToggle) {
+                Icon(
+                    if (state.starred) Icons.Filled.Star else Icons.Outlined.StarBorder,
+                    contentDescription = if (state.starred) "حذف ستاره" else "ستاره‌دار کردن",
+                    tint = if (state.starred) scheme.secondary else scheme.onSurfaceVariant,
+                )
+            }
+            if (!state.isNew) {
+                IconButton(onClick = { confirmDelete = true }) { Icon(Icons.Filled.Delete, contentDescription = "حذف یادداشت", tint = scheme.error) }
+            }
+        },
+    ) {
+        FormSection("نوشته", Icons.Outlined.Edit) {
+            FormField(
+                value = state.title,
+                onValueChange = viewModel::onTitleChange,
+                label = "عنوان",
+                tag = FieldTag.Optional,
+                placeholder = "عنوان کوتاه",
+                maxChars = 100,
+            )
+            val words = countWords(state.body)
+            FormField(
+                value = state.body,
+                onValueChange = viewModel::onBodyChange,
+                label = "متن یادداشت",
+                placeholder = "امروز چه گذشت؟ چه حسی داری؟",
+                singleLine = false,
+                minLines = 8,
+                error = if (state.contentError) "عنوان یا متن را بنویسید." else null,
+                helper = if (words == 0) "همه چیز فقط روی گوشی شما می‌ماند." else "${words.toPersianDigits()} واژه • ${maxOf(1, (words + 199) / 200).toPersianDigits()} دقیقه مطالعه",
+            )
+        }
+
+        FormSection("حال‌وهوا", Icons.Outlined.EmojiEmotions) {
+            ChoiceChips(
+                options = listOf<JournalMood?>(null) + JournalMood.entries,
+                selected = state.mood,
+                onSelect = viewModel::onMoodChange,
+                labelOf = { if (it == null) "بدون حال‌وهوا" else "${it.emoji} ${it.label}" },
+            )
+        }
+
+        FormSection("برچسب‌ها", Icons.Outlined.Label) {
+            FormField(
+                value = state.tagsText,
+                onValueChange = viewModel::onTagsChange,
+                label = "برچسب‌ها",
+                tag = FieldTag.Optional,
+                placeholder = "کار، ایده، سلامت",
+                helper = "با ویرگول از هم جدا کنید.",
+            )
+        }
+
+        state.error?.let { Text(it, color = scheme.error, style = MaterialTheme.typography.bodyMedium) }
     }
 
     if (confirmDelete) {

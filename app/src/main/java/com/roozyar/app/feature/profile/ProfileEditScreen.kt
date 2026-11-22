@@ -1,22 +1,16 @@
 package com.roozyar.app.feature.profile
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,11 +18,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.design.FieldTag
+import com.roozyar.app.core.design.FormField
+import com.roozyar.app.core.design.FormScreen
+import com.roozyar.app.core.design.FormSection
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.core.design.SwitchRow
 
 @Composable
 fun ProfileEditScreen(onDone: () -> Unit, viewModel: ProfileEditViewModel = hiltViewModel()) {
@@ -37,56 +34,75 @@ fun ProfileEditScreen(onDone: () -> Unit, viewModel: ProfileEditViewModel = hilt
 
     LaunchedEffect(state.done) { if (state.done) onDone() }
 
-    Column(Modifier.fillMaxSize()) {
-        RoozYarTopBar("ویرایش مشخصات", onBack = onDone)
-        if (state.isLoading) {
+    if (state.isLoading) {
+        Column(Modifier.fillMaxSize()) {
+            RoozYarTopBar("ویرایش مشخصات", onBack = onDone)
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
-        } else {
-            val p = state.profile
-            Column(
-                Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-                OutlinedTextField(value = p.displayName, onValueChange = viewModel::onName, modifier = Modifier.fillMaxWidth(), label = { Text("نام") }, singleLine = true)
-                OutlinedTextField(value = p.bio, onValueChange = viewModel::onBio, modifier = Modifier.fillMaxWidth().height(110.dp), label = { Text("درباره من (اختیاری)") })
-                OutlinedTextField(
-                    value = p.email,
-                    onValueChange = viewModel::onEmail,
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("ایمیل (اختیاری)") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                    singleLine = true,
-                )
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("نمایش ایمیل در پروفایل", modifier = Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
-                    Switch(checked = p.showEmail, onCheckedChange = viewModel::onShowEmail)
-                }
-                OutlinedTextField(
-                    value = p.phone,
-                    onValueChange = viewModel::onPhone,
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("تلفن (اختیاری)") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                    singleLine = true,
-                )
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("نمایش تلفن در پروفایل", modifier = Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
-                    Switch(checked = p.showPhone, onCheckedChange = viewModel::onShowPhone)
-                }
-                Text(
-                    "این اطلاعات فقط روی همین گوشی ذخیره می‌شوند.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = scheme.onSurfaceVariant,
-                )
-                state.error?.let { Text(it, color = scheme.error, style = MaterialTheme.typography.bodyMedium) }
-                Button(
-                    onClick = viewModel::save,
-                    enabled = !state.isSaving,
-                    modifier = Modifier.fillMaxWidth().height(52.dp),
-                    shape = RoundedCornerShape(50),
-                    colors = ButtonDefaults.buttonColors(containerColor = scheme.primaryContainer, contentColor = scheme.onPrimaryContainer),
-                ) { Text("ذخیره", style = MaterialTheme.typography.labelLarge) }
-            }
         }
+        return
+    }
+
+    val p = state.profile
+    FormScreen(
+        title = "ویرایش مشخصات",
+        onBack = onDone,
+        primaryLabel = "ذخیره تغییرات",
+        onPrimary = viewModel::save,
+        primaryEnabled = !state.isSaving,
+    ) {
+        FormSection("مشخصات فردی", Icons.Outlined.Person) {
+            FormField(
+                value = p.displayName,
+                onValueChange = viewModel::onName,
+                label = "نام",
+                tag = FieldTag.Optional,
+                placeholder = "نامی که روزیار شما را با آن صدا بزند",
+                leadingIcon = Icons.Outlined.Person,
+                helper = "در خوشامدگویی صفحه خانه استفاده می‌شود.",
+                maxChars = 40,
+            )
+            FormField(
+                value = p.bio,
+                onValueChange = viewModel::onBio,
+                label = "درباره من",
+                tag = FieldTag.Optional,
+                placeholder = "یک جمله کوتاه درباره خودتان",
+                leadingIcon = Icons.Outlined.Info,
+                singleLine = false,
+                minLines = 3,
+                maxChars = 160,
+                helper = "این متن در صفحه پروفایل نمایش داده می‌شود.",
+            )
+        }
+
+        FormSection("اطلاعات تماس", Icons.Outlined.Email) {
+            FormField(
+                value = p.email,
+                onValueChange = viewModel::onEmail,
+                label = "ایمیل",
+                tag = FieldTag.Optional,
+                placeholder = "name@example.com",
+                leadingIcon = Icons.Outlined.Email,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            )
+            SwitchRow("نمایش ایمیل در پروفایل", p.showEmail, viewModel::onShowEmail)
+            FormField(
+                value = p.phone,
+                onValueChange = viewModel::onPhone,
+                label = "شماره تماس",
+                tag = FieldTag.Optional,
+                placeholder = "09xxxxxxxxx",
+                leadingIcon = Icons.Outlined.Phone,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+            )
+            SwitchRow("نمایش تلفن در پروفایل", p.showPhone, viewModel::onShowPhone)
+            Text(
+                "این اطلاعات فقط روی همین گوشی ذخیره می‌شوند و جایی ارسال نمی‌شوند.",
+                style = MaterialTheme.typography.bodySmall,
+                color = scheme.onSurfaceVariant,
+            )
+        }
+
+        state.error?.let { Text(it, color = scheme.error, style = MaterialTheme.typography.bodyMedium) }
     }
 }
