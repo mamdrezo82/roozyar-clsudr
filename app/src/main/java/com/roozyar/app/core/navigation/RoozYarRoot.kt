@@ -29,6 +29,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.roozyar.app.feature.achievements.AchievementsScreen
+import com.roozyar.app.feature.ai.AssistantScreen
 import com.roozyar.app.feature.calendar.CalendarScreen
 import com.roozyar.app.feature.calendar.EventEditScreen
 import com.roozyar.app.feature.dashboard.DashboardCustomizeScreen
@@ -66,6 +67,7 @@ object Routes {
     const val ACHIEVEMENTS = "achievements"
     const val TIMELINE = "timeline"
     const val PLANNER = "planner"
+    const val ASSISTANT = "assistant"
     const val REPORT = "report"
     const val DASHBOARD_CUSTOMIZE = "dashboard_customize"
     const val PROFILE_EDIT = "profile_edit"
@@ -106,7 +108,7 @@ private val topLevelDestinations = listOf(
 )
 
 /** Screens opened from the Hub keep the Hub tab highlighted. */
-private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL, Routes.FOCUS, Routes.ACHIEVEMENTS, Routes.TIMELINE, Routes.REPORT, Routes.PLANNER)
+private val hubChildren = setOf(Routes.TASKS, Routes.HABITS, Routes.JOURNAL, Routes.FOCUS, Routes.ACHIEVEMENTS, Routes.TIMELINE, Routes.REPORT, Routes.PLANNER, Routes.ASSISTANT)
 
 /** Full-screen forms hide the bottom bar. */
 private val formPrefixes = listOf("task_edit", "habit_edit", "goal_edit", "journal_edit", "event_edit", "profile_edit")
@@ -225,6 +227,7 @@ fun RoozYarRoot() {
                     onOpenTimeline = { navController.navigate(Routes.TIMELINE) },
                     onOpenReport = { navController.navigate(Routes.REPORT) },
                     onOpenPlanner = { navController.navigate(Routes.PLANNER) },
+                    onOpenAssistant = { navController.navigate(Routes.ASSISTANT) },
                 ) }
             composable(Routes.GOALS) {
                 GoalsScreen(
@@ -268,6 +271,9 @@ fun RoozYarRoot() {
                     onAddTask = { navController.navigate(Routes.taskEdit(null)) },
                     onEditTask = { navController.navigate(Routes.taskEdit(it)) },
                 )
+            }
+            composable(Routes.ASSISTANT) {
+                AssistantScreen(onBack = { navController.popBackStack() })
             }
             composable(Routes.PLANNER) {
                 PlannerScreen(onBack = { navController.popBackStack() }, onEditTask = { navController.navigate(Routes.taskEdit(it)) })
