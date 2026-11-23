@@ -23,7 +23,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -40,6 +39,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.design.AnimatedLinearProgress
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
@@ -108,8 +108,8 @@ fun GoalDetailScreen(
                                 Text("پیشرفت", style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                                 Text("٪" + (goal.progress * 100).toInt().toPersianDigits(), style = MaterialTheme.typography.titleMedium, color = scheme.primary)
                             }
-                            LinearProgressIndicator(
-                                progress = { goal.progress },
+                            AnimatedLinearProgress(
+                                progress = goal.progress,
                                 modifier = Modifier.fillMaxWidth().height(8.dp),
                                 color = scheme.primary,
                                 trackColor = scheme.surfaceContainerHighest,

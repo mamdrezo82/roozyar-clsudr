@@ -1,5 +1,8 @@
 package com.roozyar.app.core.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -164,6 +167,10 @@ fun RoozYarRoot() {
             navController = navController,
             startDestination = Routes.HOME,
             modifier = Modifier.padding(innerPadding),
+            enterTransition = { fadeIn(tween(220)) },
+            exitTransition = { fadeOut(tween(160)) },
+            popEnterTransition = { fadeIn(tween(220)) },
+            popExitTransition = { fadeOut(tween(160)) },
         ) {
             composable(Routes.HOME) {
                 DashboardScreen(

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Book
@@ -22,9 +22,12 @@ import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.material.icons.outlined.Widgets
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.roozyar.app.core.design.RoozYarCard
@@ -55,21 +58,26 @@ fun HubScreen(onOpenTasks: () -> Unit, onOpenHabits: () -> Unit, onOpenJournal: 
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            items(items) { item -> HubCard(item) }
+            itemsIndexed(items) { index, item ->
+                val scheme = MaterialTheme.colorScheme
+                HubCard(item, listOf(scheme.primary, scheme.secondary, scheme.tertiary)[index % 3])
+            }
         }
     }
 }
 
 @Composable
-private fun HubCard(item: HubItem) {
+private fun HubCard(item: HubItem, accent: Color) {
     val scheme = MaterialTheme.colorScheme
-    val tint = if (item.available) scheme.primary else scheme.onSurfaceVariant.copy(alpha = 0.6f)
+    val tint = if (item.available) accent else scheme.onSurfaceVariant.copy(alpha = 0.6f)
     RoozYarCard(
         modifier = Modifier.fillMaxWidth(),
         onClick = if (item.available) item.onClick else null,
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Icon(item.icon, contentDescription = null, tint = tint)
+            Surface(shape = CircleShape, color = tint.copy(alpha = 0.15f)) {
+                Icon(item.icon, contentDescription = null, tint = tint, modifier = Modifier.padding(10.dp))
+            }
             Text(
                 item.title,
                 style = MaterialTheme.typography.titleSmall,

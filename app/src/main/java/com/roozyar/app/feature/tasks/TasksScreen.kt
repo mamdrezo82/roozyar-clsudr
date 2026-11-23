@@ -23,7 +23,6 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +39,7 @@ import com.roozyar.app.core.design.ConfirmDialog
 import com.roozyar.app.core.design.EmptyState
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
+import com.roozyar.app.core.design.SearchField
 import com.roozyar.app.domain.model.TaskCategory
 
 @Composable
@@ -67,21 +67,10 @@ fun TasksScreen(
                 ) {
                     item(key = "summary") { SummaryCard(state.summary) }
                     item(key = "search") {
-                        OutlinedTextField(
+                        SearchField(
                             value = state.query,
                             onValueChange = viewModel::onQueryChange,
-                            modifier = Modifier.fillMaxWidth(),
-                            placeholder = { Text("جست‌وجو در عنوان و توضیحات") },
-                            leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                            trailingIcon = {
-                                if (state.query.isNotEmpty()) {
-                                    IconButton(onClick = { viewModel.onQueryChange("") }) {
-                                        Icon(Icons.Filled.Close, contentDescription = "پاک‌کردن جست‌وجو")
-                                    }
-                                }
-                            },
-                            singleLine = true,
-                            shape = RoundedCornerShape(50),
+                            placeholder = "جست‌وجو در عنوان و توضیحات",
                         )
                     }
                     item(key = "filters") {

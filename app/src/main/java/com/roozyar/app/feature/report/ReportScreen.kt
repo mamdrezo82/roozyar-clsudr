@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.design.AnimatedLinearProgress
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.RoozYarCard
 import com.roozyar.app.core.design.RoozYarTopBar
@@ -90,8 +90,8 @@ private fun Content(r: PeriodReport) {
                         Text(h.title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                         Text("٪" + h.percent.toPersianDigits(), style = MaterialTheme.typography.labelLarge, color = scheme.primary)
                     }
-                    LinearProgressIndicator(
-                        progress = { h.percent / 100f },
+                    AnimatedLinearProgress(
+                        progress = h.percent / 100f,
                         modifier = Modifier.fillMaxWidth().height(6.dp),
                         color = scheme.primary,
                         trackColor = scheme.surfaceContainerHighest,

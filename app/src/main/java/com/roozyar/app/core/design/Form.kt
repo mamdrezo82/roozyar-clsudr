@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilterChip
@@ -319,4 +320,30 @@ fun StepperRow(
             }
         }
     }
+}
+
+/** Rounded search box in the same style as [FormField], with a clear button. */
+@Composable
+fun SearchField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+) {
+    val scheme = MaterialTheme.colorScheme
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier.fillMaxWidth(),
+        placeholder = { Text(placeholder, color = scheme.onSurfaceVariant.copy(alpha = 0.7f)) },
+        leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null, tint = scheme.onSurfaceVariant) },
+        trailingIcon = {
+            if (value.isNotEmpty()) {
+                IconButton(onClick = { onValueChange("") }) { Icon(Icons.Filled.Close, contentDescription = "پاک‌کردن جست‌وجو") }
+            }
+        },
+        singleLine = true,
+        shape = RoundedCornerShape(50),
+        colors = fieldColors(),
+    )
 }

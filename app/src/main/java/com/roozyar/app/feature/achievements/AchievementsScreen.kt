@@ -16,7 +16,6 @@ import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.design.AnimatedLinearProgress
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.date.JalaliFormatter
 import com.roozyar.app.core.date.toJalali
@@ -90,8 +90,8 @@ fun AchievementsScreen(onBack: () -> Unit, viewModel: AchievementsViewModel = hi
                                         color = scheme.primary,
                                     )
                                 } else {
-                                    LinearProgressIndicator(
-                                        progress = { item.fraction },
+                                    AnimatedLinearProgress(
+                                        progress = item.fraction,
                                         modifier = Modifier.fillMaxWidth().height(6.dp),
                                         color = scheme.secondary,
                                         trackColor = scheme.surfaceContainerHighest,
@@ -120,8 +120,8 @@ internal fun LevelCard(level: LevelProgress, onClick: (() -> Unit)? = null) {
                 Text("سطح ${level.level.toPersianDigits()}", style = MaterialTheme.typography.headlineSmall, color = scheme.secondary, modifier = Modifier.weight(1f))
                 Text("${level.totalXp.toPersianDigits()} امتیاز", style = MaterialTheme.typography.titleMedium, color = scheme.primary)
             }
-            LinearProgressIndicator(
-                progress = { level.fraction },
+            AnimatedLinearProgress(
+                progress = level.fraction,
                 modifier = Modifier.fillMaxWidth().height(8.dp),
                 color = scheme.primary,
                 trackColor = scheme.surfaceContainerHighest,

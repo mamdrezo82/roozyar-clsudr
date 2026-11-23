@@ -20,7 +20,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,6 +31,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.design.AnimatedLinearProgress
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.design.EmptyState
 import com.roozyar.app.core.design.RoozYarCard
@@ -135,8 +135,8 @@ private fun SummaryCard(state: GoalsUiState) {
                     color = scheme.primary,
                 )
             }
-            LinearProgressIndicator(
-                progress = { state.overallProgress },
+            AnimatedLinearProgress(
+                progress = state.overallProgress,
                 modifier = Modifier.fillMaxWidth().height(8.dp),
                 color = scheme.primary,
                 trackColor = scheme.surfaceContainerHighest,
@@ -175,8 +175,8 @@ internal fun GoalCard(goal: Goal, today: LocalDate, onClick: () -> Unit) {
                     color = if (goal.isOverdue(today)) scheme.error else scheme.onSurfaceVariant,
                 )
             }
-            LinearProgressIndicator(
-                progress = { goal.progress },
+            AnimatedLinearProgress(
+                progress = goal.progress,
                 modifier = Modifier.fillMaxWidth().height(6.dp),
                 color = if (goal.completed) scheme.primary else scheme.secondary,
                 trackColor = scheme.surfaceContainerHighest,

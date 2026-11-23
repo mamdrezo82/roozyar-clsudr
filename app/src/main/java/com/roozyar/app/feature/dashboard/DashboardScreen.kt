@@ -20,7 +20,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -32,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.roozyar.app.core.design.AnimatedLinearProgress
 import com.roozyar.app.core.common.toPersianDigits
 import com.roozyar.app.core.date.JalaliFormatter
 import com.roozyar.app.core.design.RoozYarCard
@@ -215,8 +215,8 @@ private fun ProgressCard(summary: TodaySummary) {
                     "${summary.doneToday.toPersianDigits()} از ${summary.totalToday.toPersianDigits()} وظیفه انجام شده است",
                     style = MaterialTheme.typography.bodyMedium,
                 )
-                LinearProgressIndicator(
-                    progress = { summary.progress },
+                AnimatedLinearProgress(
+                    progress = summary.progress,
                     modifier = Modifier.fillMaxWidth().height(8.dp),
                     color = MaterialTheme.colorScheme.primary,
                     trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -250,8 +250,8 @@ private fun HabitsCard(habits: HabitsToday, onClick: () -> Unit) {
             if (habits.total == 0) {
                 Text("امروز عادتی برنامه‌ریزی نشده است.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
-                LinearProgressIndicator(
-                    progress = { habits.progress },
+                AnimatedLinearProgress(
+                    progress = habits.progress,
                     modifier = Modifier.fillMaxWidth().height(8.dp),
                     color = MaterialTheme.colorScheme.secondary,
                     trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
