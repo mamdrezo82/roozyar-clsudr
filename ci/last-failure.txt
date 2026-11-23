@@ -1,0 +1,8 @@
+commit: 997c426ae7a7f32fc3944e72f8157ec1172f28fe
+> Task :app:testDebugUnitTest FAILED
+RuleBasedParserTest > readCommands FAILED
+    java.lang.AssertionError at RuleBasedParserTest.kt:21
+* What went wrong:
+Execution failed for task ':app:testDebugUnitTest'.
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testDebugUnitTest'.
+BUILD FAILED in 1m 11s
