@@ -26,10 +26,12 @@ verified only by the product owner installing the APK.
 | Life timeline and daily/weekly/monthly reports | done |
 | Smart planner: plan a day inside free time, week overview, move overdue tasks, milestone to task | done |
 | Profile: real stats, level, edit profile | done |
+| Shared form kit (sections, labelled fields, pickers, chips, bottom action bar) used by every create/edit screen; animated progress bars; page fade transitions | done |
 | Home-screen widget (Glance): today's tasks, habits progress, overdue; refreshes while the app process is alive and every ~30 min | done |
 | Dashboard customization: modes (general, exam, internship), card order and visibility | done |
 | Repeating tasks (daily / weekly / monthly in Jalali months); completing one creates the next | done |
-| Local AI assistant (llama.cpp, memory, action registry) | not started (phase 4) |
+| Assistant chat: allow-listed actions, user approval before every change, result verified in the database; engine = rule-based Persian commands (NOT a language model) | done (phase 4, part 1) |
+| Local language model (llama.cpp / GGUF), Model Manager, assistant memory | not started (needs on-device testing, Persian quality unverified) |
 | Voice (push-to-talk speech-to-text / text-to-speech) | not started (phase 5) |
 
 ## Build
