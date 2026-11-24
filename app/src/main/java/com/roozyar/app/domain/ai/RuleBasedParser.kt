@@ -95,7 +95,7 @@ object RuleBasedParser {
         return when {
             "عقب" in text -> AssistantIntent.OverdueTasks
             "گزارش" in text -> AssistantIntent.WeekReport
-            "هدف" in text && listOf("وضعیت", "بررسی", "چطور", "پیشرفت").any { it in text } -> AssistantIntent.GoalsStatus
+            ("هدف" in text || "اهداف" in text) && listOf("وضعیت", "بررسی", "چطور", "پیشرفت").any { it in text } -> AssistantIntent.GoalsStatus
             "امروز" in text && listOf("چه کار", "کارها", "وظایف", "وظیفه", "برنامه").any { it in text } -> AssistantIntent.TodayTasks
             listOf("کمک", "راهنما", "چه کاری", "چه کار می").any { it in text } -> AssistantIntent.Help
             else -> AssistantIntent.Unknown
